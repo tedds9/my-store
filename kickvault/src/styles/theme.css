@@ -4,6 +4,12 @@
 --color-accent: #DCE2AA;
 --color-text-primary: #CCCCCC;
 --color-text-secondary:#999999;
+
+--fs-sm: 1.4rem;
+--fs-md: 1.6rem;
+--fs-lg: 2.4rem;
+--fs-xl: 3.2rem;
+--fs-hero: 7.2rem;
 }
 
 

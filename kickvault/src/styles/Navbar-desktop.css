@@ -8,6 +8,10 @@
     background-color: var(--color-surface);
   }
 
+  .menu-container {
+    display: none;
+  }
+
   .menu-toggle {
     display: none;
   }
