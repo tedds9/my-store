@@ -1,8 +1,9 @@
 
 import { useState } from 'react'
-import './../styles/Navbar.css';
-import menu from '../images/icons/menu.svg';
-import x from '../images/icons/x.svg';
+
+import '../styles/Navbar-menu-burger.css'
+import '../styles/Navbar-mobile.css';
+import '../styles/Navbar-desktop.css';
 
 export function Navbar() {
 
@@ -11,35 +12,40 @@ export function Navbar() {
   return (
     <header className="header">
 
-      {!isOpen && <img className="menu-toggle"
-        aria-label='menu'
-        alt="menu"
-        onClick={() => setIsOpen(!isOpen)} 
-        src={menu}>  
-      </img>}
+      <button aria-label='menu'
+        className={!isOpen ? "menu-container" : "menu-container active"}
+        onClick={() => setIsOpen(!isOpen)}>
+        <div className={!isOpen ? "menu-top menu-color" : "menu-top active menu-color"}></div>
+        <div className={!isOpen ? "menu-middle menu-color" : "menu-middle active menu-color"} ></div>
+        <div className={!isOpen ? "menu-bottom menu-color" : "menu-bottom active menu-color"}></div>
+      </button>
 
-      <h1 className="title">
-        <a>
-          <span>kickvault</span>
+
+      <h1 className='title-container' aria-label="title kickvault" >
+        <a href="./">
+          <span className="title title-weight">kickvault</span>
         </a>
       </h1>
-      
-      <nav className={isOpen ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-ul">
-          <li ><a aria-label='Home' href="./">Home</a></li>
-          <li ><a aria-label='Product' href="./">Products</a></li>
-          <li ><a aria-label='Favorites' 
-          href="./">Favorites</a></li>
-          <li ><a aria-label='Cart' href="./">Cart</a></li>
-        </ul>
-      </nav>
 
-      {isOpen && <img className="close-toggle"
-        aria-label='close'
-        alt="close"
-        onClick={() => setIsOpen(!isOpen)} 
-        src={x}>
-      </img>}
+      <nav className={isOpen ? "nav-menu active" : "nav-menu"}>
+        <h1 className='title-container-nav' aria-label="title kickvault" >
+          <a href="./">
+            <span className="title-nav title-weight">kickvault</span>
+          </a>
+
+
+        </h1>
+
+        <ul className="nav-ul ">
+          <li ><a className='color-primary' aria-label='Home' href="./">Home</a></li>
+          <li ><a className='color-primary' aria-label='Product' href="./">Products</a></li>
+          <li ><a className='color-primary' aria-label='Favorites'
+            href="./">Favorites</a></li>
+          <li ><a className='color-primary' aria-label='Cart' href="./">Cart</a></li>
+
+        </ul>    
+
+      </nav>
 
     </header>
   )
