@@ -1,0 +1,9 @@
+.title-weight {
+  font-weight: bolder;
+}
+.color-primary {
+  color: var(--color-accent)
+}
+.menu-color {
+  background-color: white;
+}
