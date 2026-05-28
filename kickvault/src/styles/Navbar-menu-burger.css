@@ -1,12 +1,13 @@
 
 @media(max-width: 1000px) {
 .menu-container {
+
     height: 14px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    z-index: 999;
+    z-index: 1000;
     cursor: pointer;
 
     background-color: var(--color-surface);
