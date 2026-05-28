@@ -1,3 +1,4 @@
+
 .hero {
   background-image: linear-gradient(rgba(0,0,0,0.5), 
   rgba(0,0,0, 0.5)), url(../images/shoes-image/heroPicture.jpg);
@@ -18,6 +19,16 @@
   align-items: center;
   justify-content: center;
 }
+
+@media(max-width: 1000px) {
+  .hero {
+    height: 70vh;
+  }
+  .hero-container {
+    height: 60vh;
+  }
+}
+
 .heading {
   font-weight: bolder;
   font-size: clamp(1.5rem, 6.5vw, 12rem);
@@ -39,6 +50,7 @@
   padding: 0.5rem 0.6rem;
   color: var(--color-accent);
   border: solid 1px var(--color-accent);
+  border-radius: 4px;
   font-weight: bold;  
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
@@ -53,6 +65,7 @@
   padding: 0.5rem 0.8rem;
   color: var(--color-text-primary);
   border:solid 1px var(--color-text-primary);
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, border 0.3s;
 }

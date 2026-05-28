@@ -1,0 +1,16 @@
+@media(min-width:1000px) {
+    .hero {
+      height: 120vh;
+    }
+    .action-now-container {
+      gap: 1rem;
+    }
+    .shop-now {
+      padding: 1rem 1rem;
+    }
+    .explore-now {
+      padding: 1rem 1rem;
+    }
+    
+    
+  }

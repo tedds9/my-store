@@ -1,5 +1,6 @@
 
-import  './../styles/Hero.css';
+import  './../styles/Hero-mobile.css';
+import  './../styles/Hero-desktop.css';
 
 export function Hero() {
   return (
