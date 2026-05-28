@@ -43,7 +43,7 @@ id : crypto.randomUUID(),
 name : 'KickVault Cadence',
 brand: 'KickVault',
 price: 480.00,
-image: 'data-shoes/KickVault-Candence.jpg',
+image: 'data-shoes/KickVault-Cadence.jpg',
 category: 'Luxury Sneakers',
 isFavorite: false
 }]

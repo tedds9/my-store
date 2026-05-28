@@ -1,23 +1,16 @@
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero';
-import { ProductCard } from './components/ProductCard';
-import {products} from './data/sneakers'
+import { ProductGrid } from './components/ProductGrid';
+import { products } from './data/sneakers';
 
 
 
 function App() {
-
-
   return (
-
     <>
-    
-    <Navbar></Navbar>
-    <Hero></Hero>
-    <ProductCard 
-    products ={products}
-    />
-    
+    <Navbar />
+    <Hero /> 
+    <ProductGrid products={products} />
     </>
   )
 }

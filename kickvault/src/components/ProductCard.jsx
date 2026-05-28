@@ -1,30 +1,25 @@
 import '../styles/ProductCard.css';
-export function ProductCard({ products }) {
 
-  return products.map((product) =>
+export function ProductCard({ product }) {
 
-    <section key={product.id}>
-      <div className="card-container">
-        <h2>
-          <div className="card-top">
-            <img className="images" src={product.image} ></img>
-          </div>
-          <div>
-
-            <h3>
-              <a href="./">
-                <p>{product.name}</p>
-              </a>
-            </h3>
-
-            <h3>
-              <p>{product.price}</p>
-            </h3>
-          </div>
-        </h2>
-
+  return (
+    <section className="card-container" key={product.id}>
+      <div className="card-top">
+        <a className="image-link">
+          <img alt="product shoes" className="images" src={product.image} >
+          </img>
+        </a>
+      </div>
+      <div className="card-bottom">
+        <a aria-label={product.name} href="./">
+          <h3 className="name">{product.name}</h3>
+        </a>
+        <a aria-label={product.price} href="./">
+          <p className="price" >${product.price}</p>
+        </a>
       </div>
     </section>
+
   )
 
 }

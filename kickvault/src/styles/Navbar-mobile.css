@@ -1,7 +1,9 @@
 body {
+  
   background-color: var(--color-bg);
   height: 100vh;
 }
+
 
 @media(max-width: 1000px) {
   .header {
