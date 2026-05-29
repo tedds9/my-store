@@ -73,7 +73,7 @@ export function Navbar() {
               </Link>
             </div>
           </div>
-          <div className="menu-container">
+          <div className="menu-container-list">
           <li ><Link to="/" className="menu-name" aria-label="Home" onClick={() => setIsOpen(!isOpen)} >Home</Link></li>
           <li ><a className="menu-name" aria-label="Product" href="./">Products</a></li>
           <li ><a className="menu-name" aria-label="Favorites"

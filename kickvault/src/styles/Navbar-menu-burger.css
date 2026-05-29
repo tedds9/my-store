@@ -55,7 +55,7 @@
   .product-category-container {
     display: flex;
     flex-direction: column;
-    width: 90vw;
+    width: 85vw;
     gap: 1rem;
 
   }

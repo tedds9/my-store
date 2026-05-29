@@ -66,11 +66,12 @@ body::-webkit-scrollbar {
     width: 100%;
     padding: 6rem 0px;
     padding-left: 50px;
+    gap: 10vw;
   }
 
   .title-container-nav {
 
-    padding: 1rem 0px;
+    margin-top: 5vw;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -110,10 +111,10 @@ body::-webkit-scrollbar {
     gap: 1rem;
   }
 
-}
+  .menu-name {
+    font-weight: bold;
+    font-size: 5vw;
+    color: var(--color-accent)
+  }
 
-.menu-name {
-  font-weight: bold;
-  font-size: 5vw;
-  color: var(--color-accent)
 }

@@ -2,7 +2,7 @@
   .header {
     display: flex;
     align-items: center;
-    padding: 2rem 1rem;
+    padding: 2vw 2vw;
     gap: 2rem;
 
     background-color: var(--color-surface);
@@ -42,6 +42,22 @@
     display: none;
   }
 
+  .product-category-container {
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+    
+  }
+  .container-name {
+    
+  }
+  .category-name {
+    font-size: 2vw;
+    font-weight: bold;
+    color: var(--color-accent)
+
+  }
+
   .title-container-nav {
     display: none;
   }
@@ -51,6 +67,15 @@
   }
 
   .title {
+    color: var(--color-accent)
+  }
+  .menu-container-list {
+    display: flex;
+    gap: 3vw;
+  }
+  .menu-name {
+    font-weight: bold;
+    font-size: 2vw;
     color: var(--color-accent)
   }
 
