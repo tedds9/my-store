@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import '../styles/Navbar-menu-burger.css'
 import '../styles/Navbar-mobile.css';
@@ -23,44 +23,63 @@ export function Navbar() {
 
 
       <h1 className="title-container" aria-label="title kickvault" >
-        <a href="./">
+        <Link to="/">
           <span className="title title-weight">kickvault</span>
-        </a>
+        </Link>
       </h1>
 
       <nav className={isOpen ? 'nav-menu active' : 'nav-menu'}>
         <h1 className="title-container-nav" aria-label="title kickvault" >
-          <a href="./">
+          <Link to="/">
             <span className="title-nav title-weight">kickvault</span>
-          </a>
+          </Link>
 
 
         </h1>
 
         <ul className="nav-ul ">
-          <div className="category-container" >
-            <Link to="/category/Men" >
-              <h2 onClick={() => setIsOpen(!isOpen)}>
+          <div className="product-category-container" >
+            <Link className="container-name" onClick={() => setIsOpen(!isOpen)} to="/category/Men" >
+
+              <h2 className="category-name" >
                 Men
               </h2>
+              <div className="arrow-container" >
+                <span className="arrow-top"></span>
+                <span className="arrow-bottom"></span>
+              </div>
+
             </Link>
-            <Link to="/category/Women" >
-              <h2 onClick={() => setIsOpen(!isOpen)}>
+            <Link className="container-name" onClick={() => setIsOpen(!isOpen)} to="/category/Women" >
+
+              <h2 className="category-name" >
                 Women
               </h2>
-            </Link>
-            <Link to="/category/Luxury Sneakers" >
-              <h2 onClick={() => setIsOpen(!isOpen)}>
-                Luxury Sneakers
-              </h2>
-            </Link>
-          </div>
-          <li ><a className="color-primary" aria-label="Home" href="./">Home</a></li>
-          <li ><a className="color-primary" aria-label="Product" href="./">Products</a></li>
-          <li ><a className="color-primary" aria-label="Favorites"
-            href="./">Favorites</a></li>
-          <li ><a className="color-primary" aria-label="Cart" href="./">Cart</a></li>
+              <div className="arrow-container" >
+                <span className="arrow-top"></span>
+                <span className="arrow-bottom"></span>
+              </div>
 
+            </Link>
+            <div>
+              <Link className="container-name" onClick={() => setIsOpen(!isOpen)} to="/category/Luxury Sneakers" >
+                <h2 className="category-name" >
+                  Luxury Sneakers
+                </h2>
+                <div className="arrow-container" >
+                  <span className="arrow-top"></span>
+                  <span className="arrow-bottom"></span>
+                </div>
+              </Link>
+            </div>
+          </div>
+          <div className="menu-container">
+          <li ><Link to="/" className="menu-name" aria-label="Home" onClick={() => setIsOpen(!isOpen)} >Home</Link></li>
+          <li ><a className="menu-name" aria-label="Product" href="./">Products</a></li>
+          <li ><a className="menu-name" aria-label="Favorites"
+            href="./">Favorites</a></li>
+          <li ><a className="menu-name " aria-label="Cart" href="./">Cart</a></li>
+          </div>
         </ul>
 
       </nav>

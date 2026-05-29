@@ -13,6 +13,7 @@
     background-color: var(--color-surface);
     border: none;
   }
+
   .menu-top {
     display: inline-block;
     background-color: var(--color-text-primary);
@@ -49,5 +50,45 @@
   .menu-bottom.active {
     transform: translateY(-6px) rotate(-140deg);
     
+  }
+
+  .product-category-container {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    gap: 1rem;
+
+  }
+
+  .container-name {
+    display: flex;
+    justify-content: space-between;
+  }
+  .category-name {
+    color: var(--color-accent);
+    font-weight: bold;
+    font-size: 5vw;
+  }
+
+  .arrow-container {
+    display: flex;
+    height: 1rem;
+    flex-direction: column;
+  }
+  .arrow-top {
+    display: inline-block;
+    width: 1rem;
+    height: 3px;
+    background-color: var(--color-accent);
+
+    transform: translateY(13px) rotate(40deg);
+  }
+  .arrow-bottom {
+    display: inline-block;
+    width: 1rem;
+    height: 3px;
+    background-color: var(--color-accent);
+
+    transform: translateY(19px) rotate(-40deg);
   }
 }
