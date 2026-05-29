@@ -3,9 +3,9 @@ import '../styles/ProductCard.css';
 export function ProductCard({ product }) {
 
   return (
-    <section className="card-container" key={product.id}>
+    <section className="card-container">
       <div className="card-top">
-        <a className="image-link">
+        <a href="./" className="image-link">
           <img alt="product shoes" className="images" src={product.image} >
           </img>
         </a>

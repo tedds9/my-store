@@ -5,13 +5,14 @@
 
 }
 .card-container {
-  margin: 0.25rem;
+  border:solid 5px var(--color-bg);
   display: flex;
   flex-direction: column;
   background-color: var(--color-surface);
+  height: 50vh;
 }
 .card-top {
-  display: flex;
+   display: flex;
    flex: 1;
    min-height: 0;
 }
@@ -30,33 +31,34 @@
 .card-bottom {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center;  
   gap: 0.5rem;
-  padding: 0rem 0.5rem;
   width: 100%;
   height: 8rem;
   
 }
 .name {
+  display: flex;
   font-weight: bold;
-  font-size: 4vw;
+  padding-left: 0.6rem;
+  font-size: clamp(1rem, 1.5vw, 3rem);
   color: var(--color-text-primary);
 }
 .price {
+  display: flex;
   font-weight: bold;
+  padding-left: 0.6rem;
   color: var(--color-text-primary);
-  font-size: 4vw;
+  font-size: clamp(1rem, 1.5vw, 3rem);
 }
-
 
 @media(min-width : 600px) {
   .card-container {
     height: 60vh;
   }
-  .name {
-    font-size: 3vw;
-  }
-  .price {
-    font-size: 3vw;
+}
+@media(min-width : 900px) {
+  .card-container {
+    height: 80vh;
   }
 }
