@@ -1,52 +1,87 @@
 
-import { useState } from 'react'
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { NAV_CATEGORIES, NAV_MENU_ITEMS } from '../data/navData';
 
-import '../styles/Navbar-menu-burger.css'
 import '../styles/Navbar-mobile.css';
 import '../styles/Navbar-desktop.css';
 
 export function Navbar() {
 
   const [isOpen, setIsOpen] = useState(false);
+  const closeMenu = () => setIsOpen(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
     <header className="header">
 
-      <button aria-label="menu"
-        className={!isOpen ? 'menu-container' : 'menu-container active'}
-        onClick={() => setIsOpen(!isOpen)}>
-        <div className={!isOpen ? 'menu-top menu-color' : 'menu-top active menu-color'}></div>
-        <div className={!isOpen ? 'menu-middle menu-color' : 'menu-middle active menu-color'} ></div>
-        <div className={!isOpen ? 'menu-bottom menu-color' : 'menu-bottom active menu-color'}></div>
+      <div className="title-container"  >
+        <NavLink aria-label="Kick Vault" to="/">
+          <span className="title title-weight"
+          >kickvault</span>
+        </NavLink>
+      </div>
+
+      <button aria-controls="mobile-menu" aria-expanded={isOpen} aria-label="menu"
+        className={`menu-container ${isOpen ? 'active' : ''}`}
+        onClick={toggleMenu}>
+        <div className="menu-top" ></div>
+        <div className="menu-middle" ></div>
+        <div className="menu-bottom" ></div>
       </button>
 
+      <nav aria-label="Main Navigation" id="mobile-menu"
+        className={`nav-menu ${isOpen ? 'active' : ''}`}>
 
-      <h1 className="title-container" aria-label="title kickvault" >
-        <a href="./">
-          <span className="title title-weight">kickvault</span>
-        </a>
-      </h1>
+        <div className="title-container-nav" >
+          <NavLink aria-label="Kick Vault" to="/">
+            <span onClick={closeMenu} className="title-nav title-weight">kickvault</span>
+          </NavLink>
+        </div>
 
-      <nav className={isOpen ? 'nav-menu active' : 'nav-menu'}>
-        <h1 className="title-container-nav" aria-label="title kickvault" >
-          <a href="./">
-            <span className="title-nav title-weight">kickvault</span>
-          </a>
+        <div className="nav-ul ">
+          <div className="product-category-container" >
+            <ul className="category-ul">
 
+              {NAV_CATEGORIES.map(({ id, name, path }) => {
+                return (
+                  <li key={id} className="category-li">
+                    <NavLink className="container-name" onClick={closeMenu}
+                      to={path} >
+                      <span className="category-name" >
+                        {name}
+                      </span>
+                      {/* Hide visual arrow icon from screen readers to avoid audio clutter */}
+                      <div aria-hidden="true" className="arrow-container" >
+                        <span className="arrow-top"></span>
+                        <span className="arrow-bottom"></span>
+                      </div>
+                    </NavLink>
+                  </li>
+                )
+              })}
 
-        </h1>
+            </ul>
+          </div>
 
-        <ul className="nav-ul ">
-          <li ><a className="color-primary" aria-label="Home" href="./">Home</a></li>
-          <li ><a className="color-primary" aria-label="Product" href="./">Products</a></li>
-          <li ><a className="color-primary" aria-label="Favorites"
-            href="./">Favorites</a></li>
-          <li ><a className="color-primary" aria-label="Cart" href="./">Cart</a></li>
+          <ul className="menu-container-list">
 
-        </ul>    
+            {NAV_MENU_ITEMS.map(({ id, name, path }) => {
+              return (
+                <li key={id} className="menu-li" >
+                  <NavLink className="menu-name" onClick={closeMenu}
+                    to={path} >{name}
+                  </NavLink>
+                </li>
+              )
+            })}
+
+          </ul>
+
+        </div>
 
       </nav>
 
-    </header>
+    </header >
   )
 }
