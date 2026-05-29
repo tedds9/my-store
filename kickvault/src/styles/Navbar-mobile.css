@@ -4,6 +4,10 @@ body {
   height: 100vh;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 
 @media(max-width: 1000px) {
   .header {

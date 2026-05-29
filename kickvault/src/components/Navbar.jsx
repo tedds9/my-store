@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import {  Link } from 'react-router-dom';
 
 import '../styles/Navbar-menu-burger.css'
 import '../styles/Navbar-mobile.css';
@@ -37,13 +38,30 @@ export function Navbar() {
         </h1>
 
         <ul className="nav-ul ">
+          <div className="category-container" >
+            <Link to="/category/Men" >
+              <h2 onClick={() => setIsOpen(!isOpen)}>
+                Men
+              </h2>
+            </Link>
+            <Link to="/category/Women" >
+              <h2 onClick={() => setIsOpen(!isOpen)}>
+                Women
+              </h2>
+            </Link>
+            <Link to="/category/Luxury Sneakers" >
+              <h2 onClick={() => setIsOpen(!isOpen)}>
+                Luxury Sneakers
+              </h2>
+            </Link>
+          </div>
           <li ><a className="color-primary" aria-label="Home" href="./">Home</a></li>
           <li ><a className="color-primary" aria-label="Product" href="./">Products</a></li>
           <li ><a className="color-primary" aria-label="Favorites"
             href="./">Favorites</a></li>
           <li ><a className="color-primary" aria-label="Cart" href="./">Cart</a></li>
 
-        </ul>    
+        </ul>
 
       </nav>
 
