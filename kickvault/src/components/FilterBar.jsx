@@ -8,6 +8,7 @@ export function FilterBar() {
 
   const pickCategory = products.filter((product)=> {return product.category === type ? true : false;
   })
+  console.log(pickCategory)
 
   return (
     <section>
