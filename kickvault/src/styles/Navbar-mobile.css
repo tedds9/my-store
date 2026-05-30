@@ -60,13 +60,15 @@ body {
 
   .menu-name.active {
     color: var(--color-text-primary);
-    border-bottom: 2px solid var(--color-text-primary);
+    border-bottom: solid 2px var(--color-text-primary);
   }
 
   .product-category-container {
     display: flex;
     flex-direction: column;
-    width: 85vw;
+    width: max-content;
+    min-width: 14rem;
+
     gap: 1rem;
 
   }
@@ -150,8 +152,9 @@ body {
   .nav-menu {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
+    max-width: 20rem;
     height: 100vh;
     background-color: var(--color-surface);
 
@@ -163,7 +166,7 @@ body {
 
     visibility: hidden;
     transition: transform 0.4s ease-in-out, visibility 0.4s 0.4s ease-in-out;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     z-index: 999;
   }
 

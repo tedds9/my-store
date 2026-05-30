@@ -15,6 +15,13 @@ export function Navbar() {
   return (
     <header className="header">
 
+      <h1 className="title-container"  >
+        <NavLink aria-label="Kick Vault" to="/">
+          <span className="title title-weight"
+          >kickvault</span>
+        </NavLink>
+      </h1>
+
       <button aria-controls="mobile-menu" aria-expanded={isOpen} aria-label="menu"
         className={`menu-container ${isOpen ? 'active' : ''}`}
         onClick={toggleMenu}>
@@ -22,13 +29,6 @@ export function Navbar() {
         <div className="menu-middle" ></div>
         <div className="menu-bottom" ></div>
       </button>
-
-      <h1 className="title-container"  >
-        <NavLink aria-label="Kick Vault" to="/">
-          <span className="title title-weight"
-          >kickvault</span>
-        </NavLink>
-      </h1>
 
       <nav aria-label="Main Navigation" id="mobile-menu"
         className={`nav-menu ${isOpen ? 'active' : ''}`}>
