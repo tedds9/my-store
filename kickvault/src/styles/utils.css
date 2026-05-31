@@ -1,11 +1,13 @@
-.title-weight {
-  font-weight: bolder;
-}
+@layer utilities {
+  .title-weight {
+    font-weight: bolder;
+  }
 
-.color-primary {
-  color: var(--color-accent)
-}
+  .color-primary {
+    color: var(--color-accent)
+  }
 
-.menu-color {
-  background-color: white;
+  .menu-color {
+    background-color: white;
+  }
 }

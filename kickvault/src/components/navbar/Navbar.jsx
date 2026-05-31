@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { NAV_CATEGORIES, NAV_MENU_ITEMS } from '../../data/navData';
 
-import '../styles/navbar.css';
+import './navbar.css';
 
 export function Navbar() {
 

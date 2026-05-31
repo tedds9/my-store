@@ -1,5 +1,5 @@
-import { Navbar } from './components/Navbar'
-import { Hero } from './components/Hero';
+import { Navbar } from './components/navbar/Navbar'
+import { Hero } from './components/shop/Hero';
 import { ProductGrid } from './components/ProductGrid';
 import { products } from './data/sneakers';
 import { FilterBar } from './components/FilterBar';
