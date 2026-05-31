@@ -1,8 +1,8 @@
 import { Navbar } from './components/navbar/Navbar'
 import { Hero } from './components/shop/Hero';
-import { ProductGrid } from './components/ProductGrid';
+import { ProductGrid } from './components/shop/ProductGrid';
 import { products } from './data/sneakers';
-import { FilterBar } from './components/FilterBar';
+import { FilterBar } from './components/shop/FilterBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
