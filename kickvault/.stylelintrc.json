@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "rules": {
+    "import-notation": "string",
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["layer", "import"]
+      }
+    ],
+    "selector-class-pattern": [
+      "^[a-z]([a-z0-9-]+)?(__[a-z0-9-]+)?(--[a-z0-9-]+)?$",
+      {
+        "message": "CRITICAL ARCHITECTURAL ERROR: Selector must strictly match the BEM (Block__Element--Modifier) specification pattern."
+      }
+    ],
+    "no-descending-specificity": [
+      true,
+      {
+        "severity": "error",
+        "message": "REGRESSION WARNING: Detected descending specificity. Fix stylesheet cascade ordering to prevent layout engine leaks."
+      }
+    ]
+  }
+}

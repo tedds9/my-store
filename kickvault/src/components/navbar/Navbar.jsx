@@ -1,10 +1,9 @@
 
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { NAV_CATEGORIES, NAV_MENU_ITEMS } from '../data/navData';
+import { NAV_CATEGORIES, NAV_MENU_ITEMS } from '../../data/navData';
 
-import '../styles/Navbar-mobile.css';
-import '../styles/Navbar-desktop.css';
+import '../styles/navbar.css';
 
 export function Navbar() {
 
@@ -34,7 +33,7 @@ export function Navbar() {
         className={`nav-menu ${isOpen ? 'active' : ''}`}>
 
         <div className="title-container-nav" >
-          <NavLink aria-label="Kick Vault" to="/">
+          <NavLink to="/">
             <span onClick={closeMenu} className="title-nav title-weight">kickvault</span>
           </NavLink>
         </div>

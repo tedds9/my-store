@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import {products} from '../data/sneakers'
-import {ProductGrid} from './ProductGrid'
+import {ProductGrid} from './productGrid'
 
 
 export function FilterBar() {

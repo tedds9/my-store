@@ -1,29 +1,29 @@
 
 .hero {
-  background-image: linear-gradient(rgba(0,0,0,0.5), 
-  rgba(0,0,0, 0.5)), url(../images/shoes-image/heroPicture.jpg);
+  background-image: linear-gradient(rgb(0 0 0 / 50%), 
+  rgb(0 0 0 / 50%)), url("../images/shoes-image/heroPicture.jpg");
   height: 100vh;
-  
   background-position: 10%;
   background-repeat: no-repeat ;
   background-size:  cover ;
   position: relative;
 
 }
+
 .hero-container {
   height: 80vh;
   width: 100%;
-  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-@media(max-width: 1000px) {
+@media(width <= 1000px) {
   .hero {
     height: 70vh;
   }
+
   .hero-container {
     height: 60vh;
   }
@@ -34,17 +34,20 @@
   font-size: clamp(1.5rem, 6.5vw, 12rem);
   color: var(--color-text-primary);
 }
+
 .sub-heading {
   color: var(--color-text-primary);
   font-size: clamp(0.9rem, 2.5vw, 3rem);
-  margin: 1rem 1rem;
+  margin: 1rem;
 }
+
 .action-now-container {
   display: flex;
   background-color: inherit;
   border: none;
   gap: 1rem;
 }
+
 .shop-now {
   background-color: inherit;
   padding: 0.5rem 0.6rem;
@@ -55,11 +58,12 @@
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-.shop-now:hover {
 
+.shop-now:hover {
   background-color: var(--color-accent);
   color: var(--color-bg)
 }
+
 .explore-now {
   background-color: inherit;
   padding: 0.5rem 0.8rem;
@@ -69,7 +73,27 @@
   cursor: pointer;
   transition: background-color 0.3s, border 0.3s;
 }
+
 .explore-now:hover {
   background-color: var(--color-surface);
   border:solid 1px var(--color-surface);
 }
+
+@media(width >=1000px) {
+    .hero {
+      height: 120vh;
+    }
+
+    .action-now-container {
+      gap: 1rem;
+    }
+
+    .shop-now {
+      padding: 1rem;
+    }
+
+    .explore-now {
+      padding: 1rem;
+    }
+      
+  }
