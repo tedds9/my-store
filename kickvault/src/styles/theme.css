@@ -1,14 +1,25 @@
 @layer tokens {
   :root {
-    --color-bg: #121212;
-    --color-surface: #333;
-    --color-accent: #DCE2AA;
-    --color-text-primary: #CCC;
-    --color-text-secondary: #999;
-    --fs-sm: 1.4rem;
-    --fs-md: 1.6rem;
-    --fs-lg: 2.4rem;
-    --fs-xl: 3.2rem;
-    --fs-hero: 7.2rem;
+    /* Layout Tokens */
+    --color-bg: #0a0a0a;
+    --color-surface: #171717;
+    --color-surface-muted: #262626;
+    --color-border: #262626;
+
+    /* Typography Tokens (Contrast > 4.5:1) */
+    --color-text-primary: #f5f5f5;
+    --color-text-secondary: #a3a3a3;
+    --color-text-disabled: #737373;
+    
+    /* Branding Assets */
+    --color-accent: #f50;
+    --color-accent-muted: #dce2aa;
+
+    /* Fluid Responsive Scale Layout Matrix */
+    --fs-sm: clamp(1.2rem, 1.0rem + 0.5vw, 1.4rem);
+    --fs-md: clamp(1.4rem, 1.2rem + 0.5vw, 1.6rem);
+    --fs-lg: clamp(1.8rem, 1.5rem + 1vw, 2.4rem);
+    --fs-xl: clamp(2.4rem, 2.0rem + 1.5vw, 3.2rem);
+    --fs-hero: clamp(3.6rem, 2.5rem + 4vw, 7.2rem);
   }
 }

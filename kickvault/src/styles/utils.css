@@ -1,13 +1,8 @@
-@layer utilities {
-  .title-weight {
+
+  .titleWeight {
     font-weight: bolder;
   }
 
-  .color-primary {
+  .colorPrimary {
     color: var(--color-accent)
   }
-
-  .menu-color {
-    background-color: white;
-  }
-}
