@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { NAV_CATEGORIES, NAV_MENU_ITEMS } from '../../data/navData';
 
-import './navbar.css';
+import styles from './navbar.module.css';
 
 export function Navbar() {
 
@@ -12,68 +12,69 @@ export function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <header className="header">
+    <header className={styles.navbar} >
 
-      <div className="title-container"  >
-        <NavLink aria-label="Kick Vault" to="/">
-          <span className="title title-weight"
+      <div className={styles.titleContainer}  >
+        <NavLink to="/">
+          <span className={`${styles.title} titleWeight`}
           >kickvault</span>
         </NavLink>
       </div>
 
-      <button aria-controls="mobile-menu" aria-expanded={isOpen} aria-label="menu"
-        className={`menu-container ${isOpen ? 'active' : ''}`}
+      <button aria-controls={styles.mobileMenu} aria-expanded={isOpen} aria-label="menu"
+        className={`${styles.menuContainer} ${isOpen ? styles.menuContainerActive : ''}`}
         onClick={toggleMenu}>
-        <div className="menu-top" ></div>
-        <div className="menu-middle" ></div>
-        <div className="menu-bottom" ></div>
+        <div className={styles.menuDesignTop} ></div>
+        <div className={styles.menuDesignMiddle} ></div>
+        <div className={styles.menuDesignBottom} ></div>
       </button>
 
       <nav aria-label="Main Navigation" id="mobile-menu"
-        className={`nav-menu ${isOpen ? 'active' : ''}`}>
+        className={`${styles.navMenu} ${isOpen ? styles.navMenuActive : ''}`}>
 
-        <div className="title-container-nav" >
+        <div className={styles.titleContainerNav} >
           <NavLink to="/">
-            <span onClick={closeMenu} className="title-nav title-weight">kickvault</span>
+            <span onClick={closeMenu}
+              className={` ${styles.titleNav }      titleWeight`}>kickvault</span>
           </NavLink>
         </div>
 
-        <div className="nav-ul ">
-          <div className="product-category-container" >
-            <ul className="category-ul">
+        <div className={styles.navUl} >
+          <div className={styles.productCategoryContainer} >
+            <ul className={styles.categoryUl}>
 
-              {NAV_CATEGORIES.map(({ id, name, path }) => {
-                return (
-                  <li key={id} className="category-li">
-                    <NavLink className="container-name" onClick={closeMenu}
+              {NAV_CATEGORIES.map(({ id, name, path }) => (
+                  <li key={id} className={styles.categoryLi}>
+                    <NavLink className={styles.containerName} onClick={closeMenu}
                       to={path} >
-                      <span className="category-name" >
+                      <span className={styles.categoryName} >
                         {name}
                       </span>
                       {/* Hide visual arrow icon from screen readers to avoid audio clutter */}
-                      <div aria-hidden="true" className="arrow-container" >
-                        <span className="arrow-top"></span>
-                        <span className="arrow-bottom"></span>
+                      <div aria-hidden="true"
+                        className={styles.arrowContainer} >
+                        <span className={styles.arrowTop}></span>
+                        <span className={styles.arrowBottom}></span>
                       </div>
                     </NavLink>
                   </li>
                 )
-              })}
+              )}
 
             </ul>
           </div>
 
-          <ul className="menu-container-list">
+          <ul className={styles.menuContainerList}>
 
-            {NAV_MENU_ITEMS.map(({ id, name, path }) => {
-              return (
-                <li key={id} className="menu-li" >
-                  <NavLink className="menu-name" onClick={closeMenu}
-                    to={path} >{name}
-                  </NavLink>
-                </li>
-              )
-            })}
+            {NAV_MENU_ITEMS.map(({ id, name, path }) => (
+              <li key={id} className={styles.menuLi} >
+                <NavLink className={styles.menuName} onClick={closeMenu}
+                  to={path}>
+                    {name}
+                </NavLink>
+              </li>
+            )
+            )}
 
           </ul>
 

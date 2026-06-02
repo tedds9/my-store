@@ -1,19 +1,19 @@
 
-import  './hero.css';
+import styles from './hero.module.css';
 
 export function Hero() {
   return (
 
     
-    <section className="hero" aria-label="hero-section" >
-      <div className="hero-container">
-        <h1 className="heading" aria-label="heading">EVERY STEP. ELEVATED.</h1>
-        <p className="sub-heading" aria-label="subheading">"Premium sneakers for those who move with intention."</p>
-        <div className="action-now-container">
-          <button className="shop-now" aria-label="Shop now">
+    <section className={styles.hero} aria-label="feature-product-introduction" >
+      <div className={styles.container}>
+        <h1 className={styles.heading} >EVERY STEP. ELEVATED.</h1>
+        <p className={styles.subHeading} >"Premium sneakers for those who move with intention."</p>
+        <div className={styles.actionNowContainer}>
+          <button className={styles.shopNow} >
             Shop Now
           </button>
-          <button className="explore-now" aria-label="Explore now">
+          <button className={styles.exploreNow} >
             Explore
           </button>
         </div>

@@ -1,14 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { products } from '../../data/sneakers'
-import { ProductGrid } from './ProductGrid'
+import { ProductGrid } from './ProductGrid';
+import { useShop } from '../../context/ShopContext'
 
 
 export function FilterBar() {
   const { type } = useParams();
+  const [products] = useShop();
 
-  const pickCategory = products.filter((product) => {
-    return product.category === type ? true : false;
-  })
+  const pickCategory = products.filter((product) => 
+    product.category === type)
 
   return (
     <section>

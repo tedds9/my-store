@@ -1,5 +1,3 @@
-@layer components {
-
 .hero {
   background-image: linear-gradient(rgb(0 0 0 / 50%), 
   rgb(0 0 0 / 50%)), url("../images/shoes-image/heroPicture.jpg");
@@ -11,7 +9,7 @@
 
 }
 
-.hero-container {
+.container {
   height: 80vh;
   width: 100%;
   display: flex;
@@ -25,7 +23,7 @@
     height: 70vh;
   }
 
-  .hero-container {
+  .container {
     height: 60vh;
   }
 }
@@ -36,20 +34,20 @@
   color: var(--color-text-primary);
 }
 
-.sub-heading {
+.subHeading {
   color: var(--color-text-primary);
   font-size: clamp(0.9rem, 2.5vw, 3rem);
   margin: 1rem;
 }
 
-.action-now-container {
+.actionNowContainer {
   display: flex;
   background-color: inherit;
   border: none;
   gap: 1rem;
 }
 
-.shop-now {
+.shopNow {
   background-color: inherit;
   padding: 0.5rem 0.6rem;
   color: var(--color-accent);
@@ -60,12 +58,12 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-.shop-now:hover {
+.shopNow:hover {
   background-color: var(--color-accent);
   color: var(--color-bg)
 }
 
-.explore-now {
+.exploreNow {
   background-color: inherit;
   padding: 0.5rem 0.8rem;
   color: var(--color-text-primary);
@@ -75,7 +73,7 @@
   transition: background-color 0.3s, border 0.3s;
 }
 
-.explore-now:hover {
+.exploreNow:hover {
   background-color: var(--color-surface);
   border:solid 1px var(--color-surface);
 }
@@ -85,17 +83,16 @@
       height: 120vh;
     }
 
-    .action-now-container {
+    .actionNowContainer {
       gap: 1rem;
     }
 
-    .shop-now {
+    .shopNow {
       padding: 1rem;
     }
 
-    .explore-now {
+    .exploreNow {
       padding: 1rem;
     }
       
   }
-}

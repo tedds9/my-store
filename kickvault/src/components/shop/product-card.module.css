@@ -1,12 +1,4 @@
-@layer components {
-  .card-container-grid {
-    margin-top: 0.3rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-  }
-
-  .card-container {
+  .productCard {
     border: solid 5px var(--color-bg);
     display: flex;
     flex-direction: column;
@@ -14,19 +6,19 @@
     height: 50vh;
   }
 
-  .card-top {
+  .mediaWrapper {
     display: flex;
     flex: 1;
     min-height: 0;
   }
 
-  .image-link {
+  .imageLink {
     display: block;
     width: 100%;
     height: 100%;
   }
 
-  .images {
+  .image {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -34,7 +26,7 @@
 
   }
 
-  .card-bottom {
+  .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,7 +36,7 @@
 
   }
 
-  .name {
+  .title {
     display: flex;
     font-weight: bold;
     padding-left: 0.6rem;
@@ -61,15 +53,14 @@
   }
 
   @media(width >=600px) {
-    .card-container {
+    .productCard {
       height: 60vh;
     }
   }
 
   @media(width >=900px) {
-    .card-container {
+    .productCard {
       height: 80vh;
     }
   }
 
-}

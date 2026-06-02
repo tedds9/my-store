@@ -1,24 +1,27 @@
-import './product-card.css';
+import styles from './product-card.module.css';
+import { Link } from 'react-router-dom'
 
-export function ProductCard({ product }) {
+export function ProductCard({ image, name, price }) {
 
   return (
-    <section className="card-container">
-      <div className="card-top">
-        <a href="./" className="image-link">
-          <img alt="product shoes" className="images" src={product.image} >
+    <article className={styles.productCard}>
+      <div className={styles.mediaWrapper}>
+        <Link to="/" className={styles.imageLink}>
+          <img alt="product sneaker" 
+          className={styles.image} 
+          src={image} >
           </img>
-        </a>
+        </Link>
       </div>
-      <div className="card-bottom">
-        <a aria-label={product.name} href="./">
-          <h3 className="name">{product.name}</h3>
-        </a>
-        <a aria-label={product.price} href="./">
-          <p className="price" >${product.price}</p>
-        </a>
+      <div className={styles.content}>
+        <Link  to="/">
+          <h3 className={styles.title}>{name}</h3>
+        </Link>
+        <Link  to="/">
+          <p className={styles.price} >${price}</p>
+        </Link>
       </div>
-    </section>
+    </article>
 
   )
 
