@@ -1,7 +1,8 @@
-
+@layer components {
   .cardContainerGrid {
     margin-top: 0.3rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
 
   }
+}

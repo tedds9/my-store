@@ -1,4 +1,5 @@
-  @media(width <= 999px) {
+@layer components {
+@media(width <= 999px) {
     .navbar {
       display: flex;
       flex-direction: row;
@@ -117,11 +118,16 @@
     }
 
     .categoryUl {
-      display: contents;
+      display: flex;
+      flex-direction: row;
+      gap: 2.4rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
     .categoryLi {
-      display: contents;
+      display: block;
     }
 
     .containerName {
@@ -241,11 +247,16 @@
     }
 
     .categoryUl {
-      display: contents;
+      display: flex;
+      flex-direction: row;
+      gap: 2.4rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
     .categoryLi {
-      display: contents;
+      display: block;
     }
 
     .categoryName {
@@ -269,7 +280,7 @@
     }
 
     .menuLi {
-      display: contents;
+      display: block;
     }
 
     .menuName {
@@ -284,3 +295,4 @@
       border-bottom: 2px solid var(--color-text-primary);
     }
   }
+}

@@ -1,6 +1,7 @@
+@layer components {
 .hero {
   background-image: linear-gradient(rgb(0 0 0 / 50%), 
-  rgb(0 0 0 / 50%)), url("../images/shoes-image/heroPicture.jpg");
+  rgb(0 0 0 / 50%)), url("../../images/shoes-image/heroPicture.jpg");
   height: 100vh;
   background-position: 10%;
   background-repeat: no-repeat ;
@@ -96,3 +97,4 @@
     }
       
   }
+}

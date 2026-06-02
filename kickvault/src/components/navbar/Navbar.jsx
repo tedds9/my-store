@@ -1,12 +1,14 @@
 
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { NAV_CATEGORIES, NAV_MENU_ITEMS } from '../../data/navData';
+
+import { useShop } from '../../context/ShopContext'
 
 import styles from './navbar.module.css';
 
 export function Navbar() {
 
+  const { NAV_CATEGORIES, NAV_MENU_ITEMS } = useShop();
   const [isOpen, setIsOpen] = useState(false);
   const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => setIsOpen(!isOpen);
