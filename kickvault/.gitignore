@@ -5,6 +5,7 @@ node_modules/
 # 2. Local Custom Scratchpad Text Notes
 rules
 rules-media-screen-breakpoint
+rules-about-theme
 
 # 3. Production Compilation Output Boxes
 dist/
