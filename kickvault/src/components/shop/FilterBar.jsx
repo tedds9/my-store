@@ -5,8 +5,7 @@ import { useShop } from '../../context/ShopContext'
 
 export function FilterBar() {
   const { type } = useParams();
-  const [products] = useShop();
-
+  const { products } = useShop();
   const pickCategory = products.filter((product) => 
     product.category === type)
 
