@@ -8,7 +8,6 @@
     "validate": "npm run lint:css && npm run lint:js"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.0",
     "@vitejs/plugin-react-swc": "^4.3.1",
     "eslint": "^9.39.4",
     "eslint-plugin-react": "^7.37.5",
