@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useShop } from '../../context/ShopContext';
 import styles from './navbar.module.css';
@@ -11,9 +11,20 @@ export function Navbar() {
   const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('bodyScrollLocked');
+    } else {
+      document.body.classList.remove('bodyScrollLocked')
+    }
+    return () => {
+      document.body.classList.remove('bodyScrollLocked');
+    }
+  }, [isOpen])
+
   return (
-    <>
-      <header className={`${styles.header} fwBold`} >
+    <header className={styles.headerContainer}>
+      <div className={`${styles.header}`} >
         <div className={styles.titleContainer}  >
           <NavLink className={styles.titleLink} to="/">
             <span className={`${styles.title}`}
@@ -29,7 +40,7 @@ export function Navbar() {
           <div className={styles.menuDesignBottom} ></div>
         </button>
 
-      </header >
+      </div >
 
       <nav aria-label="Main Navigation"
         id="primary-mobile-menu"
@@ -39,9 +50,9 @@ export function Navbar() {
           <button aria-controls="primary-mobile-menu" aria-expanded={isOpen} aria-label="menu"
             className={`${styles.menuContainer} ${isOpen ? styles.menuContainerActive : ''}`}
             onClick={toggleMenu}>
-            <div className={styles.menuDesignTop} ></div>
-            <div className={styles.menuDesignMiddle} ></div>
-            <div className={styles.menuDesignBottom} ></div>
+            <div className={styles.menuDesignTopActive} ></div>
+            <div className={styles.menuDesignMiddleActive} ></div>
+            <div className={styles.menuDesignBottomActive} ></div>
           </button>
         </div>
 
@@ -51,7 +62,10 @@ export function Navbar() {
 
               {NAV_CATEGORIES.map(({ id, name, path }) => (
                 <li key={id} className={styles.categoryLi}>
-                  <NavLink className={styles.containerName} onClick={closeMenu}
+                  <NavLink 
+                  className={({ isActive }) => `${styles.containerName}
+                   ${isActive ? styles.containerNameActive : ""}`}
+                    onClick={closeMenu}
                     to={path} >
                     <span className={styles.categoryName} >
                       {name}
@@ -90,7 +104,7 @@ export function Navbar() {
 
       </nav>
 
-    </>
+    </header>
 
   )
 }

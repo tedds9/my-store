@@ -2,37 +2,30 @@
     .header {
       position: relative;
       display: flex;
+      justify-content: space-between;
       background-color: var(--color-bg-surface);
-      min-height: 5rem;
-      height: auto;
+      z-index: var(--z-index-header);
+      padding-block: var(--space-xs);
+      padding-inline: var(--space-xs);
     }
 
     .titleContainer {
       display: flex;
-      flex: 1;
       flex-direction: row;
       justify-content: center;
+      flex: 0 1 auto;
     }
 
     .titleLink {
       display: flex;
-      align-items: center;
-    
+      align-items: center; 
+      padding-inline: var(--space-xs);
     }
 
     .title {
       color: var(--color-accent);
       font-size: var(--fs-lg);
-    }
-
-    .menuContainer {
-      gap: 0.4rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
+      font-weight: 700;
     }
 
     .menuDesignTop,
@@ -40,25 +33,30 @@
     .menuDesignBottom {
       display: inline-block;
       background-color: var(--color-text-main);
-      width: 1.6rem;
-      height: 0.2rem;
+      inline-size: 1.6rem;
+      block-size: 0.2rem;
       border-radius: 1rem;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
     }
 
-    .menuDesignMiddle {
-      opacity: 1;
+    .menuDesignTopActive,
+    .menuDesignMiddleActive,
+    .menuDesignBottomActive {
+      display: inline-block;
+      background-color: var(--color-text-main);
+      inline-size: 1.6rem;
+      block-size: 0.2rem;
+      border-radius: 1rem;
     }
 
-    .menuContainerActive > .menuDesignTop {
+    .menuDesignTopActive {
       transform: translateY(0.6rem) rotate(-45deg);
     }
 
-    .menuContainerActive > .menuDesignMiddle {
+    .menuDesignMiddleActive {
       opacity: 0;
     }
 
-    .menuContainerActive > .menuDesignBottom {
+    .menuDesignBottomActive {
       transform: translateY(-0.6rem) rotate(45deg);
     }
 
@@ -94,47 +92,53 @@
 
     .menuNameActive {
       color: var(--color-text-primary);
-      border-bottom: 0.2rem solid var(--color-text-primary);
     }
 
     
   @media (width <= 76.7rem) {  
-    .header {
-      flex-direction: row;
-      justify-content: space-between;
-      z-index: var(--z-index-header);
-    }
-
     .navMenu {
       position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      max-width: 32rem;
-      height: 100vh;
+      inset-block-start: 0;
+      inset-inline-end: 0;
+      inline-size: 100%;
+      max-inline-size: 32rem;
+      block-size: 100%;
       background-color: var(--color-bg-surface);
       display: flex;
       flex-direction: column;
       visibility: hidden;
-      transition: transform 0.4s ease-in-out, visibility 0.4s 0.4s ease-in-out;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+      visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       transform: translateX(100%);
       z-index: var(--z-index-drawer);
+    }
+
+      .navMenuActive {
+      transform: translateX(0%);
+      visibility: visible;
     }
     
     .navButtonContainer {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      width: 100%;
-      padding: var(--space-md);
-      height: auto;
-    
+      padding-inline: var(--space-xs);
+      padding-block: var(--space-xs);
+
     }
 
-    .navMenuActive {
-      transform: translateX(0%);
-      visibility: visible;
-      transition: transform 0.4s ease-in-out, visibility 0.4s ease-in-out;
+     .menuContainer {
+      flex: 0 1 auto;
+      gap: 0.4rem;
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+      justify-content: center;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      padding-inline: var(--space-sm);
+      padding-block: var(--space-sm) ;
     }
 
     .navUl {
@@ -142,38 +146,46 @@
       flex-direction: column;
       list-style-type: none;
       font-size: var(--fs-lg);
-      height: 100%;
-      width: 100%;
+      padding-inline: var(--space-md);
+      gap: var(--space-md);
+      inline-size: 100%;
     }
 
     .menuContainerList {
       display: flex;
       flex-direction: column;
       list-style: none;
-      padding: 0;
-      margin: 0;
     }
 
     .productCategoryContainer {
       display: flex;
       flex-direction: column;
-      width: max-content;
-      min-width: 14rem;
+      inline-size: max-content;
+      min-inline-size: 14rem;
     }
 
     .categoryUl {
       display: flex;
       flex-direction: column;
       list-style: none;
-      padding: 0;
-      margin: 0;
     }
   }
 
 
     @media (width >= 76.8rem) {
+    .headerContainer {
+      display: flex;
+      align-items: center;
+      background-color: var(--color-bg-surface);
+
+    }
+
     .header {
       display: flex;
+    }
+
+    .titleContainer {
+      flex: 0 0 auto;
     }
 
     .menuContainer {
@@ -181,11 +193,14 @@
     }
 
     .navMenu {
-      flex: 1;
+      flex: 1 1 auto;
+      position: absolute;
+      inset-inline-start: 50%;
       display: flex;
+      transform: translateX(-50%);
+      justify-content: center;
       flex-direction: row;
       visibility: visible;
-      transform: none;
     }
 
     .navUl {
@@ -193,7 +208,9 @@
       flex-direction: row;
       justify-content: space-evenly;
       list-style-type: none;
-      font-weight: bold;
+      font-weight: 700;
+      gap: var(--space-md);
+
     }
 
     .productCategoryContainer {
@@ -214,20 +231,22 @@
     }
 
     .categoryName {
+      color: var(--color-accent);
     }
 
     .containerName {
-      border-bottom: solid 0.2rem transparent;
+      display: flex;
+      
     }
 
     .containerNameActive {
       color: var(--color-text-primary);
-      border-bottom: solid 0.2rem var(--color-text-primary);
     }
 
     .menuContainerList {
       display: flex;
-      gap: 2.4rem;
+      align-items: center;
+      gap: var(--space-sm)
     }
 
     .menuLi {
@@ -236,12 +255,10 @@
 
     .menuName {
       color: var(--color-accent);
-      border-bottom: solid 0.2rem transparent;
     }
 
     .menuNameActive {
       color: var(--color-text-primary);
-      border-bottom: 0.2rem solid var(--color-text-primary);
     }
   }
 }
