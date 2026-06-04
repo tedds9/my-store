@@ -17,4 +17,8 @@
     border: 0;
     clip-path: inset(50%);
   }
+  
+  .bodyScrollLocked {
+    overflow: hidden !important;
+  }
 }

@@ -1,6 +1,6 @@
 @layer reset, tokens, vendor, components, utilities, overrides;
 
 
-@import './reset.css' layer(reset);
+@import './reset.css' layer(reset) ;
 @import './theme.css' layer(tokens);
 @import './utils.css' layer(utilities);

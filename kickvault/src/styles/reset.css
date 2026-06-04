@@ -45,6 +45,7 @@
 
   button {
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -55,6 +56,7 @@
   a {
     text-decoration: none;
     color: inherit;
+    -webkit-tap-highlight-color: transparent;
   }
 
   :focus-visible {
