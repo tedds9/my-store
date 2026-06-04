@@ -1,0 +1,26 @@
+name: Kick Vault Production Guard
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  brances: [ main, master ]
+
+jobs:
+  verify-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      -name: Checkout
+      uses: actions/checkout@v4
+      -name: Initialize Node.js Environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+      -name: Install Project Dependencies
+      run: npm ci
+      -name: Validate JavaScript (ESLint Gate)
+      run: npm run lint:js
+      -name: Validate Local Styles (Stylelint Gate)
+      run: npm run lint:css
