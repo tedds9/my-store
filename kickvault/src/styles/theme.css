@@ -12,6 +12,9 @@
     --space-base-16: 1.6rem;
     --space-base-24: 2.4rem;
     --space-base-32: 3.2rem;
+    --space-base-48: 4.8rem;
+    --space-base-64: 6.4rem;
+    --space-base-96: 9.6rem;
     --color-bg-base:       var(--neutral-950);
     --color-bg-surface:    var(--neutral-900);
     --color-bg-muted:      var(--neutral-800);
@@ -25,16 +28,23 @@
     --space-sm: var(--space-base-16);
     --space-md: var(--space-base-24);
     --space-lg: var(--space-base-32);
+    --space-xl: var(--space-base-48);
+    --space-2xl: var(--space-base-64);
+    --space-3xl: var(--space-base-96);
     --fs-sm:   clamp(1.2rem, 1.0rem + 0.5vw, 1.4rem);
-    --fs-md:   clamp(1.4rem, 1.2rem + 0.5vw, 1.6rem);
+    --fs-md:   clamp(1.2rem, 1.2rem + 0.5vw, 1.6rem);
     --fs-lg:   clamp(1.8rem, 1.5rem + 1.0vw, 2.4rem);
-    --fs-xl:   clamp(2.4rem, 2.0rem + 1.5vw, 3.2rem);
-    --fs-hero: clamp(3.6rem, 2.5rem + 4.0vw, 7.2rem);
+    --fs-xl:   clamp(2rem, 2.0rem + 1.5vw, 3.2rem);
+    --fs-hero: clamp(2rem, 2.5rem + 3.0vw, 7rem);
     --z-index-floor: 1;
     --z-index-header: 100;
     --z-index-backdrop: 500;
     --z-index-drawer: 600;
     --z-index-modal: 1000;
     --z-index-toast: 2000;
+    --duration-fast: 150ms;
+    --duration-normal: 200ms;
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: var(--duration-normal) var(--ease-in-out);
   }
 }

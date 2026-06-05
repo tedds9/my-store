@@ -14,6 +14,7 @@
   }
 
   body {
+    font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont,  Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     background-color: var(--color-bg-base);
@@ -25,11 +26,15 @@
   img,
   picture,
   video,
-  canvas,
+  canvas {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
   svg {
     display: block;
-    max-width: 100%;
-    height: auto;
+    max-inline-size: 100%;
   }
 
   input,
