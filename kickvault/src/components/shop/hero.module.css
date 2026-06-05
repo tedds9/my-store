@@ -1,62 +1,94 @@
 @layer components {
 .hero {
-  background-image: linear-gradient(rgb(0 0 0 / 50%), 
-  rgb(0 0 0 / 50%)), url("../../images/shoes-image/heroPicture.jpg");
-  height: 100vh;
-  background-position: 10%;
-  background-repeat: no-repeat ;
-  background-size:  cover ;
+  display: grid;
+  align-items: center;
   position: relative;
+  overflow: hidden;
+  inline-size: 100%;
+  block-size: clamp(50rem, 60dvh, 65rem);
+}
+
+.imageWrapper {
+  inline-size: 100%;
+  block-size: 100%;
+  display: grid;
+  grid-area: 1 / 1;
+  z-index: var(--z-index-floor);
+}
+
+/* position absolute and inset solve image blowing past imageWrapper */
+.heroImage {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 80% 50%;
+}
+
+.imageWrapper::after {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  content: "";
+  background-image: linear-gradient(
+    rgb(10 10 10 / 50%),
+    rgb(10 10 10 / 90%)
+  );
+  z-index: var(--z-index-floor);
 
 }
 
 .container {
-  height: 80vh;
-  width: 100%;
+  grid-area: 1 / 1;
+  inline-size: 100%;
+  max-inline-size: 144rem;
+  gap: var(--space-md);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-@media(width <= 1000px) {
-  .hero {
-    height: 70vh;
-  }
-
-  .container {
-    height: 60vh;
-  }
+  z-index: var(--z-index-header);
+  padding-inline: var(--space-md);
 }
 
 .heading {
-  font-weight: bolder;
-  font-size: clamp(1.5rem, 6.5vw, 12rem);
+  font-weight: 700;
+  font-size: var(--fs-hero);
   color: var(--color-text-primary);
 }
 
 .subHeading {
   color: var(--color-text-primary);
-  font-size: clamp(0.9rem, 2.5vw, 3rem);
-  margin: 1rem;
+  font-size: var(--fs-md);
+  max-inline-size: 60rem;
 }
 
 .actionNowContainer {
   display: flex;
   background-color: inherit;
   border: none;
-  gap: 1rem;
+  gap: var(--space-sm)
+}
+
+.shopNow,
+.exploreNow {
+  background-color: inherit;
+  padding-inline: var(--space-xs);
+  padding-block: var(--space-xs);
+  border-radius: 0.4rem;
+  font-weight: 700;  
+  cursor: pointer;
+  min-block-size: 4.4rem;
+  transition: background-color var(--transition-smooth, 0.2s ease-in-out), 
+  border-color var(--transition-smooth, 0.2 ease-in-out);
+
 }
 
 .shopNow {
-  background-color: inherit;
-  padding: 0.5rem 0.6rem;
   color: var(--color-accent);
-  border: solid 1px var(--color-accent);
-  border-radius: 4px;
-  font-weight: bold;  
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  border: solid 0.1rem var(--color-accent);
 }
 
 .shopNow:hover {
@@ -65,35 +97,41 @@
 }
 
 .exploreNow {
-  background-color: inherit;
-  padding: 0.5rem 0.8rem;
-  color: var(--color-text-primary);
-  border:solid 1px var(--color-text-primary);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s, border 0.3s;
+  color: var(--color-accent-muted);
+  border: solid 0.1rem var(--color-bg-surface);
 }
 
 .exploreNow:hover {
-  background-color: var(--color-surface);
-  border:solid 1px var(--color-surface);
+  background-color: var(--color-border);
+  color: var(--color-text-primary);
 }
 
-@media(width >=1000px) {
-    .hero {
-      height: 120vh;
-    }
+@media(width >= 76.8rem) {
+  .hero {
+    block-size: clamp(70rem, 80dvh, 90rem);
+  }
+
+    .container {
+      gap: var(--space-md) 
+  }
+
+  .subHeading {
+  color: var(--color-text-primary);
+  font-size: var(--fs-lg);
+}
 
     .actionNowContainer {
-      gap: 1rem;
+      gap: var(--space-lg);
     }
 
     .shopNow {
-      padding: 1rem;
+      padding-block: var(--space-xs);
+      padding-inline: var(--space-md);
     }
 
     .exploreNow {
-      padding: 1rem;
+      padding-block: var(--space-xs);
+      padding-inline: var(--space-md);
     }
       
   }
