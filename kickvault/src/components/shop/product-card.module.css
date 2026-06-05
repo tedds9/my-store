@@ -1,27 +1,29 @@
   @layer components {
     .productCard {
     border: solid 5px var(--color-bg);
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    inline-size: 100%;
+    grid-template-rows: 1fr 8rem;
     background-color: var(--color-surface);
-    height: 50vh;
+    block-size: clamp(32rem, 40vw, 48rem);
+    align-items: center;
   }
 
   .mediaWrapper {
-    display: flex;
-    flex: 1;
-    min-height: 0;
+    inline-size: 100%;
+    block-size: 80%;
+    min-block-size: 0;
   }
 
   .imageLink {
     display: block;
-    width: 100%;
-    height: 100%;
+    inline-size: 100%;
+    block-size: 100%;
   }
 
   .image {
-    width: 100%;
-    height: 100%;
+    inline-size: 100%;
+    block-size: 100%;
     object-fit: cover;
     object-position: center;
 
@@ -31,37 +33,24 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    height: 8rem;
+    gap: 0.8rem;
+    inline-size: 100%;
+    block-size: 100%;
 
   }
 
-  .title {
-    display: flex;
-    font-weight: bold;
-    padding-left: 0.6rem;
-    font-size: clamp(1rem, 1rem + 1vw, 1.25rem);
-    color: var(--color-text-primary);
-  }
-
+  .title,
   .price {
     display: flex;
     font-weight: bold;
-    padding-left: 0.6rem;
+    padding-inline-start: var(--space-xs, 0.8rem);
+    font-size: var(--fs-md, 1.4rem);
     color: var(--color-text-primary);
-    font-size: clamp(1rem, 1rem + 1vw, 1.25rem);
   }
 
-  @media(width >=600px) {
+  @media(width >= 76.8rem) {
     .productCard {
-      height: 60vh;
-    }
-  }
-
-  @media(width >=900px) {
-    .productCard {
-      height: 80vh;
+      min-block-size: clamp(48rem, 40vw, 64rem);
     }
   }
 }
