@@ -1,17 +1,17 @@
   @layer components {
     .productCard {
+    position: relative;
     border: solid 5px var(--color-bg);
     display: grid;
     inline-size: 100%;
     grid-template-rows: 1fr 8rem;
     background-color: var(--color-surface);
     block-size: clamp(32rem, 40vw, 48rem);
-    align-items: center;
   }
 
   .mediaWrapper {
     inline-size: 100%;
-    block-size: 80%;
+    block-size: 100%;
     min-block-size: 0;
   }
 
@@ -48,9 +48,16 @@
     color: var(--color-text-primary);
   }
 
+  .overlayLink {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-index-floor,1);
+    cursor: pointer;
+  }
+
   @media(width >= 76.8rem) {
     .productCard {
-      min-block-size: clamp(48rem, 40vw, 64rem);
+      block-size: clamp(48rem, 40vw, 64rem);
     }
   }
 }

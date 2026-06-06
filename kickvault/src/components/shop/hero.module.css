@@ -82,7 +82,7 @@
   cursor: pointer;
   min-block-size: 4.4rem;
   transition: background-color var(--transition-smooth, 0.2s ease-in-out), 
-  border-color var(--transition-smooth, 0.2 ease-in-out);
+  border-color var(--transition-smooth, 0.2s ease-in-out);
 
 }
 

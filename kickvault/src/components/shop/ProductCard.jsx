@@ -6,21 +6,15 @@ export function ProductCard({ image, name, price }) {
   return (
     <article className={styles.productCard}>
       <div className={styles.mediaWrapper}>
-        <Link to="/" className={styles.imageLink}>
-          <img alt="product sneaker" 
+          <img alt={`Sneaker model: ${name}`} 
           className={styles.image} 
-          src={image} >
-          </img>
-        </Link>
+          src={image} />
       </div>
       <div className={styles.content}>
-        <Link  to="/">
           <h3 className={styles.title}>{name}</h3>
-        </Link>
-        <Link  to="/">
-          <p className={styles.price} >${price}</p>
-        </Link>
+          <p className={styles.price} >${price}</p>              
       </div>
+      <Link  to="/" className={styles.overlayLink} aria-label={`View details for ${name}`} />
     </article>
 
   )
