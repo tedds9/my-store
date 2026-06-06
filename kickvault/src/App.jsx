@@ -21,7 +21,7 @@ function MainStoreFrontView() {
 function App() {
   return (
     <ShopProvider >
-      <BrowserRouter>
+      <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
         <div className="scroll">
           <Navbar />
           <Routes>
