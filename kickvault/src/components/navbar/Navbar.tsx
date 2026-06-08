@@ -4,18 +4,10 @@ import { NavLink } from 'react-router-dom';
 import { useShop } from '../../context/ShopContext';
 import styles from './navbar.module.css';
 
-interface NavItem {
-  id: string;
-  name: string;
-  path: string;
-}
 
 export function Navbar() {
 
-  const { NAV_CATEGORIES, NAV_MENU_ITEMS } = useShop() as {
-    NAV_CATEGORIES: NavItem[];
-    NAV_MENU_ITEMS: NavItem[];
-  };
+  const { NAV_CATEGORIES, NAV_MENU_ITEMS } = useShop();
   const [isOpen, setIsOpen] = useState(false);
   const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => setIsOpen(!isOpen);

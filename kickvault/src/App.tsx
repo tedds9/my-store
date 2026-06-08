@@ -1,8 +1,8 @@
-import { ShopProvider, useShop } from './context/ShopContext';
-import { Navbar } from './components/navbar/Navbar'
-import { Hero } from './components/shop/Hero';
-import { ProductGrid } from './components/shop/ProductGrid';
-import { FilterBar } from './components/shop/FilterBar';
+import { ShopProvider, useShop } from '@/context/ShopContext';
+import { Navbar } from '@/components/navbar/Navbar'
+import { Hero } from '@/components/shop/Hero';
+import { ProductGrid } from '@/components/shop/ProductGrid';
+import { FilterBar } from '@/components/shop/FilterBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function MainStoreFrontView() {
