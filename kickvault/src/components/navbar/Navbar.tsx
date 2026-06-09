@@ -32,24 +32,25 @@ export function Navbar() {
 
   return (
     <header className={styles.headerContainer}>
-      <div className={`${styles.header}`} >
-        <div className={styles.titleContainer}  >
-          <NavLink className={styles.titleLink} to="/">
-            <span className={`${styles.title}`}
+      <div className={`${styles.headerViewport}`} >
+        <div className={styles.brandContainer}  >
+          <NavLink className={styles.brandLink} to="/">
+            <span className={`${styles.brandTitle}`}
             >kickvault</span>
           </NavLink>
         </div>
 
         {!isOpen && (
           <button
-            aria-controls="primary-mobile-menu" aria-expanded={isOpen}
+            aria-controls="primary-mobile-menu"
+            aria-expanded={isOpen}
             aria-label="Open menu"
-            className={styles.menuContainer}
+            className={styles.navigationToggle}
             onClick={toggleMenu} >
 
-            <div className={styles.menuDesignTop} ></div>
-            <div className={styles.menuDesignMiddle} ></div>
-            <div className={styles.menuDesignBottom} ></div>
+            <div className={styles.burgerLineTop} ></div>
+            <div className={styles.burgerLineMiddle} ></div>
+            <div className={styles.burgerLineBottom} ></div>
           </button>
         )}
 
@@ -59,42 +60,39 @@ export function Navbar() {
         aria-label="Main Navigation"
         id="primary-mobile-menu"
         ref={dialogRef}
-        className={styles.navMenu} >
+        className={styles.navigationMenu} >
 
-        <div className={styles.navButtonContainer} >
+        <div className={styles.toggleViewport} >
           {isOpen && (
             <button
-              aria-controls="primary-mobile-menu" aria-expanded={isOpen}
+              aria-controls="primary-mobile-menu"
+              aria-expanded={isOpen}
               aria-label="menu"
-              className={`${styles.menuContainer} ${isOpen ?
-                styles.menuContainerActive : ''}`}
+              className={`${styles.navigationToggle} 
+              ${isOpen ? styles.navigationToggleActive : ''}`}
               onClick={toggleMenu} >
 
-              <div className={styles.menuDesignTop} ></div>
-              <div className={styles.menuDesignMiddle} ></div>
-              <div className={styles.menuDesignBottom} ></div>
+              <div className={styles.burgerLineTop} ></div>
+              <div className={styles.burgerLineMiddle} ></div>
+              <div className={styles.burgerLineBottom} ></div>
             </button>
           )}
         </div>
 
-        <div className={styles.navUl} >
-          <div className={styles.productCategoryContainer} >
-            <ul className={styles.categoryUl}>
+        <div className={styles.navigationGroup} >
+          <div className={styles.categoryViewPort} >
+            <ul className={styles.categoryMenu}>
 
               {NAV_CATEGORIES.map(({ id, name, path }) => (
-                <li key={id} className={styles.categoryLi}>
+                <li key={id} className={styles.categoryItem}>
                   <NavLink
-                    className={({ isActive }) => `${styles.containerName}
-                   ${isActive ? styles.containerNameActive : ""}`}
+                    className={({ isActive }) => `${styles.categoryLink}
+                   ${isActive ? styles.categoryLinkActive : ""}`}
                     onClick={closeMenu}
                     to={path} >
-                    <span className={styles.categoryName} >
+                    <span className={styles.categoryLabel} >
                       {name}
                     </span>
-                    <div aria-hidden="true" className={styles.arrowContainer}>
-                      <span className={styles.arrowTop}></span>
-                      <span className={styles.arrowBottom}></span>
-                    </div>
                   </NavLink>
                 </li>
               )
@@ -103,13 +101,13 @@ export function Navbar() {
             </ul>
           </div>
 
-          <ul className={styles.menuContainerList}>
+          <ul className={styles.utilityMenu}>
 
             {NAV_MENU_ITEMS.map(({ id, name, path }) => (
-              <li key={id} className={styles.menuLi} >
+              <li key={id} className={styles.utilityItem} >
                 <NavLink
                   className={({ isActive }) =>
-                    `${styles.menuName} ${isActive ? styles.menuNameActive : ""} `}
+                    `${styles.utilityLink} ${isActive ? styles.utilityLinkActive : ""} `}
                   onClick={closeMenu}
                   to={path}>
                   {name}

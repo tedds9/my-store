@@ -1,32 +1,32 @@
 
 export const NAV_CATEGORIES = [{
-  id: crypto.randomUUID(),
+  id: 'cat-men',
   name: 'Men',
   path: '/category/men'
 },{
-  id: crypto.randomUUID(),
+  id: 'cat-women',
   name: 'Women',
   path: '/category/women'
 },{
-  id: crypto.randomUUID(),
+  id: 'cat-luxury',
   name: 'Luxury Sneakers',
   path: '/category/luxury-sneakers'
 },];
 
 export const NAV_MENU_ITEMS = [{
-  id: crypto.randomUUID(),
+  id: 'nav-home',
   name: 'Home',
   path: '/'
 },{
-  id: crypto.randomUUID(),
+  id: 'nav-products',
   name: 'Products',
   path: '/products'
 },{
-  id: crypto.randomUUID(),
+  id: 'nav-favorites',
   name: 'Favorites',
   path: '/favorites'
 },{
-  id: crypto.randomUUID(),
+  id: 'nav-cart',
   name: 'Cart',
   path: '/cart'
 }];

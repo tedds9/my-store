@@ -5,7 +5,7 @@
 
     }
     
-    .header {
+    .headerViewport {
       position: relative;
       display: flex;
       justify-content: space-between;
@@ -14,28 +14,28 @@
       padding-inline: var(--space-xs);
     }
 
-    .titleContainer {
+    .brandContainer {
       display: flex;
       flex-direction: row;
       justify-content: center;
       flex: 0 1 auto;
     }
 
-    .titleLink {
+    .brandLink {
       display: flex;
       align-items: center; 
       padding-inline: var(--space-xs);
     }
 
-    .title {
+    .brandTitle {
       color: var(--color-accent);
       font-size: var(--fs-lg);
       font-weight: 700;
     }
 
-    .menuDesignTop,
-    .menuDesignMiddle,
-    .menuDesignBottom {
+    .burgerLineTop,
+    .burgerLineMiddle,
+    .burgerLineBottom {
       display: inline-block;
       background-color: var(--color-text-main);
       inline-size: 1.6rem;
@@ -45,7 +45,7 @@
       opacity var(--transition-smooth);
     }
     
-     .menuContainer {
+     .navigationToggle {
       flex: 0 1 auto;
       gap: 0.4rem;
       display: flex;
@@ -59,27 +59,27 @@
       padding-block: var(--space-sm) ;
     }
 
-    .menuContainerActive {
+    .navigationToggleActive {
       z-index: calc(var(--z-index-drawer) + 1);
     }
 
-    .menuContainerActive .menuDesignTop {
+    .navigationToggleActive .burgerLineTop {
       transform: translateY(0.6rem) rotate(-45deg);
     }
 
-    .menuContainerActive .menuDesignMiddle {
+    .navigationToggleActive .burgerLineMiddle {
       opacity: 0;
     }
 
-    .menuContainerActive .menuDesignBottom {
+    .navigationToggleActive .burgerLineBottom {
       transform: translateY(-0.6rem) rotate(45deg);
     }
 
-    .categoryLi {
+    .categoryItem {
       display: block;
     }
 
-    .containerName {
+    .categoryLink {
       display: flex;
       justify-content: space-between;
       color: var(--color-accent);
@@ -87,26 +87,26 @@
       text-decoration: none;
     }
 
-    .containerNameActive {
+    .categoryLinkActive {
       color: var(--color-text-main);
     }
     
-    .containerNameActive > .categoryName {
+    .categoryLinkActive > .categoryLabel {
       color: var(--color-text-main);
     }
 
-    .menuName {
+    .utilityLink {
       font-weight: 700;
       color: var(--color-accent);
       text-decoration: none;
     }
 
-    .menuNameActive {
+    .utilityLinkActive {
       color: var(--color-text-main);
     }
     
   @media (width <= 76.7rem) {  
-    .navMenu {
+    .navigationMenu {
       position: fixed;
       inset-block-start: 0;
       inset-inline-end: 0;
@@ -123,7 +123,7 @@
       max-block-size: 100%;
     }
 
-    .navButtonContainer {
+    .toggleViewport {
       display: flex;
       justify-content: flex-end;
       inline-size: 100%;
@@ -131,14 +131,14 @@
       padding-inline-end: var(--space-xs)
     }
 
-    .navMenu[open] {
+    .navigationMenu[open] {
       display: flex;
       flex-direction: column;
       transform: translateX(0%);
 
     }
 
-    .navMenu::backdrop {
+    .navigationMenu::backdrop {
       background-color: rgb(0 0 0 / 50%);
       backdrop-filter: blur(var(--blur-md));
       opacity: 0;
@@ -146,11 +146,11 @@
       display var(--transition-smooth) allow-discrete;
     }
 
-    .navMenu[open]::backdrop {
+    .navigationMenu[open]::backdrop {
       opacity: 1;
     }
 
-    .navUl {
+    .navigationGroup {
       display: flex;
       flex-direction: column;
       list-style-type: none;
@@ -161,20 +161,20 @@
       inline-size: 100%;
     }
 
-    .menuContainerList {
+    .utilityMenu {
       display: flex;
       flex-direction: column;
       list-style: none;
     }
 
-    .productCategoryContainer {
+    .categoryViewPort {
       display: flex;
       flex-direction: column;
       inline-size: max-content;
       min-inline-size: 14rem;
     }
 
-    .categoryUl {
+    .categoryMenu {
       display: flex;
       flex-direction: column;
       list-style: none;
@@ -190,19 +190,19 @@
       background-color: var(--color-bg-surface);
     }
 
-    .header {
+    .headerViewport {
       display: flex;
     }
 
-    .titleContainer {
+    .brandContainer {
       flex: 0 0 auto;
     }
 
-    .menuContainer {
+    .navigationToggle {
       display: none;
     }
 
-    .navMenu {
+    .navigationMenu {
       background-color: var(--color-bg-surface);
       border: none;
       flex: 1 1 auto;
@@ -214,7 +214,7 @@
       flex-direction: row;
     }
 
-    .navUl {
+    .navigationGroup {
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
@@ -224,34 +224,34 @@
 
     }
 
-    .productCategoryContainer {
+    .categoryViewPort {
       display: flex;
       flex-direction: row;
       align-items: center;
     }
 
-    .categoryUl {
+    .categoryMenu {
       gap: var(--space-sm);
       display: flex;
       flex-direction: row;
       list-style: none;
     }
 
-    .categoryLi {
+    .categoryItem {
       display: block;
     }
 
-    .categoryName {
+    .categoryLabel {
       color: var(--color-accent);
     }
   
-    .menuContainerList {
+    .utilityMenu {
       display: flex;
       align-items: center;
       gap: var(--space-sm)
     }
 
-    .menuLi {
+    .utilityItem {
       display: block;
     }
 
