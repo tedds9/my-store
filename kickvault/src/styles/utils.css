@@ -2,10 +2,8 @@
   .fwBold { font-weight: 700; }
   .fwBlack { font-weight: 900; }
 
-  /* Atomic Visual Helpers */
   .textAccent { color: var(--color-accent); }
 
-  /* Layout Utility Overrides */
   .visuallyHidden {
     position: absolute;
     width: 0.1rem;

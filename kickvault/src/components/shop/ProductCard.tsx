@@ -1,8 +1,14 @@
+import { Link } from 'react-router-dom';
+import { Product } from '@/types/product';
 import styles from './product-card.module.css';
-import { Link } from 'react-router-dom'
 
-export function ProductCard({ image, name, price }) {
+interface ProductCardProps {
+  product: Product
+}
 
+export function ProductCard({ product }: ProductCardProps) {
+  const { image, name, price } = product;
+  
   return (
     <article className={styles.productCard}>
       <div className={styles.mediaWrapper}>

@@ -1,7 +1,7 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useShop } from '../../context/ShopContext';
+import { useShop } from '@/context/ShopContext';
 import styles from './navbar.module.css';
 
 
@@ -12,11 +12,18 @@ export function Navbar() {
   const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
   useEffect(() => {
+    const dialogElement = dialogRef.current;
+    if (!dialogElement) return;
+
     if (isOpen) {
       document.body.classList.add('bodyScrollLocked');
+      dialogElement.showModal();
     } else {
       document.body.classList.remove('bodyScrollLocked')
+      dialogElement.close();
     }
     return () => {
       document.body.classList.remove('bodyScrollLocked');
@@ -33,28 +40,41 @@ export function Navbar() {
           </NavLink>
         </div>
 
-        <button aria-controls="primary-mobile-menu" aria-expanded={isOpen} aria-label="menu"
-          className={`${styles.menuContainer} ${isOpen ? styles.menuContainerActive : ''}`}
-          onClick={toggleMenu}>
-          <div className={styles.menuDesignTop} ></div>
-          <div className={styles.menuDesignMiddle} ></div>
-          <div className={styles.menuDesignBottom} ></div>
-        </button>
+        {!isOpen && (
+          <button
+            aria-controls="primary-mobile-menu" aria-expanded={isOpen}
+            aria-label="Open menu"
+            className={styles.menuContainer}
+            onClick={toggleMenu} >
+
+            <div className={styles.menuDesignTop} ></div>
+            <div className={styles.menuDesignMiddle} ></div>
+            <div className={styles.menuDesignBottom} ></div>
+          </button>
+        )}
 
       </div >
 
-      <nav aria-label="Main Navigation"
+      <dialog
+        aria-label="Main Navigation"
         id="primary-mobile-menu"
-        className={`${styles.navMenu} ${isOpen ? styles.navMenuActive : ''}`}>
+        ref={dialogRef}
+        className={styles.navMenu} >
 
         <div className={styles.navButtonContainer} >
-          <button aria-controls="primary-mobile-menu" aria-expanded={isOpen} aria-label="menu"
-            className={`${styles.menuContainer} ${isOpen ? styles.menuContainerActive : ''}`}
-            onClick={toggleMenu}>
-            <div className={styles.menuDesignTopActive} ></div>
-            <div className={styles.menuDesignMiddleActive} ></div>
-            <div className={styles.menuDesignBottomActive} ></div>
-          </button>
+          {isOpen && (
+            <button
+              aria-controls="primary-mobile-menu" aria-expanded={isOpen}
+              aria-label="menu"
+              className={`${styles.menuContainer} ${isOpen ?
+                styles.menuContainerActive : ''}`}
+              onClick={toggleMenu} >
+
+              <div className={styles.menuDesignTop} ></div>
+              <div className={styles.menuDesignMiddle} ></div>
+              <div className={styles.menuDesignBottom} ></div>
+            </button>
+          )}
         </div>
 
         <div className={styles.navUl} >
@@ -63,15 +83,14 @@ export function Navbar() {
 
               {NAV_CATEGORIES.map(({ id, name, path }) => (
                 <li key={id} className={styles.categoryLi}>
-                  <NavLink 
-                  className={({ isActive }) => `${styles.containerName}
+                  <NavLink
+                    className={({ isActive }) => `${styles.containerName}
                    ${isActive ? styles.containerNameActive : ""}`}
                     onClick={closeMenu}
                     to={path} >
                     <span className={styles.categoryName} >
                       {name}
                     </span>
-                    {/* Hide visual arrow icon from screen readers to avoid audio clutter */}
                     <div aria-hidden="true" className={styles.arrowContainer}>
                       <span className={styles.arrowTop}></span>
                       <span className={styles.arrowBottom}></span>
@@ -103,7 +122,7 @@ export function Navbar() {
 
         </div>
 
-      </nav>
+      </dialog>
 
     </header>
 

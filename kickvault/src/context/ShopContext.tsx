@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useMemo, useCallback } from 'react';
-import { products as mockProducts } from '../data/sneakers';
-import { NAV_CATEGORIES as mockNAV_CATEGORIES, NAV_MENU_ITEMS as mockNAV_MENU_ITEMS } from '../data/navData';
-import { CartItem } from '../types/cart'
-import { Product } from '../types/product'
-import { NavItem } from '../types/navigation'
+import { products as mockProducts } from '@/data/sneakers';
+import { NAV_CATEGORIES as mockNAV_CATEGORIES, NAV_MENU_ITEMS as mockNAV_MENU_ITEMS } from '@/data/navData';
+import { CartItem } from '@/types/cart'
+import { Product } from '@/types/product'
+import { NavItem } from '@/types/navigation'
 
 
 

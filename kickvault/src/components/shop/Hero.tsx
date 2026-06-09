@@ -1,6 +1,5 @@
-
 import styles from './hero.module.css';
-import heroImage from '../../images/shoes-image/heroPicture.jpg';
+import heroImage from '@/images/shoes-image/heroPicture.jpg';
 
 export function Hero() {
   return (
@@ -8,11 +7,13 @@ export function Hero() {
 
     <section className={styles.hero} aria-label="feature-product-introduction" >
       <div className={styles.imageWrapper}>
+        <picture>
         <img src={heroImage}
           alt=""
           className={styles.heroImage}
           loading="eager"
           fetchPriority="high" />
+          </picture>
       </div>
       <div className={styles.container}>
         <h1 className={styles.heading} >EVERY STEP ELEVATED</h1>

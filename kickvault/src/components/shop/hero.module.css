@@ -1,9 +1,9 @@
 @layer components {
 .hero {
   display: grid;
-  align-items: center;
   position: relative;
   overflow: hidden;
+  align-items: center;
   inline-size: 100%;
   block-size: clamp(50rem, 60dvh, 65rem);
 }
@@ -16,7 +16,6 @@
   z-index: var(--z-index-floor);
 }
 
-/* position absolute and inset solve image blowing past imageWrapper */
 .heroImage {
   position: absolute;
   inset: 0;

@@ -46,5 +46,6 @@
     --duration-normal: 200ms;
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: var(--duration-normal) var(--ease-in-out);
+    --blur-md: 0.4rem;
   }
 }
