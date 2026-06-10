@@ -1,5 +1,5 @@
 @layer components {
-.hero {
+.heroShell {
   display: grid;
   position: relative;
   overflow: hidden;
@@ -8,7 +8,7 @@
   block-size: clamp(50rem, 60dvh, 65rem);
 }
 
-.imageWrapper {
+.imageViewer {
   inline-size: 100%;
   block-size: 100%;
   display: grid;
@@ -16,7 +16,7 @@
   z-index: var(--z-index-floor);
 }
 
-.heroImage {
+.showcaseAsset {
   position: absolute;
   inset: 0;
   inline-size: 100%;
@@ -26,7 +26,7 @@
   object-position: 80% 50%;
 }
 
-.imageWrapper::after {
+.imageViewer::after {
   position: absolute;
   inset: 0;
   inline-size: 100%;
@@ -39,7 +39,7 @@
 
 }
 
-.container {
+.editorialGroup {
   grid-area: 1 / 1;
   inline-size: 100%;
   max-inline-size: 144rem;
@@ -52,7 +52,7 @@
   padding-inline: var(--space-md);
 }
 
-.heading {
+.mainHeading {
   font-weight: 700;
   font-size: var(--fs-hero);
   color: var(--color-text-primary);
@@ -64,15 +64,15 @@
   max-inline-size: 60rem;
 }
 
-.actionNowContainer {
+.actionCluster {
   display: flex;
   background-color: inherit;
   border: none;
   gap: var(--space-sm)
 }
 
-.shopNow,
-.exploreNow {
+.primaryAction,
+.secondaryAction {
   background-color: inherit;
   padding-inline: var(--space-xs);
   padding-block: var(--space-xs);
@@ -85,32 +85,32 @@
 
 }
 
-.shopNow {
+.primaryAction {
   color: var(--color-accent);
   border: solid 0.1rem var(--color-accent);
 }
 
-.shopNow:hover {
+.primaryAction:hover {
   background-color: var(--color-accent);
   color: var(--color-bg)
 }
 
-.exploreNow {
+.secondaryAction {
   color: var(--color-accent-muted);
   border: solid 0.1rem var(--color-bg-surface);
 }
 
-.exploreNow:hover {
+.secondaryAction:hover {
   background-color: var(--color-border);
   color: var(--color-text-primary);
 }
 
 @media(width >= 76.8rem) {
-  .hero {
+  .heroShell {
     block-size: clamp(70rem, 80dvh, 90rem);
   }
 
-    .container {
+    .editorialGroup {
       gap: var(--space-md) 
   }
 
@@ -119,16 +119,16 @@
   font-size: var(--fs-lg);
 }
 
-    .actionNowContainer {
+    .actionCluster {
       gap: var(--space-lg);
     }
 
-    .shopNow {
+    .primaryAction {
       padding-block: var(--space-xs);
       padding-inline: var(--space-md);
     }
 
-    .exploreNow {
+    .secondaryAction {
       padding-block: var(--space-xs);
       padding-inline: var(--space-md);
     }

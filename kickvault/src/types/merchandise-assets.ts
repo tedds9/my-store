@@ -1,4 +1,4 @@
-export interface Product {
+export interface MerchandiseAsset {
   id: string;
   name: string;
   brand: string;
@@ -6,4 +6,5 @@ export interface Product {
   image: string;
   category: string;
   isFavorite: boolean;
+  sizes: number[];
 }

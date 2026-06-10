@@ -7,7 +7,7 @@ import styles from './navbar.module.css';
 
 export function Navbar() {
 
-  const { NAV_CATEGORIES, NAV_MENU_ITEMS } = useShop();
+  const { categoryLinks, primaryLinks } = useShop();
   const [isOpen, setIsOpen] = useState(false);
   const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -83,7 +83,7 @@ export function Navbar() {
           <div className={styles.categoryViewPort} >
             <ul className={styles.categoryMenu}>
 
-              {NAV_CATEGORIES.map(({ id, name, path }) => (
+              {categoryLinks.map(({ id, name, path }) => (
                 <li key={id} className={styles.categoryItem}>
                   <NavLink
                     className={({ isActive }) => `${styles.categoryLink}
@@ -103,7 +103,7 @@ export function Navbar() {
 
           <ul className={styles.utilityMenu}>
 
-            {NAV_MENU_ITEMS.map(({ id, name, path }) => (
+            {primaryLinks.map(({ id, name, path }) => (
               <li key={id} className={styles.utilityItem} >
                 <NavLink
                   className={({ isActive }) =>

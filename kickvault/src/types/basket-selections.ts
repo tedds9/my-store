@@ -1,4 +1,4 @@
-export interface CartItem {
+export interface BasketSelection {
   id: string;
   quantity: number;
 }

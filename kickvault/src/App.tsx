@@ -1,18 +1,20 @@
 import { ShopProvider, useShop } from '@/context/ShopContext';
 import { Navbar } from '@/components/navbar/Navbar'
 import { Hero } from '@/components/shop/Hero';
-import { ProductGrid } from '@/components/shop/ProductGrid';
-import { FilterBar } from '@/components/shop/FilterBar';
+import { CollectionShowcase } from '@/components/shop/CollectionShowcase';
+import { CategoryController } from '@/components/shop/CategoryController';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+
 
 function MainStoreFrontView() {
 
-  const { products } = useShop();
-
+  const { merchandisePool } = useShop();
+  
   return (
     <>
       <Hero />
-      <ProductGrid products={products} />
+      <CollectionShowcase inventorySelection={merchandisePool} />
     </>
   )
 
@@ -21,17 +23,16 @@ function MainStoreFrontView() {
 function App() {
   return (
     <ShopProvider >
-      <BrowserRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
-        <div className="scroll">
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <main>
           <Navbar />
           <Routes>
-            <Route path="/" 
-            element={<MainStoreFrontView />} />
-            <Route path="/category/:type" element={
-              <FilterBar />
-            } />
+            <Route path="/"
+              element={<MainStoreFrontView />} />
+            <Route path="/category/:type"
+              element={<CategoryController />} />
           </Routes>
-        </div>
+        </main>
 
       </BrowserRouter>
     </ShopProvider>

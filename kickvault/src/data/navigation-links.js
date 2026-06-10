@@ -1,5 +1,5 @@
 
-export const NAV_CATEGORIES = [{
+export const NAV_CATEGORIES_LINKS = [{
   id: 'cat-men',
   name: 'Men',
   path: '/category/men'
@@ -13,7 +13,7 @@ export const NAV_CATEGORIES = [{
   path: '/category/luxury-sneakers'
 },];
 
-export const NAV_MENU_ITEMS = [{
+export const NAV_PRIMARY_LINKS = [{
   id: 'nav-home',
   name: 'Home',
   path: '/'

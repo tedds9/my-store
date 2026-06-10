@@ -1,4 +1,4 @@
-export const products = [
+export const STORE_ASSETS = [
   {
     id: 'kv-kinetic',
     name: 'KickVault Kinetic',
@@ -6,7 +6,8 @@ export const products = [
     price: 450.00,
     image: '/data-shoes/kickVault-Kinetic.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false
+    isFavorite: false,
+    sizes: [8, 9, 10, 11, 12]
   },
   {
     id: 'kv-vista',
@@ -15,7 +16,8 @@ export const products = [
     price: 400.00,
     image: '/data-shoes/KickVault-Vista.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false
+    isFavorite: false,
+    sizes: [8, 9, 10, 11, 12]
   },
   {
     id: 'kv-traverse',
@@ -24,7 +26,8 @@ export const products = [
     price: 550.00,
     image: '/data-shoes/KickVault-Traverse.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false
+    isFavorite: false,
+    sizes: [8, 9, 10, 11, 12]
   },
   {
     id: 'kv-pace',
@@ -33,7 +36,8 @@ export const products = [
     price: 500.00,
     image: '/data-shoes/KickVault-Pace.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false
+    isFavorite: false,
+    sizes: [8, 9, 10, 11, 12]
   },
   {
     id: 'kv-converge',
@@ -42,7 +46,8 @@ export const products = [
     price: 480.00,
     image: '/data-shoes/KickVault-Converge.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false
+    isFavorite: false,
+    sizes: [8, 9, 10, 11, 12]
   },
   {
     id: 'kv-cadence',
@@ -51,7 +56,8 @@ export const products = [
     price: 480.00,
     image: '/data-shoes/KickVault-Cadence.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false
+    isFavorite: false,
+    sizes: [8, 9, 10, 11, 12]
   },
   {
     id: 'kv-apex',
@@ -60,7 +66,8 @@ export const products = [
     price: 480.00,
     image: '/data-shoes/KickVault-Apex.jpg',
     category: 'men',
-    isFavorite: false
+    isFavorite: false,
+    sizes: [8, 9, 10, 11, 12]
   },
   {
     id: 'kv-origin',
@@ -69,7 +76,8 @@ export const products = [
     price: 480.00,
     image: '/data-shoes/KickVault-Origin.jpg',
     category: 'men',
-    isFavorite: false
+    isFavorite: false,
+    sizes: [8, 9, 10, 11, 12]
   },
   {
     id: 'kv-pulse',
@@ -78,7 +86,8 @@ export const products = [
     price: 480.00,
     image: '/data-shoes/KickVault-Pulse.jpg',
     category: 'women',
-    isFavorite: false
+    isFavorite: false,
+    sizes: [8, 9, 10, 11, 12]
   },
   {
     id: 'kv-volt',
@@ -87,6 +96,7 @@ export const products = [
     price: 480.00,
     image: '/data-shoes/KickVault-Volt.jpg',
     category: 'women',
-    isFavorite: false
+    isFavorite: false,
+    sizes: [8, 9, 10, 11, 12]
   }
 ];

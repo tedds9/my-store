@@ -1,46 +1,43 @@
 import { createContext, useContext, useState, useMemo, useCallback } from 'react';
-import { products as mockProducts } from '@/data/sneakers';
-import { NAV_CATEGORIES as mockNAV_CATEGORIES, NAV_MENU_ITEMS as mockNAV_MENU_ITEMS } from '@/data/navData';
-import { CartItem } from '@/types/cart'
-import { Product } from '@/types/product'
-import { NavItem } from '@/types/navigation'
-
-
+import { STORE_ASSETS as mockStoreAssets } from '@/data/inventory-assets';
+import { NAV_CATEGORIES_LINKS as mockNavCategoryLinks, NAV_PRIMARY_LINKS as mockNavPrimaryLinks } from '@/data/navigation-links';
+import { BasketSelection } from '@/types/basket-selections'
+import { MerchandiseAsset } from '@/types/merchandise-assets'
+import { NavigationLink } from '@/types/navigation-links'
 
 interface ShopContextType {
-  products: Product[];
-  NAV_CATEGORIES: NavItem[];
-  NAV_MENU_ITEMS: NavItem[];
-  cart: CartItem[];
-  addToCart: (productId: string) => void;
+  merchandisePool: MerchandiseAsset[];
+  categoryLinks: NavigationLink[];
+  primaryLinks: NavigationLink[];
+  basketSelection: BasketSelection[];
+  addToBasket: (assetId: string) => void;
 }
 
 const ShopContext = createContext<ShopContextType | null >(null);
 
 export function ShopProvider({ children }: { children: React.ReactNode }) {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [basketSelection, setBasketSelection] = useState<BasketSelection[]>([]);
 
-  const addToCart = useCallback((productId: string) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item)=> 
-        item.id === productId);
-      if (existingItem) {
-        return prevCart.map((item)=> 
-          item.id === productId ? 
-        {...item, quantity: item.quantity + 1} : item
+  const addToBasket = useCallback((assetId: string) => {
+    setBasketSelection((prevSelection) => {
+      const activeNode = prevSelection.find((node)=> node.id === assetId);
+      if (activeNode) {
+        return prevSelection.map((node)=> 
+          node.id === assetId ? 
+        {...node, quantity: node.quantity + 1} : node
         );
       }
-      return [...prevCart,{ id: productId, quantity: 1}];
+      return [...prevSelection,{ id: assetId, quantity: 1}];
     });
   },[]);
 
   const contextValue = useMemo(()=> ({
-    products: mockProducts,
-    NAV_CATEGORIES : mockNAV_CATEGORIES,
-    NAV_MENU_ITEMS : mockNAV_MENU_ITEMS,
-    cart,
-    addToCart
-  }), [cart, addToCart])
+    merchandisePool: mockStoreAssets,
+    categoryLinks : mockNavCategoryLinks,
+    primaryLinks : mockNavPrimaryLinks,
+    basketSelection,
+    addToBasket
+  }), [basketSelection, addToBasket])
 
   return (
     <ShopContext value={contextValue}>
