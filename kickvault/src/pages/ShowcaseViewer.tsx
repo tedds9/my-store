@@ -5,7 +5,7 @@ import styles from './showcase-viewer.module.css';
 
 
 export function ShowcaseViewer() {
-  const { id = "" } = useParams();
+  const { id } = useParams<{ id:string }>();
   const { merchandisePool } = useShop();
   const showcaseNode = merchandisePool.find((node) => node.id === id);
   const [chosenSize, setChosenSize] = useState<number | null>(null);
@@ -17,7 +17,7 @@ export function ShowcaseViewer() {
 
   return (
     <main className={styles.showcaseShell}>
-      <section className={styles.mediaViewer}>
+      <section className={styles.brandMedia}>
         <img
           src={showcaseNode.image}
           alt={showcaseNode.name}
@@ -42,8 +42,8 @@ export function ShowcaseViewer() {
                 key={size}
                 type="button"
                 onClick={() => setChosenSize(size)}
-                className={`${styles.dimensionAction} 
-                ${isSelected ? styles.dimensionActionActive : ""}`}
+                className={styles.dimensionAction} 
+                data-state={isSelected ? "active" : "idle"}
               >
                 {size}
               </button>
@@ -55,7 +55,7 @@ export function ShowcaseViewer() {
           <button
             type="button"
             disabled={!chosenSize}
-            className={`${styles.primaryAction} ${!chosenSize ? styles.primaryActionDisabled : ""}`}
+            className={styles.primaryAction} 
           >
             {chosenSize ? "Add to Cart" : "Select a Size"}
           </button>
