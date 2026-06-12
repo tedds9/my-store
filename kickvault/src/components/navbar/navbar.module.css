@@ -1,261 +1,182 @@
 @layer components {
-    .headerContainer {
-      position: relative;
-      z-index: var(--z-index-drawer);
-
+    .navigationContext {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--color-bg-base);
+      border-bottom: 0.1rem solid var(--color-border);
+      z-index: var(--z-index-header, 100)
     }
     
-    .headerViewport {
-      position: relative;
+    .navigationViewport {
       display: flex;
       justify-content: space-between;
-      background-color: var(--color-bg-surface);
-      padding-block: var(--space-xs);
-      padding-inline: var(--space-xs);
-    }
-
-    .brandContainer {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      flex: 0 1 auto;
+      align-items: center;
+      width: 100%;
+      max-width: 120rem;
+      margin-inline: auto;
+      padding-inline: var(--space-md);
+      min-block-size: 6rem;
     }
 
     .brandLink {
       display: flex;
       align-items: center; 
-      padding-inline: var(--space-xs);
+      text-decoration: none;
+      outline: none;
     }
 
     .brandTitle {
-      color: var(--color-accent);
       font-size: var(--fs-lg);
-      font-weight: 700;
+      font-weight: var(--fw-display);
+      letter-spacing: var(--ls-display);
+      line-height: var(--lh-display);
+      color: var(--color-text-main);
+      text-transform: uppercase;
     }
 
-    .burgerLineTop,
-    .burgerLineMiddle,
-    .burgerLineBottom {
-      display: inline-block;
-      background-color: var(--color-text-main);
-      inline-size: 1.6rem;
-      block-size: 0.2rem;
-      border-radius: 1rem;
-      transition: transform var(--transition-smooth), 
-      opacity var(--transition-smooth);
+     .navigationOverlay {
+      position: fixed;
+      inset: 6rem 0 0;
+      background-color: var(--color-bg-base);
+      transform: translateX(100%);
+      transition: transform var(--transition-smooth);
+      z-index: var(--z-index-drawer, 600);
     }
-    
-     .navigationToggle {
-      flex: 0 1 auto;
-      gap: 0.4rem;
+
+    .navigationOverlay[data-state="active"] {
+      transform: translateX(0);
+    }
+
+    .overlayPanel {
       display: flex;
-      align-items: flex-end;
       flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      padding-inline: var(--space-md);
+      padding-block: var(--space-xl)
+    }
+
+    .navigationAction {
+      display: flex;
       justify-content: center;
+      align-items: center;
       background-color: transparent;
       border: none;
       cursor: pointer;
-      padding-inline: var(--space-sm);
-      padding-block: var(--space-sm) ;
+      min-inline-size: 4.8rem;
+      min-block-size: 4.8rem;
+      padding-block: var(--space-xs);
+      padding-inline: var(--space-xs);
     }
 
-    .navigationToggleActive {
-      z-index: calc(var(--z-index-drawer) + 1);
-    }
-
-    .navigationToggleActive .burgerLineTop {
-      transform: translateY(0.6rem) rotate(-45deg);
-    }
-
-    .navigationToggleActive .burgerLineMiddle {
-      opacity: 0;
-    }
-
-    .navigationToggleActive .burgerLineBottom {
-      transform: translateY(-0.6rem) rotate(45deg);
-    }
-
-    .categoryItem {
+    .actionIcon {
+      position: relative;
       display: block;
+      width: 2.4rem;
+      height: 0.2rem;
+      background-color: var(--color-text-main);
+      transition: background-color var(--duration-fast) var(--ease-in-out);
     }
 
-    .categoryLink {
-      display: flex;
-      justify-content: space-between;
-      color: var(--color-accent);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .categoryLinkActive {
-      color: var(--color-text-main);
-    }
-    
-    .categoryLinkActive > .categoryLabel {
-      color: var(--color-text-main);
-    }
-
-    .utilityLink {
-      font-weight: 700;
-      color: var(--color-accent);
-      text-decoration: none;
-    }
-
-    .utilityLinkActive {
-      color: var(--color-text-main);
-    }
-    
-  @media (width <= 76.7rem) {  
-    .navigationMenu {
-      position: fixed;
-      inset-block-start: 0;
-      inset-inline-end: 0;
-      inline-size: 100%;
-      max-inline-size: 32rem;
-      block-size: 100%;
-      background-color: var(--color-bg-surface);
-      z-index: var(--z-index-drawer);
-      margin: 0 0 0 auto;
-      padding: 0;
-      border: none;
-      transition: transform var(--transition-smooth), display var(--transition-smooth) allow-discrete;
-      transform: translateX(100%);
-      max-block-size: 100%;
-    }
-
-    .toggleViewport {
-      display: flex;
-      justify-content: flex-end;
-      inline-size: 100%;
-      padding-block-start: var(--space-xs);
-      padding-inline-end: var(--space-xs)
-    }
-
-    .navigationMenu[open] {
-      display: flex;
-      flex-direction: column;
-      transform: translateX(0%);
-
-    }
-
-    .navigationMenu::backdrop {
-      background-color: rgb(0 0 0 / 50%);
-      backdrop-filter: blur(var(--blur-md));
-      opacity: 0;
-      transition: opacity var(--transition-smooth),
-      display var(--transition-smooth) allow-discrete;
-    }
-
-    .navigationMenu[open]::backdrop {
-      opacity: 1;
-    }
-
-    .navigationGroup {
-      display: flex;
-      flex-direction: column;
-      list-style-type: none;
-      font-size: var(--fs-lg);
-      padding-block-start: var(--space-xl);
-      padding-inline: var(--space-md);
-      gap: var(--space-md);
-      inline-size: 100%;
-    }
-
-    .utilityMenu {
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-    }
-
-    .categoryViewPort {
-      display: flex;
-      flex-direction: column;
-      inline-size: max-content;
-      min-inline-size: 14rem;
-    }
-
-    .categoryMenu {
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-    }
-  }
-
-
-    @media (width >= 76.8rem) {
-    .headerContainer {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      background-color: var(--color-bg-surface);
-    }
-
-    .headerViewport {
-      display: flex;
-    }
-
-    .brandContainer {
-      flex: 0 0 auto;
-    }
-
-    .navigationToggle {
-      display: none;
-    }
-
-    .navigationMenu {
-      background-color: var(--color-bg-surface);
-      border: none;
-      flex: 1 1 auto;
+    .actionIcon::before,
+    .actionIcon::after {
+      content: '';
       position: absolute;
-      inset-inline-start: 50%;
-      display: flex;
-      transform: translateX(-50%);
-      justify-content: center;
-      flex-direction: row;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-text-main);
+      transition: transform var(--transition-smooth), top var(--transition-smooth);
     }
 
-    .navigationGroup {
+    .actionIcon::before {
+      top: -0.8rem;
+    }
+
+    .actionIcon::after {
+      top: 0.8rem;
+    }
+
+    .navigationAction[data-state="active"] .actionIcon {
+      background-color: transparent;
+    }
+
+    .navigationAction[data-state="active"] .actionIcon::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .navigationAction[data-state="active"] .actionIcon::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    .categoryCluster {
       display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      list-style-type: none;
-      font-weight: 700;
+      flex-direction: column;
       gap: var(--space-md);
-
+      width: 100%;
     }
 
-    .categoryViewPort {
-      display: flex;
-      flex-direction: row;
+    .categoryAction {
+      display: inline-flex;
       align-items: center;
-    }
-
-    .categoryMenu {
-      gap: var(--space-sm);
-      display: flex;
-      flex-direction: row;
-      list-style: none;
-    }
-
-    .categoryItem {
-      display: block;
+      text-decoration: none;
+      min-block-size: 4.8rem;
+      outline: none;
     }
 
     .categoryLabel {
+      font-size: var(--fs-xl);
+      font-weight: var(--fw-display);
+      letter-spacing: var(--ls-display);
+      line-height: var(--lh-display);
+      color: var(--color-text-main);
+      text-transform: uppercase;
+      transition: color var(--duration-fast) var(--ease-in-out);
+    }
+
+      .categoryLabel:hover {
       color: var(--color-accent);
     }
-  
-    .utilityMenu {
+
+    .categoryLabel[data-state="active"] {
+      color: var(--color-accent);
+    }
+
+    .utilityCluster {
       display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      width: 100%;
+    }
+
+    .utilityAction {
+      display: inline-flex;
       align-items: center;
-      gap: var(--space-sm)
+      text-decoration: none;
+      font-size: var(--fs-xl);
+      font-weight: var(--fw-display);
+      letter-spacing: var(--ls-display);
+      line-height: var(--lh-display);
+      color: var(--color-text-main);
+      min-block-size: 4.8rem;
+      outline: none;
+      transition: color var(--duration-fast) 
+      var(--ease-in-out);
     }
 
-    .utilityItem {
-      display: block;
+    .utilityLabel:hover {
+      color: var(--color-accent);
     }
 
-  }
+    .utilityLabel[data-state="active"] {
+      color: var(--color-accent)
+    }
+
 }
+
     
 
