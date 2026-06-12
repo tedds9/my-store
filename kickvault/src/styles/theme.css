@@ -19,11 +19,11 @@
     --color-bg-surface:    var(--neutral-900);
     --color-bg-muted:      var(--neutral-800);
     --color-border:        var(--neutral-800);
-    --color-text-main:      var(--neutral-100);
-    --color-text-muted:     var(--neutral-400);
-    --color-text-disabled:  var(--neutral-500);
+    --color-text-main:     var(--neutral-100);
+    --color-text-muted:    var(--neutral-400);
+    --color-text-disabled: var(--neutral-500);
     --color-accent:         var(--orange-500);
-    --color-accent-muted:   var(--olive-200);
+    --color-accent-muted:    var(--olive-200);
     --space-xs: var(--space-base-8);
     --space-sm: var(--space-base-16);
     --space-md: var(--space-base-24);
@@ -47,5 +47,11 @@
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: var(--duration-normal) var(--ease-in-out);
     --blur-md: 0.4rem;
+    --lh-display: 1.1;
+    --ls-display: -0.03em;
+    --fw-display: 800;
+    --lh-price: 1;
+    --ls-price: -0.01em;
+    --fw-price: 600;
   }
 }
