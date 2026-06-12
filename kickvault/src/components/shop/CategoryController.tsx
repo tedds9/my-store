@@ -4,7 +4,7 @@ import { useShop } from '@/context/ShopContext'
 
 
 export function CategoryController() {
-  const { type = "" } = useParams();
+  const { type } = useParams<{ type:string }>();
   const { merchandisePool } = useShop();
   const normalizedType = type?.toLowerCase();
   const pickCategory =
