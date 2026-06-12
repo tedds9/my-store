@@ -4,6 +4,7 @@ import { Hero } from '@/components/shop/Hero';
 import { CollectionShowcase } from '@/components/shop/CollectionShowcase';
 import { CategoryController } from '@/components/shop/CategoryController';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ShowcaseViewer } from './pages/ShowcaseViewer';
 
 
 
@@ -31,7 +32,10 @@ function App() {
               element={<MainStoreFrontView />} />
             <Route path="/category/:type"
               element={<CategoryController />} />
+            <Route path="/products/:id" 
+              element={<ShowcaseViewer />} />
           </Routes>
+
         </main>
 
       </BrowserRouter>
