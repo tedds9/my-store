@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useShop } from '@/context/ShopContext';
 import styles from './navbar.module.css';
@@ -10,118 +10,75 @@ export function Navbar() {
   const { categoryLinks, primaryLinks } = useShop();
   const [isOpen, setIsOpen] = useState(false);
   const closeMenu = () => setIsOpen(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
-
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    const dialogElement = dialogRef.current;
-    if (!dialogElement) return;
-
-    if (isOpen) {
-      document.body.classList.add('bodyScrollLocked');
-      dialogElement.showModal();
-    } else {
-      document.body.classList.remove('bodyScrollLocked')
-      dialogElement.close();
-    }
-    return () => {
-      document.body.classList.remove('bodyScrollLocked');
-    }
-  }, [isOpen])
+  const toggleMenu = () => setIsOpen((prev) => !prev);
 
   return (
-    <header className={styles.headerContainer}>
-      <div className={`${styles.headerViewport}`} >
-        <div className={styles.brandContainer}  >
-          <NavLink className={styles.brandLink} to="/">
-            <span className={`${styles.brandTitle}`}
-            >kickvault</span>
-          </NavLink>
-        </div>
+    <header className={styles.navigationContext}>
+      <div className={`${styles.navigationViewport}`} >
+        <NavLink className={styles.brandLink} to="/" onClick={closeMenu} >
+          <span className={`${styles.brandTitle}`}
+          >kickvault</span>
+        </NavLink>
 
-        {!isOpen && (
-          <button
-            aria-controls="primary-mobile-menu"
-            aria-expanded={isOpen}
-            aria-label="Open menu"
-            className={styles.navigationToggle}
-            onClick={toggleMenu} >
-
-            <div className={styles.burgerLineTop} ></div>
-            <div className={styles.burgerLineMiddle} ></div>
-            <div className={styles.burgerLineBottom} ></div>
-          </button>
-        )}
-
+        <button
+          type="button"
+          aria-controls="primary-navigation-overlay"
+          aria-expanded={isOpen}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          className={styles.navigationAction}
+          data-state={isOpen ? "active" : "idle"}
+          onClick={toggleMenu}
+        >
+          <span className={styles.actionIcon} aria-hidden="true" />
+        </button>
       </div >
 
-      <dialog
-        aria-label="Main Navigation"
-        id="primary-mobile-menu"
-        ref={dialogRef}
-        className={styles.navigationMenu} >
 
-        <div className={styles.toggleViewport} >
-          {isOpen && (
-            <button
-              aria-controls="primary-mobile-menu"
-              aria-expanded={isOpen}
-              aria-label="menu"
-              className={`${styles.navigationToggle} 
-              ${isOpen ? styles.navigationToggleActive : ''}`}
-              onClick={toggleMenu} >
-
-              <div className={styles.burgerLineTop} ></div>
-              <div className={styles.burgerLineMiddle} ></div>
-              <div className={styles.burgerLineBottom} ></div>
-            </button>
-          )}
-        </div>
-
-        <div className={styles.navigationGroup} >
-          <div className={styles.categoryViewPort} >
-            <ul className={styles.categoryMenu}>
-
-              {categoryLinks.map(({ id, name, path }) => (
-                <li key={id} className={styles.categoryItem}>
-                  <NavLink
-                    className={({ isActive }) => `${styles.categoryLink}
-                   ${isActive ? styles.categoryLinkActive : ""}`}
-                    onClick={closeMenu}
-                    to={path} >
-                    <span className={styles.categoryLabel} >
-                      {name}
-                    </span>
-                  </NavLink>
-                </li>
-              )
-              )}
-
-            </ul>
-          </div>
-
-          <ul className={styles.utilityMenu}>
-
-            {primaryLinks.map(({ id, name, path }) => (
-              <li key={id} className={styles.utilityItem} >
-                <NavLink
-                  className={({ isActive }) =>
-                    `${styles.utilityLink} ${isActive ? styles.utilityLinkActive : ""} `}
-                  onClick={closeMenu}
-                  to={path}>
+      <div
+        id="primary-navigation-overlay"
+        className={styles.navigationOverlay}
+        data-state={isOpen ? "active" : "idle"}
+      >
+        <div className={styles.overlayPanel} >
+          <nav className={styles.categoryCluster} aria-label="Categories" >
+            {categoryLinks.map(({ id, name, path }) => (
+              <NavLink
+                key={id}
+                className={styles.categoryAction}
+                onClick={closeMenu}
+                to={path}
+              >
+                {({ isActive }: { isActive: boolean }) =>
+                (<span className={styles.categoryLabel}
+                  data-state={isActive ? "active" : "idle"}
+                >
                   {name}
-                </NavLink>
-              </li>
-            )
-            )}
+                </span>)}
+              </NavLink>
+            ))}
+          </nav>
 
-          </ul>
-
+          <nav className={styles.utilityCluster} aria-label="Utilities" >
+            {primaryLinks.map(({ id, name, path }) => (
+              <NavLink
+                key={id}
+                className={styles.utilityAction}
+                onClick={closeMenu}
+                to={path}
+              >
+                {({ isActive }: { isActive: boolean }) =>
+                (<span
+                  className={styles.utilityLabel}
+                  data-state={isActive ? "active" : "idle"}
+                >
+                  {name}
+                </span>)
+                }
+              </NavLink>
+            ))}
+          </nav>
         </div>
-
-      </dialog>
-
+      </div>
     </header>
 
   )
