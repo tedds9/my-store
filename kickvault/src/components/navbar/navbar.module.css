@@ -6,7 +6,10 @@
       inline-size: 100%;
       background-color: var(--color-bg-base);
       border-block-end: 0.1rem solid var(--color-border);
-      z-index: var(--z-index-header, 100)
+      z-index: var(--z-index-header, 100);
+
+      --computed-header-height: max(var(--space-2xl), 
+      4.8rem);
     }
     
     .navigationViewport {
@@ -17,7 +20,7 @@
       max-inline-size: var(--grid-max-width);
       margin-inline: auto;
       padding-inline: var(--space-md);
-      min-block-size: var(--space-2xl);
+      min-block-size: var(--computed-header-height);
     }
 
     .brandLink {
@@ -25,7 +28,7 @@
       align-items: center; 
       text-decoration: none;
       outline: none;
-      min-block-size: var(--space-xl);
+      min-block-size: var(--computed-header-height);
     }
 
     .brandTitle {
@@ -37,27 +40,9 @@
       text-transform: uppercase;
     }
 
-     .navigationOverlay {
-      position: fixed;
-      inset-block-start: var(--space-2xl);
-      inset-inline: 0;
+    .navigationOverlay {
       background-color: var(--color-bg-base);
-      transform: translateX(100%);
-      transition: transform var(--transition-smooth);
-      z-index: var(--z-index-drawer, 600);
-    }
-
-    .navigationOverlay[data-state="active"] {
-      transform: translateX(0);
-    }
-
-    .overlayPanel {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      block-size: 100%;
-      padding-inline: var(--space-md);
-      padding-block: var(--space-xl)
+      z-index: var(--z-index-drawer);
     }
 
     .navigationAction {
@@ -69,8 +54,6 @@
       cursor: pointer;
       min-inline-size: var(--space-xl);
       min-block-size: var(--space-xl);
-      padding-block: var(--space-xs);
-      padding-inline: var(--space-xs);
     }
 
     .actionIcon {
@@ -90,15 +73,15 @@
       inline-size: 100%;
       block-size: 100%;
       background-color: var(--color-text-main);
-      transition: transform var(--transition-smooth), inset-block var(--transition-smooth);
+      transition: translate var(--transition-smooth), rotate var(--transition-smooth);
     }
 
     .actionIcon::before {
-      inset-block-start: -0.8rem;
+      translate: 0 -0.8rem;
     }
 
     .actionIcon::after {
-      inset-block-start: 0.8rem;
+      translate: 0 0.8rem;
     }
 
     .navigationAction[data-state="active"] .actionIcon {
@@ -106,13 +89,13 @@
     }
 
     .navigationAction[data-state="active"] .actionIcon::before {
-      inset-block-start: 0;
-      transform: rotate(45deg);
+      translate: 0 0;
+      rotate: 45deg;
     }
 
     .navigationAction[data-state="active"] .actionIcon::after {
-      inset-block-start: 0;
-      transform: rotate(-45deg);
+      translate: 0 0;
+      rotate: -45deg;
     }
 
     .categoryCluster {
@@ -167,12 +150,108 @@
       var(--ease-in-out);
     }
 
+    .utilityLabel {
+      font-size: var(--fs-xl);
+      font-weight: var(--fw-display);
+      letter-spacing: var(--ls-display);
+      line-height: var(--lh-display);
+      color: var(--color-text-main);
+      text-transform: uppercase;
+      transition: color var(--duration-fast) 
+      var(--ease-in-out);
+    }
+
     .utilityLabel:hover,
     .utilityLabel[data-state="active"] {
       color: var(--color-accent);
     }
 
+    @media (width < 64rem) {
+     .navigationOverlay {
+      position: fixed;
+      inset-block-start: var(--space-2xl);
+      inset-inline: 0;
+      block-size: calc(100dvh - var(--space-2xl));
+      background-color: var(--color-bg-base);
+      translate: 100% 0;
+      transition: translate var(--transition-smooth);
+      z-index: var(--z-index-drawer, 600);
+      overflow-y: auto;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    
+    .navigationOverlay[data-state="active"] {
+      translate: 0 0;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .overlayPanel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      block-size: 100%;
+      padding-inline: var(--space-md);
+      padding-block: var(--space-xl);
+    }
+
+    }
+
+    @media (width >= 64rem) {
+      .navigationOverlay {
+        display: flex;
+        flex-grow: 1;
+        margin-inline: var(--space-xl);
+        align-items: center;
+        position: static;
+        block-size: auto;
+      }
+
+      .navigationAction {
+        display: none;
+      }
+
+      .brandLink {
+        flex: 0 0 auto;
+      }
+
+      .overlayPanel {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        inline-size: auto;
+        flex-grow: 1;
+        gap: var(--space-xl)
+      }
+
+      .categoryCluster {
+        flex-direction: row;
+        gap: var(--space-lg);
+        inline-size: auto;
+      }
+
+      .utilityCluster {
+        flex-direction: row;
+        gap: var(--space-md);
+        inline-size: auto
+      }
+
+      .categoryLabel {
+        font-size: var(--fs-md);
+      }
+
+      .utilityLabel {
+        font-size: var(--fs-md);
+      }
+    }
+
 }
 
+:global(body:has(header[data-state="active"])),
+:global(body:has([id="primary-navigation-overlay"][data-state="active"])) {
+  overflow: hidden;
+}
     
 
