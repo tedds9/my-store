@@ -2,9 +2,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "npm run validate && vite build",
     "review": "vite preview",
-    "lint:css": "stylelint src/**/*.css",
+    "lint:css": "stylelint \"src/**/*.css\"",
     "lint:js": "eslint src",
     "validate": "tsc --noEmit && npm run lint:css && npm run lint:js"
   },
