@@ -31,54 +31,55 @@ export function Navbar() {
         >
           <span className={styles.actionIcon} aria-hidden="true" />
         </button>
+
+
+        <div
+          id="primary-navigation-overlay"
+          className={styles.navigationOverlay}
+          data-state={isOpen ? "active" : "idle"}
+        >
+          <div className={styles.overlayPanel} >
+            <nav className={styles.categoryCluster} aria-label="Categories" >
+              {categoryLinks.map(({ id, name, path }) => (
+                <NavLink
+                  key={id}
+                  className={styles.categoryAction}
+                  onClick={closeMenu}
+                  to={path}
+                >
+                  {({ isActive }: { isActive: boolean }) =>
+                  (<span className={styles.categoryLabel}
+                    data-state={isActive ? "active" : "idle"}
+                  >
+                    {name}
+                  </span>)}
+                </NavLink>
+              ))}
+            </nav>
+
+            <nav className={styles.utilityCluster} aria-label="Utilities" >
+              {primaryLinks.map(({ id, name, path }) => (
+                <NavLink
+                  key={id}
+                  className={styles.utilityAction}
+                  onClick={closeMenu}
+                  to={path}
+                >
+                  {({ isActive }: { isActive: boolean }) =>
+                  (<span
+                    className={styles.utilityLabel}
+                    data-state={isActive ? "active" : "idle"}
+                  >
+                    {name}
+                  </span>)
+                  }
+                </NavLink>
+              ))}
+            </nav>
+          </div>
+        </div>
       </div >
 
-
-      <div
-        id="primary-navigation-overlay"
-        className={styles.navigationOverlay}
-        data-state={isOpen ? "active" : "idle"}
-      >
-        <div className={styles.overlayPanel} >
-          <nav className={styles.categoryCluster} aria-label="Categories" >
-            {categoryLinks.map(({ id, name, path }) => (
-              <NavLink
-                key={id}
-                className={styles.categoryAction}
-                onClick={closeMenu}
-                to={path}
-              >
-                {({ isActive }: { isActive: boolean }) =>
-                (<span className={styles.categoryLabel}
-                  data-state={isActive ? "active" : "idle"}
-                >
-                  {name}
-                </span>)}
-              </NavLink>
-            ))}
-          </nav>
-
-          <nav className={styles.utilityCluster} aria-label="Utilities" >
-            {primaryLinks.map(({ id, name, path }) => (
-              <NavLink
-                key={id}
-                className={styles.utilityAction}
-                onClick={closeMenu}
-                to={path}
-              >
-                {({ isActive }: { isActive: boolean }) =>
-                (<span
-                  className={styles.utilityLabel}
-                  data-state={isActive ? "active" : "idle"}
-                >
-                  {name}
-                </span>)
-                }
-              </NavLink>
-            ))}
-          </nav>
-        </div>
-      </div>
     </header>
 
   )
