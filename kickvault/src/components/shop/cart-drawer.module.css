@@ -1,0 +1,172 @@
+@layer components {
+  .basketContext {
+    --panel-width-min: 42rem;
+    --panel-width-max: 48rem;
+    --panel-fluid-ratio: 35vw;
+    --action-footprint: var(--space-xl);
+    --local-header-space: var(--space-md);
+    --local-header-stroke: 0.1rem solid var(--color-border);
+    --local-button-size: var(--space-xl);
+    --local-hover-scale: 1.1;
+
+    position: fixed;
+    inset-block: 0;
+    inset-inline: 0;
+    z-index: var(--z-index-drawer);
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .basketContext[data-state="active"] {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .drawerBackdrop {
+    background-color: rgb(0 0 0 / 50%);
+    backdrop-filter: blur(var(--blur-md));
+    pointer-events: auto;
+  }
+
+  .basketPanel {
+    background-color: var(--color-bg-surface);
+    block-size: 100dvh;
+    inline-size: clamp(var(--panel-width-min), var(--panel-width-ratio), 
+    var(--panel-width-max));
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+  }
+
+  .panelHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: var(--local-header-space);
+    padding-inline: var(--local-header-space);
+    border-block-end: var(--local-header-stroke);
+  }
+  
+  .closeAction {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--local-button-size);
+    block-size: var(--local-button-size);
+    color: var(--color-text-main);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: scale var(--duration-fast) var(--ease-in-out);
+
+    &:hover {
+      scale: var(--local-hover-scale);
+    }
+  }
+
+  .panelTitle {
+    font-size: var(--text-lg, 1.8rem);
+    font-weight: 600;
+    color: var(--color-text-prime, var(--color-surface-stark));
+    margin-block: 0;
+    margin-inline: 0;
+  }
+
+  .basketMatrix {
+    flex: 1;
+    overflow-y: auto;
+    padding-inline: var(--space-sm);
+    padding-block: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .basketFrame {
+    display: grid;
+    grid-template-columns: auto 8.0rem 1fr;
+    gap: var(--space-sm);
+    align-items: center;
+    border-block-end: 0.1rem solid var(--color-border);
+    padding-block-end: var(--space-sm);
+  }
+
+  .quantityControl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    min-inline-size: var(--space-xl);
+  }
+
+  .adjustAction {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--space-xl);
+    block-size: var(--space-xl);
+    color: var(--color-text-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: scale var(--duration-fast) var(--ease-in-out);
+
+    &:hover {
+      scale: var(--local-hover-scale);
+      color: var(--color-text-main);
+    }
+  }
+
+  .countIndicator {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-price, 600);
+    color: var(--color-text-main);
+    line-height: var(--lh-price, 1);
+    letter-spacing: var(--ls-price, -0.01rem);
+  }
+
+  .visualFrame {
+    inline-size: 8.0rem;
+    block-size: 8.0rem;
+    overflow: hidden;
+    background-color: var(--color-bg-muted);
+  }
+
+  .nodeGraphic {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .metaCluster {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-xs);
+    min-inline-size: 0;
+  }
+
+  .nodeTitle {
+    font-size: var(--fs-md);
+    font-weight: 500;
+    color: var(--color-text-main);
+    margin-block: 0;
+    margin-inline: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .priceIndicator {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-price, 600);
+    color: var(--color-accent, var(--neutral-400));
+    line-height: var(--lh-price, 1);
+    letter-spacing: var(--ls-price, -0.01rem);
+    margin-block: 0;
+    margin-inline: 0;
+  }
+
+}
