@@ -4,7 +4,8 @@ import { Hero } from '@/components/shop/Hero';
 import { CollectionShowcase } from '@/components/shop/CollectionShowcase';
 import { CategoryController } from '@/components/shop/CategoryController';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ShowcaseViewer } from './pages/ShowcaseViewer';
+import { ShowcaseViewer } from '@/pages/ShowcaseViewer';
+import { CartDrawer } from '@/components/shop/CartDrawer';
 
 
 
@@ -35,6 +36,8 @@ function App() {
             <Route path="/products/:id" 
               element={<ShowcaseViewer />} />
           </Routes>
+
+          <CartDrawer isOpen={true} onClose={() => console.log('close canvas')} />
 
         </main>
 
