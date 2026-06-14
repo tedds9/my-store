@@ -1,9 +1,9 @@
-import { createContext, useContext, useState, useMemo, useCallback } from 'react';
+import { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { STORE_ASSETS as mockStoreAssets } from '@/data/inventory-assets';
 import { NAV_CATEGORIES_LINKS as mockNavCategoryLinks, NAV_PRIMARY_LINKS as mockNavPrimaryLinks } from '@/data/navigation-links';
 import { BasketSelection } from '@/types/basket-selections'
 import { MerchandiseAsset } from '@/types/merchandise-assets'
-import { NavigationLink } from '@/types/navigation-links'
+import { NavigationLink } from '@/navigation-links'
 
 interface ShopContextType {
   merchandisePool: MerchandiseAsset[];
@@ -16,7 +16,16 @@ interface ShopContextType {
 const ShopContext = createContext<ShopContextType | null >(null);
 
 export function ShopProvider({ children }: { children: React.ReactNode }) {
-  const [basketSelection, setBasketSelection] = useState<BasketSelection[]>([]);
+  const [basketSelection, setBasketSelection] = useState<BasketSelection[]>(() => {
+    const localPocket = localStorage.getItem('kv_basket_cache');
+    return localPocket ? JSON.parse(localPocket) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('kv_basket_cache', JSON.stringify(basketSelection));
+  }, [basketSelection])
+
+
 
   const addToBasket = useCallback((assetId: string) => {
     setBasketSelection((prevSelection) => {
