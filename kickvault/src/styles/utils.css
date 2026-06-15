@@ -20,7 +20,12 @@
     overflow: hidden !important;
   }
 
-  body:has([data-state="active"]) {
+  
+  body:has([role="dialog"][data-state="active"]) {
     overflow: hidden;
   }
 }
+
+  body:has(#primary-navigation-overlay[data-state="active"]) {
+    overflow: hidden;
+  }
