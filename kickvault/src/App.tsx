@@ -37,10 +37,9 @@ function App() {
               element={<ShowcaseViewer />} />
           </Routes>
 
-          <CartDrawer isOpen={true} onClose={() => console.log('close canvas')} />
+          <CartDrawer />
 
         </main>
-
       </BrowserRouter>
     </ShopProvider>
   )
