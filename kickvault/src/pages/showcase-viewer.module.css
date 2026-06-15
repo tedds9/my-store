@@ -62,10 +62,10 @@
 
   .priceTag {
     font-size: var(--fs-lg);
-    font-weight: var(--fw-price);
+    font-weight: var(--fw-semi);
     color: var(--color-accent);
-    letter-spacing: var(--ls-price);
-    line-height: var(--lh-price);
+    letter-spacing: var(--ls-compact);
+    line-height: var(--lh-compact);
   }
 
   .dimensionAction {
@@ -79,7 +79,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-weight: var(--fw-price);
+    font-weight: var(--fw-semi);
     transition: background-color var(--transition-smooth),
     border-color var(--transition-smooth);
   }
@@ -111,9 +111,9 @@
     padding-block: var(--space-sm);
     padding-inline: var(--space-md);
     font-size: var(--fs-sm);
-    font-weight: var(--fw-price);
+    font-weight: var(--fw-semi);
     text-transform: uppercase;
-    letter-spacing: var(--ls-price);
+    letter-spacing: var(--ls-compact);
     border: none;
     transition: background-color var(--transition-smooth),
     color var(--transition-smooth);
