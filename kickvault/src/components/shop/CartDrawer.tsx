@@ -3,7 +3,7 @@ import styles from './cart-drawer.module.css';
 
 export function CartDrawer() {
 
-  const { basketSelection, merchandisePool, addToBasket, removeFromBasket, 
+  const { basketSelection, merchandisePool, addToBasket, removeFromBasket,
     basketState, toggleBasket } = useShop();
 
   return (
@@ -26,10 +26,12 @@ export function CartDrawer() {
         </header>
         <div className={styles.basketMatrix} >
           {basketSelection.map((selectionNode) => {
-              
+
+            const [baseId, itemSize] = selectionNode.id.split('_');
+
             const productAsset =
-              merchandisePool.find((asset) => asset.id === selectionNode.id);
-              
+              merchandisePool.find((asset) => asset.id === baseId);
+
             if (!productAsset) return null;
             return (
               <div key={selectionNode.id} className={styles.basketFrame} >
@@ -66,6 +68,12 @@ export function CartDrawer() {
                 </div>
                 <div className={styles.metaCluster} >
                   <h3 className={styles.nodeTitle} >{productAsset.name}</h3>
+                  {itemSize ? (
+                    <p className={styles.sizeIndicator}>
+                      Size: {itemSize}
+                    </p>
+                  ) : null}
+
                   <p className={styles.priceIndicator} >
                     ${productAsset.price * selectionNode.quantity}
                   </p>
