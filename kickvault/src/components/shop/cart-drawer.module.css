@@ -121,10 +121,10 @@
 
   .countIndicator {
     font-size: var(--fs-md);
-    font-weight: var(--fw-price, 600);
+    font-weight: var(--fw-semi, 600);
     color: var(--color-text-main);
-    line-height: var(--lh-price, 1);
-    letter-spacing: var(--ls-price, -0.01rem);
+    line-height: var(--lh-compact, 1);
+    letter-spacing: var(--ls-compact, -0.01rem);
   }
 
   .visualFrame {
@@ -161,10 +161,10 @@
 
   .priceIndicator {
     font-size: var(--fs-md);
-    font-weight: var(--fw-price, 600);
+    font-weight: var(--fw-semi, 600);
     color: var(--color-accent, var(--neutral-400));
-    line-height: var(--lh-price, 1);
-    letter-spacing: var(--ls-price, -0.01rem);
+    line-height: var(--lh-compact, 1);
+    letter-spacing: var(--ls-compact, -0.01rem);
     margin-block: 0;
     margin-inline: 0;
   }
