@@ -1,10 +1,10 @@
 export interface MerchandiseAsset {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  image: string;
-  category: string;
-  isFavorite: boolean;
-  sizes: number[];
+  readonly id: string;
+  readonly name: string;
+  readonly brand: string;
+  readonly price: number;
+  readonly image: string;
+  readonly category: string;
+  readonly isFavorite: boolean;
+  readonly sizes: number[];
 }
