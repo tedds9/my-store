@@ -6,9 +6,15 @@ import styles from './showcase-viewer.module.css';
 
 export function ShowcaseViewer() {
   const { id } = useParams<{ id: string }>();
-  const { merchandisePool } = useShop();
+  const { merchandisePool, addToBasket } = useShop();
   const showcaseNode = merchandisePool.find((node) => node.id === id);
   const [chosenSize, setChosenSize] = useState<number | null>(null);
+
+  const handleAddToBasket = () => {
+    if (!chosenSize || !showcaseNode) return;
+    const compositeAssetId = `${showcaseNode.id}_${chosenSize}`;
+    addToBasket(compositeAssetId);
+  }
 
 
   if (!showcaseNode) {
@@ -57,6 +63,7 @@ export function ShowcaseViewer() {
               type="button"
               disabled={!chosenSize}
               className={styles.primaryAction}
+              onClick={handleAddToBasket}
             >
               {chosenSize ? "Add to Cart" : "Select a Size"}
             </button>
