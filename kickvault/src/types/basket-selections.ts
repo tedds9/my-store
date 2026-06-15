@@ -1,4 +1,4 @@
 export interface BasketSelection {
-  id: string;
-  quantity: number;
+  readonly id: string;
+  readonly quantity: number;
 }
