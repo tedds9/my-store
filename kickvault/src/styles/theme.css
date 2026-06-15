@@ -51,8 +51,8 @@
     --lh-display: 1.1;
     --ls-display: -0.03em;
     --fw-display: 800;
-    --lh-price: 1;
-    --ls-price: -0.01em;
-    --fw-price: 600;
+    --lh-compact: 1;
+    --ls-compact: -0.01em;
+    --fw-semi: 600;
   }
 }
