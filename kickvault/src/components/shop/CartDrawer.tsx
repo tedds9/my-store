@@ -1,22 +1,22 @@
 import { useShop } from '@/context/ShopContext';
 import styles from './cart-drawer.module.css';
 
-export function CartDrawer({ isOpen, onClose }:
-  { isOpen: boolean; onClose: () => void }) {
+export function CartDrawer() {
 
-  const { basketSelection, merchandisePool, addToBasket } = useShop();
+  const { basketSelection, merchandisePool, addToBasket, removeFromBasket, 
+    basketState, toggleBasket } = useShop();
 
   return (
     <div className={styles.basketContext}
-      data-state={isOpen ? 'active' : 'idle'}
+      data-state={basketState}
     >
       <div className={styles.drawerBackdrop}
-        onClick={onClose} />
+        onClick={() => toggleBasket('idle')} />
       <aside className={styles.basketPanel} >
         <header className={styles.panelHeader} >
           <h2 className={styles.panelTitle} >Your Bag</h2>
           <button type="button" className={styles.closeAction}
-            onClick={onClose} >
+            onClick={() => toggleBasket('idle')} aria-label="Close bag" >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
               strokeWidth="2" >
               <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round"
@@ -32,11 +32,10 @@ export function CartDrawer({ isOpen, onClose }:
               
             if (!productAsset) return null;
             return (
-              
               <div key={selectionNode.id} className={styles.basketFrame} >
                 <div className={styles.quantityControl}>
                   <button type="button" className={styles.adjustAction}
-                    onClick={() => {}} aria-label="Decrease quantity" >
+                    onClick={() => removeFromBasket(selectionNode.id)} aria-label="Decrease quantity" >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                       strokeWidth="2" >
                       <path d="M5 12h14" strokeLinecap="round"
