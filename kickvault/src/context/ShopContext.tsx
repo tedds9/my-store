@@ -6,14 +6,19 @@ import { MerchandiseAsset } from '@/types/merchandise-assets'
 import { NavigationLink } from '@/navigation-links'
 
 interface ShopContextType {
-  merchandisePool: MerchandiseAsset[];
-  categoryLinks: NavigationLink[];
-  primaryLinks: NavigationLink[];
-  basketSelection: BasketSelection[];
-  addToBasket: (assetId: string) => void;
+  readonly merchandisePool: MerchandiseAsset[];
+  readonly categoryLinks: NavigationLink[];
+  readonly primaryLinks: NavigationLink[];
+  readonly basketSelection: BasketSelection[];
+  readonly basketState: 'active' | 'idle';
+  readonly addToBasket: (assetId: string) => void;
+  readonly removeFromBasket: (assetId: string) => void;
+  readonly toggleBasket: (forceState?: 'active' | 'idle') => void;
+
+
 }
 
-const ShopContext = createContext<ShopContextType | null >(null);
+const ShopContext = createContext<ShopContextType | null>(null);
 
 export function ShopProvider({ children }: { children: React.ReactNode }) {
   const [basketSelection, setBasketSelection] = useState<BasketSelection[]>(() => {
@@ -23,30 +28,52 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem('kv_basket_cache', JSON.stringify(basketSelection));
-  }, [basketSelection])
+  }, [basketSelection]);
+
+  const [basketState, setBasketState] = useState<'active' | 'idle'>('idle');
+
+  const toggleBasket = useCallback((forceState?: 'active' | 'idle') => {
+    setBasketState((prev) => forceState ?? (prev === 'active' ? 'idle' : 'active'));
+  }, []);
+
+  const removeFromBasket = useCallback((assetId: string) => {
+    setBasketSelection((prevSelection) => {
+      const activeNode = prevSelection.find((node) => node.id === assetId);
+      if (!activeNode) return prevSelection;
+      if (activeNode.quantity > 1) {
+        return prevSelection.map((node) =>
+          node.id === assetId ? { ...node, quantity: node.quantity - 1 } : node
+        );
+      }
+      return prevSelection.filter((node) => node.id !== assetId);
+    });
+  }, []);
 
 
 
   const addToBasket = useCallback((assetId: string) => {
     setBasketSelection((prevSelection) => {
-      const activeNode = prevSelection.find((node)=> node.id === assetId);
+      const activeNode = prevSelection.find((node) => node.id === assetId);
       if (activeNode) {
-        return prevSelection.map((node)=> 
-          node.id === assetId ? 
-        {...node, quantity: node.quantity + 1} : node
+        return prevSelection.map((node) =>
+          node.id === assetId ?
+            { ...node, quantity: node.quantity + 1 } : node
         );
       }
-      return [...prevSelection,{ id: assetId, quantity: 1}];
+      return [...prevSelection, { id: assetId, quantity: 1 }];
     });
-  },[]);
+  }, []);
 
-  const contextValue = useMemo(()=> ({
+  const contextValue = useMemo(() => ({
     merchandisePool: mockStoreAssets,
-    categoryLinks : mockNavCategoryLinks,
-    primaryLinks : mockNavPrimaryLinks,
+    categoryLinks: mockNavCategoryLinks,
+    primaryLinks: mockNavPrimaryLinks,
     basketSelection,
-    addToBasket
-  }), [basketSelection, addToBasket])
+    basketState,
+    addToBasket,
+    removeFromBasket,
+    toggleBasket
+  }), [basketSelection, basketState, addToBasket, removeFromBasket, toggleBasket]);
 
   return (
     <ShopContext value={contextValue}>
