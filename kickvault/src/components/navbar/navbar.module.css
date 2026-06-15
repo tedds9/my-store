@@ -166,6 +166,46 @@
       color: var(--color-accent);
     }
 
+    .actionCluster {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      margin-inline-start: auto;
+    }
+
+    .bagAction {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: var(--space-xl);
+      block-size: var(--space-xl);
+      color: var(--color-text-main);
+      cursor: pointer;
+    }
+
+    .bagIcon {
+      inline-size: calc(var(--space-xl) / 2);
+      block-size: calc(var(--space-xl) / 2 );
+    }
+
+    .countBadge {
+      position: absolute;
+      inset-block-start: 0.2rem;
+      inset-inline-end: 0.2rem;
+      background-color: var(--color-accent);
+      color: var(--color-bg-base);
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-semi);
+      min-inline-size: var(--space-xs);
+      block-size: var(--space-xs);
+      border-radius: calc(infinity * 1px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
     @media (width < 64rem) {
      .navigationOverlay {
       position: fixed;
