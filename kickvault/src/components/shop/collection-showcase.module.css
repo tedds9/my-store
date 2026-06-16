@@ -1,8 +1,33 @@
 @layer components {
   .showcaseDisplay {
-    margin-top: 0.3rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+    margin-block-start: var(--space-sm);
+    max-inline-size: var(--grid-max-width);
+    margin-inline: auto;
 
+  }
+
+  @media (width >= 48rem) {
+    .showcaseDisplay {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      padding: var(--space-md);
+    }
+  }
+
+  @media (width >= 76.8rem) {
+    .showcaseDisplay {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+  }
+
+  @media (width >= 96rem) {
+    .showcaseDisplay {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }
