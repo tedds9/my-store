@@ -1,5 +1,13 @@
 @layer components {
-.heroShell {
+.navigationAnchor {
+  --l-touch-target-height: 4.8rem;
+  --l-grid-max-width: var(--grid-max-width);
+
+  container-type: inline-size;
+  inline-size: 100%;
+}
+  
+.billboardStage {
   display: grid;
   position: relative;
   overflow: hidden;
@@ -18,104 +26,123 @@
 
 .showcaseAsset {
   position: absolute;
-  inset: 0;
+  inset-block: 0;
+  inset-inline: 0;
   inline-size: 100%;
   block-size: 100%;
-  max-width: none;
+  max-inline-size: none;
   object-fit: cover;
   object-position: 80% 50%;
 }
 
 .imageViewer::after {
-  position: absolute;
-  inset: 0;
-  inline-size: 100%;
   content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block: 0;
+  inline-size: 100%;
   background-image: linear-gradient(
     rgb(10 10 10 / 50%),
     rgb(10 10 10 / 90%)
   );
-  z-index: var(--z-index-floor);
+  z-index: calc(var(--z-index-floor) + 1);
 
 }
 
-.editorialGroup {
+.editorialBillboard {
   grid-area: 1 / 1;
   inline-size: 100%;
-  max-inline-size: 144rem;
   gap: var(--space-md);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: var(--z-index-floor);
   padding-inline: var(--space-md);
+  max-inline-size: var(--l-grid-max-width);
+  margin-inline: auto;
+  text-align: center;
+  z-index: calc(var(--z-index-floor) + 2);
 }
 
 .mainHeading {
-  font-weight: 700;
+  text-transform: uppercase;
+  font-weight: var(--fw-display);
   font-size: var(--fs-hero);
-  color: var(--color-text-primary);
+  line-height: var(--lh-display);
+  color: var(--color-text-main);
+  letter-spacing: var(--ls-display);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
 }
 
 .subHeading {
-  color: var(--color-text-primary);
+  color: var(--color-text-main);
   font-size: var(--fs-md);
-  max-inline-size: 60rem;
+  max-inline-size: 64rem;
+  letter-spacing: 0.02rem;
+  line-height: 1.6;
+  text-wrap: balance;
 }
 
 .actionCluster {
   display: flex;
-  background-color: inherit;
+  background-color: transparent;
   border: none;
   gap: var(--space-sm)
 }
 
 .primaryAction,
 .secondaryAction {
-  background-color: inherit;
-  padding-inline: var(--space-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  padding-inline: var(--space-md);
   padding-block: var(--space-xs);
-  border-radius: 0.4rem;
-  font-weight: 700;  
+  border-radius: calc(infinity * 1px);
+  font-weight: var(--fw-semi);  
   cursor: pointer;
-  min-block-size: 4.4rem;
-  transition: background-color var(--transition-smooth, 0.2s ease-in-out), 
-  border-color var(--transition-smooth, 0.2s ease-in-out);
+  min-block-size: var(--l-touch-target-height);
+  transition: background-color var(--transition-smooth),
+   color var(--transition-smooth), 
+  border-color var(--transition-smooth);
 
 }
 
 .primaryAction {
   color: var(--color-accent);
   border: solid 0.1rem var(--color-accent);
+  background-color: transparent;
 }
 
 .primaryAction:hover {
   background-color: var(--color-accent);
-  color: var(--color-bg)
+  color: var(--color-bg-base)
 }
 
 .secondaryAction {
   color: var(--color-accent-muted);
   border: solid 0.1rem var(--color-bg-surface);
+  background-color: transparent;
 }
 
 .secondaryAction:hover {
   background-color: var(--color-border);
-  color: var(--color-text-primary);
+  color: var(--color-text-main);
 }
 
-@media(width >= 76.8rem) {
-  .heroShell {
+@container (inline-size >= 76.8rem) {
+  .billboardStage {
     block-size: clamp(70rem, 80dvh, 90rem);
   }
 
-    .editorialGroup {
-      gap: var(--space-md) 
+    .editorialBillboard {
+      gap: var(--space-lg) 
   }
 
   .subHeading {
-  color: var(--color-text-primary);
+  color: var(--color-text-main);
   font-size: var(--fs-lg);
 }
 
