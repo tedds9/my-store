@@ -6,6 +6,7 @@ import { CategoryController } from '@/components/shop/CategoryController';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ShowcaseViewer } from '@/pages/ShowcaseViewer';
 import { CartDrawer } from '@/components/shop/CartDrawer';
+import { CartView } from '@/pages/CartView';
 
 
 
@@ -31,10 +32,16 @@ function App() {
           <Routes>
             <Route path="/"
               element={<MainStoreFrontView />} />
+              <Route path="/products" 
+              element={<CategoryController />} />
+              <Route path="/cart" 
+              element={<CartView />} />
             <Route path="/category/:type"
               element={<CategoryController />} />
             <Route path="/products/:id" 
               element={<ShowcaseViewer />} />
+            
+              
           </Routes>
 
           <CartDrawer />
