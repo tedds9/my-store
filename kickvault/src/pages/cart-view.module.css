@@ -1,0 +1,113 @@
+@layer components {
+  .bagShell {
+    --asset-graphic-size: calc(var(--space-3xl) + var(--space-sm));
+
+    inline-size: 100%;
+    max-inline-size: var(--grid-max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+    padding-block: var(--space-3xl);
+  }
+  
+  .bagHeading {
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-display);
+    line-height: var(--lh-diplay);
+    letter-spacing: var(--ls-display);
+    color: var(--color-text-main);
+    margin-block: 0 var(--space-lg);
+  }
+
+  .bagMatrix {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .assetRow {
+    display: grid;
+    grid-template-columns: auto var(--asset-graphic-size) 1fr;
+    gap: var(--space-md);
+    align-items: center;
+    border-block-end: 0.1rem solid var(--color-border);
+    padding-block-end: var(--space-md);
+  }
+
+  .assetToggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    min-inline-size: var(--space-xl);
+  }
+
+  .toggleDecrement,
+  .toggleIncrement {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--space-xl);
+    block-size: var(--space-xl);
+    color: var(--color-text-muted);
+    background: transparent;
+    border:none;
+    cursor: pointer;
+    transition: scale var(--duration-normal) var(--ease-in-out);
+  }
+
+  .toggleVector {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .toggleDisplay {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semi);
+    color: var(--color-text-main);
+    line-height: var(--lh-compact);
+    letter-spacing: var(--ls-compact);
+  }
+
+  .assetVisual {
+    inline-size: 12rem;
+    block-size: 12rem;
+    overflow: hidden;
+    background-color: var(--color-bg-muted);
+  }
+
+  .visualGraphic {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .assetMeta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    min-inline-size: 0;
+  }
+
+  .metaTitle {
+    font-size: var(--fs-md);
+    font-weight: var(--fs-semi);
+    line-height: var(--lh-compact);
+    letter-spacing: var(--ls-compact);
+    color: var(--color-text-main);
+  }
+
+  .metaSize {
+    font-size: var(--fs-sm);
+    line-height: var(--lh-compact);
+    letter-spacing: var(--ls-compact);
+    color: var(--color-text-muted);
+  }
+
+  .metaPrice {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semi);
+    line-height: var(--lh-compact);
+    letter-spacing: var(--ls-compact);
+    color: var(--color-accent);
+  }
+}
