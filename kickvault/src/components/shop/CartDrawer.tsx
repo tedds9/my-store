@@ -4,7 +4,13 @@ import styles from './cart-drawer.module.css';
 export function CartDrawer() {
 
   const { basketSelection, merchandisePool, addToBasket, removeFromBasket,
-    basketState, toggleBasket } = useShop();
+    basketState, toggleBasket, initiateCheckout, checkoutProcessing } = useShop();
+
+    const drawerSubtotal = basketSelection.reduce((total, node) => {
+      const [baseId] = node.id.split('_');
+      const asset = merchandisePool.find(item => item.id === baseId);
+      return total + (asset ? asset.price * node.quantity : 0);
+    }, 0)
 
   return (
     <div className={styles.basketContext}
@@ -12,7 +18,7 @@ export function CartDrawer() {
     >
       <div className={styles.drawerBackdrop}
         onClick={() => toggleBasket('idle')} />
-      <aside className={styles.basketPanel} >
+      <aside className={styles.basketPanel} role="dialog" data-state={basketState} >
         <header className={styles.panelHeader} >
           <h2 className={styles.panelTitle} >Your Bag</h2>
           <button type="button" className={styles.closeAction}
@@ -82,8 +88,27 @@ export function CartDrawer() {
             );
           })}
         </div>
+            <div className={styles.bagSummary}>
+        <div className={styles.priceRow}>
+          <span className={styles.priceMarker}>Subtotal</span>
+          <span className={styles.priceValue} >${drawerSubtotal.toLocaleString()}</span>
+        </div>
+        <button type="button" onClick={initiateCheckout} 
+        disabled={checkoutProcessing || basketSelection.length === 0}
+        className={styles.checkoutTrigger}>
+          {checkoutProcessing ? (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"
+            className={styles.triggerSpinner}>
+              <circle cx="12" cy="12" r="10" strokeDasharray="32" strokeLinecap="round" />
+        
+            </svg>
+          ) : (
+            'Secure Checkout'
+          )}
+        </button>
+      </div>
       </aside >
-
+  
     </div >
   );
 
