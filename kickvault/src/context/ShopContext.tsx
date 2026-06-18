@@ -11,6 +11,8 @@ interface ShopContextType {
   readonly primaryLinks: NavigationLink[];
   readonly basketSelection: BasketSelection[];
   readonly basketState: 'active' | 'idle';
+  readonly checkoutProcessing: boolean;
+  readonly initiateCheckout: () => Promise<void>;
   readonly addToBasket: (assetId: string) => void;
   readonly removeFromBasket: (assetId: string) => void;
   readonly toggleBasket: (forceState?: 'active' | 'idle') => void;
@@ -32,6 +34,8 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
 
   const [basketState, setBasketState] = useState<'active' | 'idle'>('idle');
 
+  const [checkoutProcessing, setCheckoutProcessing] = useState<boolean>(false);
+
   const toggleBasket = useCallback((forceState?: 'active' | 'idle') => {
     setBasketState((prev) => forceState ?? (prev === 'active' ? 'idle' : 'active'));
   }, []);
@@ -49,8 +53,6 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-
-
   const addToBasket = useCallback((assetId: string) => {
     setBasketSelection((prevSelection) => {
       const activeNode = prevSelection.find((node) => node.id === assetId);
@@ -64,16 +66,33 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const initiateCheckout = useCallback(async () => {
+    if (basketSelection.length === 0) return;
+
+    setCheckoutProcessing(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    setBasketSelection([]);
+    setCheckoutProcessing(false);
+    setBasketState('idle');
+
+    window.location.href = '/success';
+  }, [basketSelection, setBasketState]);
+
   const contextValue = useMemo(() => ({
     merchandisePool: mockStoreAssets,
     categoryLinks: mockNavCategoryLinks,
     primaryLinks: mockNavPrimaryLinks,
     basketSelection,
     basketState,
+    checkoutProcessing,
+    initiateCheckout,
     addToBasket,
     removeFromBasket,
     toggleBasket
-  }), [basketSelection, basketState, addToBasket, removeFromBasket, toggleBasket]);
+  }), [basketSelection, basketState, checkoutProcessing, initiateCheckout,
+    addToBasket, removeFromBasket, toggleBasket]);
 
   return (
     <ShopContext value={contextValue}>
