@@ -17,15 +17,14 @@
   }
   
   .bodyScrollLocked {
-    overflow: hidden !important;
+    overflow: hidden ;
   }
 
   
-  body:has([role="dialog"][data-state="active"]) {
+  body:has([role="dialog"][data-state="active"]), 
+  body:has(#primary-navigation-overlay[data-state="active"]) {
     overflow: hidden;
   }
 }
 
-  body:has(#primary-navigation-overlay[data-state="active"]) {
-    overflow: hidden;
-  }
+
