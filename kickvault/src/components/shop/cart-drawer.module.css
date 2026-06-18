@@ -8,6 +8,8 @@
     --local-header-stroke: 0.1rem solid var(--color-border);
     --local-button-size: var(--space-xl);
     --local-hover-scale: 1.1;
+    --summary-padding: var(--space-md);
+    --action-height: 4.8rem;
 
     position: fixed;
     inset-block: 0;
@@ -33,11 +35,12 @@
   .basketPanel {
     background-color: var(--color-bg-surface);
     block-size: 100dvh;
-    inline-size: clamp(var(--panel-width-min), var(--panel-width-ratio), 
+    inline-size: clamp(var(--panel-width-min), var(--panel-fluid-ratio), 
     var(--panel-width-max));
     display: flex;
     flex-direction: column;
     pointer-events: auto;
+    position: relative;
   }
 
   .panelHeader {
@@ -78,7 +81,8 @@
     flex: 1;
     overflow-y: auto;
     padding-inline: var(--space-sm);
-    padding-block: var(--space-sm);
+    padding-block: var(--space-sm) 
+    calc(var(--action-height) + var(--summary-padding) * 2 + var(--space-md));
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
@@ -167,6 +171,89 @@
     letter-spacing: var(--ls-compact, -0.01rem);
     margin-block: 0;
     margin-inline: 0;
+  }
+
+  .bagSummary {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--summary-padding);
+    background-color: var(--color-bg-surface);
+    border-block-start: 0.1rem solid var(--color-border);
+    z-index: var(--z-index-drawer);
+    box-sizing: border-box;
+  }
+
+  .priceRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block-end: var(--space-xs);
+  }
+
+  .priceMarker {
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+    line-height: var(--lh-compact);
+    letter-spacing: var(--ls-compact);
+  }
+
+  .priceValue {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semi);
+    color: var(--color-text-main);
+    line-height: var(--lh-compact);
+    letter-spacing: var(--ls-compact);
+  }
+
+  .checkoutTrigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 100%;
+    block-size: var(--action-height);
+    background-color: var(--color-accent);
+    color: var(--color-text-main);
+    font-weight: var(--fw-semi);
+    font-size: var(--fs-md);
+    border: none;
+    cursor: pointer;
+    
+  }
+
+  .checkoutTrigger:disabled {
+    background-color: var(--color-bg-muted);
+    color: var(--color-text-disabled);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .checkoutTrigger:not(:disabled):hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+  }
+
+  .checkoutTrigger:not(:disabled):active {
+    transform: scale(0.98);
+  }
+
+  .triggerSpinner {
+    inline-size: var(--space-sm);
+    block-size: var(--space-sm);
+    animation: trigger-rotate var(--duration-fast) linear infinite;
+  }
+
+  @keyframes trigger-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 
 }
