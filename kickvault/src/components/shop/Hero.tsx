@@ -4,6 +4,7 @@ import heroImage from '@/images/shoes-image/heroPicture.jpg';
 export function Hero() {
   return (
     <div className={styles.navigationAnchor} >
+      
       <section className={styles.billboardStage} aria-label="feature-product-introduction" >
         <div className={styles.imageViewer}>
           <picture>

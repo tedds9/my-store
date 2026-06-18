@@ -14,9 +14,7 @@ export function CategoryController() {
       : merchandisePool;
 
   return (
-    <section>
       <CollectionShowcase
         inventorySelection={pickCategory} />
-    </section>
   )
 }
