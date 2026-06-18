@@ -293,9 +293,4 @@
 
 }
 
-:global(body:has(header[data-state="active"])),
-:global(body:has([id="primary-navigation-overlay"][data-state="active"])) {
-  overflow: hidden;
-}
-    
 
