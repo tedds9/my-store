@@ -2,20 +2,28 @@
   .showcaseContext {
     container-type: inline-size;
     container-name: showcase-grid;
-    width: 100%;
+    inline-size: 100%;
   }
 
   .showcaseShell {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-lg);
-    width: 100%;
-    min-height: 100dvh;
-    max-width: 120rem;
+    inline-size: 100%;
+    min-block-size: 100dvh;
+    max-inline-size: 120rem;
     margin-inline: auto;
     padding-inline: var(--space-md);
     padding-block: var(--space-md);
     background-color: var(--color-bg-base);
+  }
+
+  .missingNotice {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semi);
+    color: var(--color-accent);
+    padding-block: var(--space-2xl);
+    text-align: center;
   }
 
 
@@ -27,13 +35,13 @@
     background-color: var(--color-bg-surface);
     border: 0.1rem solid var(--color-border);
     position: relative;
-    width: 100%;
-    max-height: 50dvh;
+    inline-size: 100%;
+    max-block-size: 50dvh;
   }
 
   .showcaseAsset {
-    width: 100%;
-    height: 100%;
+    inline-size: 100%;
+    block-size: 100%;
     object-fit: cover;
     will-change: transform;
     transition: transform var(--transition-smooth);
@@ -48,7 +56,7 @@
     flex-direction: column;
     gap: var(--space-md);
     justify-content: center;
-    width: 100%;
+    inline-size: 100%;
   }
 
   .mainHeading {
@@ -74,8 +82,8 @@
     border: 0.1rem solid var(--color-border);
     padding-inline: var(--space-xs); 
     padding-block: var(--space-sm);
-    min-width: 4.8rem;
-    min-height: 4.8rem;
+    min-inline-size: 4.8rem;
+    min-block-size: 4.8rem;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -98,7 +106,7 @@
   .actionCluster {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    inline-size: 100%;
     margin-block-start: var(--space-md);
   }
 
@@ -106,8 +114,8 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    min-height: 4.8rem;
+    inline-size: 100%;
+    min-block-size: 4.8rem;
     padding-block: var(--space-sm);
     padding-inline: var(--space-md);
     font-size: var(--fs-sm);
@@ -136,7 +144,7 @@
     color: var(--color-bg-base)
   } 
   
-  @container showcase-grid (min-width: 700px) {
+  @container showcase-grid (min-width: 43.75rem) {
     .showcaseShell {
       grid-template-columns: repeat(2, 1fr);
       align-items: flex-start;
