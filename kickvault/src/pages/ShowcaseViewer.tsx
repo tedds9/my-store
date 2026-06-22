@@ -6,19 +6,26 @@ import styles from './showcase-viewer.module.css';
 
 export function ShowcaseViewer() {
   const { id } = useParams<{ id: string }>();
-  const { merchandisePool, addToBasket } = useShop();
+  const { merchandisePool, addToBasket, toggleBasket } = useShop();
   const showcaseNode = merchandisePool.find((node) => node.id === id);
   const [chosenSize, setChosenSize] = useState<number | null>(null);
 
   const handleAddToBasket = () => {
     if (!chosenSize || !showcaseNode) return;
-    const compositeAssetId = `${showcaseNode.id}_${chosenSize}`;
-    addToBasket(compositeAssetId);
+    addToBasket(showcaseNode.id, String(chosenSize));
+    toggleBasket('active');
+    setTimeout(() => {
+      toggleBasket('idle');
+    }, 2500);
   }
 
 
   if (!showcaseNode) {
-    return <p>Asset Missing</p>;
+    return (
+      <main className={styles.showcaseContext}>
+        <p className={styles.missingNotice}>Asset Missing</p>
+      </main>
+    );
   }
 
   return (
