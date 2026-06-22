@@ -19,95 +19,80 @@
   }
 
   .bagMatrix {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .assetRow {
+    container-type: inline-size;
+    container-name: cart-grid;
     display: grid;
-    grid-template-columns: auto var(--asset-graphic-size) 1fr;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    inline-size: 100%;
+  }
+
+  .itemTrack {
+    display: flex;
+    flex-direction: column;
+    inline-size: 100%;
+  }
+
+  .summaryPanel {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-md);
-    align-items: center;
-    border-block-end: 0.1rem solid var(--color-border);
-    padding-block-end: var(--space-md);
+    background-color: var(--color-bg-surface);
+    border: 0.1rem solid var(--color-border);
+    padding-inline: var(--spaec-md);
+    padding-block: var(--space-md);
+    block-size: max-content;
   }
 
-  .assetToggle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-xs);
-    min-inline-size: var(--space-xl);
+  .summaryHeading {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semi);
+    color: var(--color-text-main);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-compact);
   }
 
-  .toggleDecrement,
-  .toggleIncrement {
+  .checkoutAction {
     display: inline-flex;
-    align-items: center;
     justify-content: center;
-    inline-size: var(--space-xl);
-    block-size: var(--space-xl);
-    color: var(--color-text-muted);
-    background: transparent;
-    border:none;
-    cursor: pointer;
-    transition: scale var(--duration-normal) var(--ease-in-out);
-  }
-
-  .toggleVector {
+    align-items: center;
     inline-size: 100%;
-    block-size: 100%;
-  }
-
-  .toggleDisplay {
-    font-size: var(--fs-md);
-    font-weight: var(--fw-semi);
-    color: var(--color-text-main);
-    line-height: var(--lh-compact);
-    letter-spacing: var(--ls-compact);
-  }
-
-  .assetVisual {
-    inline-size: 12rem;
-    block-size: 12rem;
-    overflow: hidden;
-    background-color: var(--color-bg-muted);
-  }
-
-  .visualGraphic {
-    inline-size: 100%;
-    block-size: 100%;
-    object-fit: cover;
-  }
-
-  .assetMeta {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    min-inline-size: 0;
-  }
-
-  .metaTitle {
-    font-size: var(--fs-md);
-    font-weight: var(--fs-semi);
-    line-height: var(--lh-compact);
-    letter-spacing: var(--ls-compact);
-    color: var(--color-text-main);
-  }
-
-  .metaSize {
+    max-inline-size: 40rem;
+    min-inline-size: 4.8rem;
+    padding-block: var(--space-sm);
+    padding-inline: var(--space-md);
     font-size: var(--fs-sm);
-    line-height: var(--lh-compact);
+    font-weight: var(--fw-semi);
+    text-transform: uppercase;
     letter-spacing: var(--ls-compact);
-    color: var(--color-text-muted);
+    border: none;
+    background-color: var(--color-accent);
+    color: var(--color-text-main);
+    cursor: pointer;
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
   }
 
-  .metaPrice {
-    font-size: var(--fs-md);
-    font-weight: var(--fw-semi);
-    line-height: var(--lh-compact);
-    letter-spacing: var(--ls-compact);
-    color: var(--color-accent);
+  .checkoutAction:disabled {
+    background-color: var(--color-bg-muted);
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+  }
+
+  .checkoutAction:not(:disabled):hover {
+    background-color: var(--color-text-main);
+    color: var(--color-bg-base);
+  }
+
+  @container cart-grid (min-width: 64rem) {
+    .bagMatrix {
+      grid-template-columns: 2fr 1fr;
+      align-items: start;
+    }
+
+    .summaryPanel {
+      position: sticky;
+      inset-block-start: var(--space-md);
+    }
   }
 }
