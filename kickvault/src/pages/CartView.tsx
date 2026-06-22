@@ -1,56 +1,47 @@
 import { useShop } from '@/context/ShopContext';
+import { CartItem } from '@/components/shop/CartItem';
 import styles from './cart-view.module.css';
 
 export function CartView() {
-  const { basketSelection, merchandisePool, addToBasket, removeFromBasket } = useShop();
+  const { hydratedItems, addToBasket, removeFromBasket, initiateCheckout, checkoutProcessing } = useShop();
 
+  if (hydratedItems.length === 0) {
+    return (
+      <main className={styles.bagShell}>
+        <h1 className={styles.bagHeading}>Your Bag</h1>
+        <p className={styles.emptyNotice}>Your bag is currently empty</p>
+      </main>
+    )
+  }
 
   return (
     <div className={styles.bagShell} >
       <h1 className={styles.bagHeading}>Your Bag</h1>
-      <div className={styles.bagMatrix}>
-        {basketSelection.map((selectionNode) => {
-          const [baseId, itemSize] = selectionNode.id.split('_');
-          const productAsset = merchandisePool.find((asset) => asset.id === baseId);
-          console.log(selectionNode);
-          if (!productAsset) return null;
 
-          return (
-            <div key={selectionNode.id} className={styles.assetRow} >
-              <div className={styles.assetToggle}>
-                <button type="button" onClick={() => removeFromBasket(selectionNode.id)}
-                  className={styles.toggleDecrement}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    strokeWidth="2" className={styles.toggleVector}>
-                    <path d="M5 12h14" />
-                  </svg>
-                </button>
-                <span className={styles.toggleDisplay}>{selectionNode.quantity}</span>
-                <button type="button" onClick={() => addToBasket(selectionNode.id)}
-                  className={styles.toggleIncrement}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    strokeWidth="2" className={styles.toggleVector}>
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                </button>
-              </div>
-              <div className={styles.assetVisual}>
-                <img src={productAsset.image} alt={productAsset.name} loading="lazy"
-                  decoding="async" className={styles.visualGraphic} />
-              </div>
-              <div className={styles.assetMeta} >
-                <h3 className={styles.metaTitle}>{productAsset.name}</h3>
-                {itemSize ? ( <p className={styles.metaSize}>Size: {itemSize}</p>
-                ) : null }
-                <p className={styles.metaPrice}>
-                  ${productAsset.price * selectionNode.quantity}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <main className={styles.bagMatrix}>
+        <section className={styles.itemTrack}>
+        {hydratedItems.map((item) => (
+          <CartItem
+            key={item.id}
+            item={item}
+            onIncrement={addToBasket}
+            onDecrement={removeFromBasket}
+            onRemove={removeFromBasket}
+          />
+        ))}
+        </section>
+        <aside className={styles.summaryPanel}>
+          <h2 className={styles.summaryHeading}>Order Summary</h2>
+          <button 
+          type="button"
+          onClick={initiateCheckout}
+          disabled={checkoutProcessing}
+          className={styles.checkoutAction}>
+            {checkoutProcessing ? 'Processing...' : 'Secure Checkout'}
+          </button>
+        </aside>
+      </main>
     </div>
-  )
+  );
 
 }
