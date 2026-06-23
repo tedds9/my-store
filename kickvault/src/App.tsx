@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ShowcaseViewer } from '@/pages/ShowcaseViewer';
 import { CartDrawer } from '@/components/shop/CartDrawer';
 import { CartView } from '@/pages/CartView';
+import { RouteSnap } from '@/components/router/RouteSnap';
 
 
 
@@ -28,6 +29,7 @@ function App() {
     <ShopProvider >
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <main>
+          <RouteSnap />
           <Navbar />
           <Routes>
             <Route path="/"
