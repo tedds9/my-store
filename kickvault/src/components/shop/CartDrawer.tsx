@@ -7,8 +7,7 @@ export function CartDrawer() {
     basketState, toggleBasket, initiateCheckout, checkoutProcessing } = useShop();
 
     const drawerSubtotal = basketSelection.reduce((total, node) => {
-      const [baseId] = node.id.split('_');
-      const asset = merchandisePool.find(item => item.id === baseId);
+      const asset = merchandisePool.find(item => item.id === node.assetId);
       return total + (asset ? asset.price * node.quantity : 0);
     }, 0)
 
@@ -32,18 +31,13 @@ export function CartDrawer() {
         </header>
         <div className={styles.basketMatrix} >
           {basketSelection.map((selectionNode) => {
-
-            const [baseId, itemSize] = selectionNode.id.split('_');
-
-            const productAsset =
-              merchandisePool.find((asset) => asset.id === baseId);
-
+            const productAsset = merchandisePool.find((asset) => asset.id === selectionNode.assetId);
             if (!productAsset) return null;
             return (
               <div key={selectionNode.id} className={styles.basketFrame} >
                 <div className={styles.quantityControl}>
                   <button type="button" className={styles.adjustAction}
-                    onClick={() => removeFromBasket(selectionNode.id)} aria-label="Decrease quantity" >
+                    onClick={() => removeFromBasket(selectionNode.assetId, selectionNode.selectedSize)} aria-label="Decrease quantity" >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                       strokeWidth="2" >
                       <path d="M5 12h14" strokeLinecap="round"
@@ -54,7 +48,7 @@ export function CartDrawer() {
                     {selectionNode.quantity}
                   </span>
                   <button type="button" className={styles.adjustAction}
-                    onClick={() => addToBasket(selectionNode.id)}
+                    onClick={() => addToBasket(selectionNode.assetId, selectionNode.selectedSize)}
                     aria-label="Increase quantity" >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                       strokeWidth="2" >
@@ -74,9 +68,9 @@ export function CartDrawer() {
                 </div>
                 <div className={styles.metaCluster} >
                   <h3 className={styles.nodeTitle} >{productAsset.name}</h3>
-                  {itemSize ? (
+                  {selectionNode.selectedSize ? (
                     <p className={styles.sizeIndicator}>
-                      Size: {itemSize}
+                      Size: {selectionNode.selectedSize}
                     </p>
                   ) : null}
 
