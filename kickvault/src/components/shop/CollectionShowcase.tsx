@@ -3,7 +3,7 @@ import { MerchandiseAsset } from '@/types/merchandise-assets';
 import styles from './collection-showcase.module.css';
 
 interface CollectionShowcaseProps {
-  inventorySelection: MerchandiseAsset[];
+  readonly inventorySelection: readonly MerchandiseAsset[];
 }
 
 export function CollectionShowcase({ inventorySelection }: CollectionShowcaseProps) {
