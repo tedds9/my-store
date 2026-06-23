@@ -3,6 +3,7 @@
     container-type: inline-size;
     container-name: showcase-grid;
     inline-size: 100%;
+    padding-block-start: var(--space-2xl);
   }
 
   .showcaseShell {
@@ -74,6 +75,13 @@
     color: var(--color-accent);
     letter-spacing: var(--ls-compact);
     line-height: var(--lh-compact);
+  }
+
+  .dimensionCluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+
   }
 
   .dimensionAction {
