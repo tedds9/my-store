@@ -37,7 +37,7 @@
     border: 0.1rem solid var(--color-border);
     position: relative;
     inline-size: 100%;
-    max-block-size: 50dvh;
+    aspect-ratio: 1 / 1;
   }
 
   .showcaseAsset {
@@ -154,8 +154,8 @@
   
   @container showcase-grid (min-width: 43.75rem) {
     .showcaseShell {
-      grid-template-columns: repeat(2, 1fr);
-      align-items: flex-start;
+      grid-template-columns: minmax(auto, 32rem) 1fr;
+      align-items: center;
       padding-inline: var(--space-xl);
       padding-block: var(--space-xl);
     }
