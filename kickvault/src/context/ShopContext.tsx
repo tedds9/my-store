@@ -73,7 +73,8 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
       const asset = mockStoreAssets.find((item) => item.id === selection.assetId);
       if (!asset) throw new Error(`Catalog structural break: ID ${selection.assetId} invalid`);
       return {
-        id: asset.id,
+        id: selection.id,
+        assetId: asset.id,
         name: asset.name,
         brand: asset.brand,
         price: asset.price,
