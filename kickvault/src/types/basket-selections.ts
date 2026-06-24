@@ -8,6 +8,7 @@ export interface BasketSelection {
 }
 
 export interface CartLineItem extends Omit<MerchandiseAsset, 'sizes'> {
+  readonly assetId: string;
   readonly selectedSize: string;
   readonly quantity: number;
 }
