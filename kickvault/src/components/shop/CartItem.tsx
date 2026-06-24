@@ -22,13 +22,13 @@ export function CartItem({ item, onIncrement, onDecrement, onRemove}: CartItemPr
         <div className={styles.quantityCounter}>
           <button 
           type="button"
-          onClick={() => onDecrement(item.id, item.selectedSize)} 
+          onClick={() => onDecrement(item.assetId, item.selectedSize)} 
           className={styles.counterTrigger} 
           aria-label="Decrease quantity">-</button>
           <span className={styles.counterDisplay}>{item.quantity}</span>
           <button 
           type="button"
-          onClick={() => onIncrement(item.id, item.selectedSize)} 
+          onClick={() => onIncrement(item.assetId, item.selectedSize)} 
           className={styles.counterTrigger}
           aria-label="Increase quantity">+</button>
         </div>
