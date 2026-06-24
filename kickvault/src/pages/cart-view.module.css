@@ -1,7 +1,10 @@
 @layer components {
   .bagShell {
-    --asset-graphic-size: calc(var(--space-3xl) + var(--space-sm));
+    container-type: inline-size;
+    container-name: cart-grid;
 
+    --asset-graphic-size: calc(var(--space-3xl) + var(--space-sm));
+    
     inline-size: 100%;
     max-inline-size: var(--grid-max-width);
     margin-inline: auto;
@@ -19,8 +22,6 @@
   }
 
   .bagMatrix {
-    container-type: inline-size;
-    container-name: cart-grid;
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-xl);
@@ -39,7 +40,7 @@
     gap: var(--space-md);
     background-color: var(--color-bg-surface);
     border: 0.1rem solid var(--color-border);
-    padding-inline: var(--spaec-md);
+    padding-inline: var(--space-md);
     padding-block: var(--space-md);
     block-size: max-content;
   }
