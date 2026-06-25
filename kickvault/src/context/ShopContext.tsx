@@ -113,7 +113,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     addToBasket,
     removeFromBasket,
     toggleBasket
-  }), [basketSelection, hydratedItems, basketState, checkoutProcessing, initiateCheckout,
+  }), [basketSelection, basketState, checkoutProcessing, initiateCheckout,
     addToBasket, removeFromBasket, toggleBasket]);
 
   return (
