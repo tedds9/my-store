@@ -1,9 +1,10 @@
 import { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { STORE_ASSETS as mockStoreAssets } from '@/data/inventory-assets';
 import { NAV_CATEGORIES_LINKS as mockNavCategoryLinks, NAV_PRIMARY_LINKS as mockNavPrimaryLinks } from '@/data/navigation-links';
-import { BasketSelection, CartLineItem } from '@/types/basket-selections'
-import { MerchandiseAsset } from '@/types/merchandise-assets'
-import { NavigationLink } from '@/navigation-links'
+import { BasketSelection, CartLineItem } from '@/types/basket-selections';
+import { MerchandiseAsset } from '@/types/merchandise-assets';
+import { NavigationLink } from '@/navigation-links';
+import { useSync } from '@/hooks/useSync';
 
 interface ShopContextType {
   readonly merchandisePool: readonly MerchandiseAsset[];
@@ -28,9 +29,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     return localPocket ? JSON.parse(localPocket) : [];
   });
 
-  useEffect(() => {
-    localStorage.setItem('kv_basket_cache', JSON.stringify(basketSelection));
-  }, [basketSelection]);
+  useSync('kv_basket_cache', basketSelection, setBasketSelection);
 
   const [basketState, setBasketState] = useState<'active' | 'idle'>('idle');
 
