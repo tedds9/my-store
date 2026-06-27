@@ -10,13 +10,20 @@ export function ShowcaseViewer() {
   const showcaseNode = merchandisePool.find((node) => node.id === id);
   const [chosenSize, setChosenSize] = useState<number | null>(null);
 
+  const [activeTimer, setActiveTimer] = useState<NodeJS.Timeout | null>(null);
+
   const handleAddToBasket = () => {
     if (!chosenSize || !showcaseNode) return;
     addToBasket(showcaseNode.id, String(chosenSize));
     toggleBasket('active');
-    setTimeout(() => {
+
+    if (activeTimer) clearTimeout(activeTimer);
+
+    const timerId = setTimeout(() => {
       toggleBasket('idle');
     }, 2500);
+
+    setActiveTimer(timerId);
   }
 
 
