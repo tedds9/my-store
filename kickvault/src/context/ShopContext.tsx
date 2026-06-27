@@ -70,7 +70,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
   const hydratedItems = useMemo<readonly CartLineItem[]>(() => {
     return basketSelection.map((selection) => {
       const asset = mockStoreAssets.find((item) => item.id === selection.assetId);
-      if (!asset) throw new Error(`Catalog structural break: ID ${selection.assetId} invalid`);
+      if (!asset) return null;
       return {
         id: selection.id,
         assetId: asset.id,
@@ -84,6 +84,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
         quantity: selection.quantity
       };
     })
+    .filter((item): item is CartLineItem => item !== null);
   }, [basketSelection]);
 
   const initiateCheckout = useCallback(async () => {
