@@ -41,7 +41,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
 
   const removeFromBasket = useCallback((assetId: string, selectedSize: string) => {
     setBasketSelection((prev) => {
-      const targetId = `${assetId}_${selectedSize}`;
+      const targetId = `${assetId}::${selectedSize}`;
       const activeNode = prev.find((node) => node.id === targetId);
       if (!activeNode) return prev;
       if (activeNode.quantity > 1) {
@@ -55,7 +55,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
 
   const addToBasket = useCallback((assetId: string, selectedSize: string) => {
     setBasketSelection((prev) => {
-      const targetId = `${assetId}_${selectedSize}`;
+      const targetId = `${assetId}::${selectedSize}`;
       const activeNode = prev.find((node) => node.id === targetId);
       if (activeNode) {
         return prev.map((node) =>
