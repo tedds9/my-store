@@ -4,7 +4,7 @@ import { Hero } from '@/components/shop/Hero';
 import { CollectionShowcase } from '@/components/shop/CollectionShowcase';
 import { CategoryController } from '@/components/shop/CategoryController';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ShowcaseViewer } from '@/pages/ShowcaseViewer';
+import { ShowcaseView } from '@/pages/ShowcaseView';
 import { CartDrawer } from '@/components/shop/CartDrawer';
 import { CartView } from '@/pages/CartView';
 import { RouteSnap } from '@/components/router/RouteSnap';
@@ -41,7 +41,7 @@ function App() {
             <Route path="/category/:type"
               element={<CategoryController />} />
             <Route path="/products/:id" 
-              element={<ShowcaseViewer />} />
+              element={<ShowcaseView />} />
             
               
           </Routes>
