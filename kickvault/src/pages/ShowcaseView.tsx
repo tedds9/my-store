@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useShop } from '@/context/ShopContext';
+import { useTimeout } from '@/hooks/useTimeout';
 import styles from './showcase-view.module.css';
 
 
@@ -10,21 +11,19 @@ export function ShowcaseView() {
   const showcaseNode = merchandisePool.find((node) => node.id === id);
   const [chosenSize, setChosenSize] = useState<number | null>(null);
 
-  const [activeTimer, setActiveTimer] = 
-  useState<ReturnType <typeof setTimeout> | null>(null);
+  const handleTrigger = useCallback(() => {
+    toggleBasket('idle');
+  }, [toggleBasket]);
+
+  const startClock = useTimeout(handleTrigger, 2500);
 
   const handleAddToBasket = () => {
     if (!chosenSize || !showcaseNode) return;
+
     addToBasket(showcaseNode.id, String(chosenSize));
     toggleBasket('active');
 
-    if (activeTimer) clearTimeout(activeTimer);
-
-    const timerId = setTimeout(() => {
-      toggleBasket('idle');
-    }, 2500);
-
-    setActiveTimer(timerId);
+    startClock();
   }
 
 
