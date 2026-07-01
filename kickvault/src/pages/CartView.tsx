@@ -1,9 +1,13 @@
 import { useShop } from '@/context/ShopContext';
 import { CartItem } from '@/components/shop/CartItem';
+import { useCheckout } from '@/hooks/useCheckout';
 import styles from './cart-view.module.css';
 
 export function CartView() {
-  const { hydratedItems, addToBasket, removeFromBasket, initiateCheckout, checkoutProcessing } = useShop();
+  const { hydratedItems, addToBasket, removeFromBasket } = useShop();
+  
+  const { isProcessing: checkoutProcessing, 
+    executePayment: initiateCheckout } = useCheckout();
 
   if (hydratedItems.length === 0) {
     return (
