@@ -5,16 +5,16 @@ import { BasketSelection, CartLineItem } from '@/types/basket-selections';
 import { MerchandiseAsset } from '@/types/merchandise-assets';
 import { NavigationLink } from '@/navigation-links';
 import { useSync } from '@/hooks/useSync';
+import type { Dispatch, SetStateAction, ReactNode } from 'react';
 
 interface ShopContextType {
   readonly merchandisePool: readonly MerchandiseAsset[];
   readonly categoryLinks: readonly NavigationLink[];
   readonly primaryLinks: readonly NavigationLink[];
   readonly basketSelection: readonly BasketSelection[];
+  readonly setBasketSelection: Dispatch<SetStateAction<BasketSelection[]>>;
   readonly hydratedItems: readonly CartLineItem[];
   readonly basketState: 'active' | 'idle';
-  readonly checkoutProcessing: boolean;
-  readonly initiateCheckout: () => Promise<void>;
   readonly addToBasket: (assetId: string, selectedSize: string) => void;
   readonly removeFromBasket: (assetId: string, selectedSize: string) => void;
   readonly toggleBasket: (forceState?: 'active' | 'idle') => void;
@@ -32,8 +32,6 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
   useSync('kv_basket_cache', basketSelection, setBasketSelection);
 
   const [basketState, setBasketState] = useState<'active' | 'idle'>('idle');
-
-  const [checkoutProcessing, setCheckoutProcessing] = useState<boolean>(false);
 
   const toggleBasket = useCallback((forceState?: 'active' | 'idle') => {
     setBasketState((prev) => forceState ?? (prev === 'active' ? 'idle' : 'active'));
@@ -67,8 +65,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const hydratedItems = useMemo<readonly CartLineItem[]>(() => {
-    return basketSelection.map((selection) => {
+  const hydratedItems = basketSelection.map((selection) => {
       const asset = mockStoreAssets.find((item) => item.id === selection.assetId);
       if (!asset) return null;
       return {
@@ -83,38 +80,20 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
         selectedSize: selection.selectedSize,
         quantity: selection.quantity
       };
-    })
-    .filter((item): item is CartLineItem => item !== null);
-  }, [basketSelection]);
-
-  const initiateCheckout = useCallback(async () => {
-    if (basketSelection.length === 0) return;
-
-    setCheckoutProcessing(true);
-
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setBasketSelection([]);
-    setCheckoutProcessing(false);
-    setBasketState('idle');
-
-    window.location.href = '/success';
-  }, [basketSelection, setBasketState]);
+    }).filter((item): item is CartLineItem => item !== null);
 
   const contextValue = useMemo(() => ({
     merchandisePool: mockStoreAssets,
     categoryLinks: mockNavCategoryLinks,
     primaryLinks: mockNavPrimaryLinks,
     basketSelection,
+    setBasketSelection,
     hydratedItems,
     basketState,
-    checkoutProcessing,
-    initiateCheckout,
     addToBasket,
     removeFromBasket,
     toggleBasket
-  }), [basketSelection, basketState, checkoutProcessing, initiateCheckout,
-    addToBasket, removeFromBasket, toggleBasket]);
+  }), [basketSelection, basketState, addToBasket, removeFromBasket, toggleBasket]);
 
   return (
     <ShopContext value={contextValue}>
