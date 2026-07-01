@@ -1,10 +1,13 @@
 import { useShop } from '@/context/ShopContext';
 import styles from './cart-drawer.module.css';
+import { useCheckout } from '@/hooks/useCheckout';
 
 export function CartDrawer() {
 
   const { basketSelection, merchandisePool, addToBasket, removeFromBasket,
-    basketState, toggleBasket, initiateCheckout, checkoutProcessing } = useShop();
+    basketState, toggleBasket } = useShop();
+    const { isProcessing: checkoutProcessing, 
+      executePayment: initiateCheckout } = useCheckout();
 
     const drawerSubtotal = basketSelection.reduce((total, node) => {
       const asset = merchandisePool.find(item => item.id === node.assetId);
