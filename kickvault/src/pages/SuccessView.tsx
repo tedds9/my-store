@@ -13,7 +13,6 @@ export function SuccessView() {
     triggerRedirect();
   }, [triggerRedirect]);
 
-  triggerRedirect();
 
   return (
     <section>
