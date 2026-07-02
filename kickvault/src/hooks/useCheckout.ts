@@ -12,12 +12,27 @@ export function useCheckout() {
 
     setIsProcessing(true);
 
+    const rawUuid = crypto.randomUUID();
+    const cleanSegment = rawUuid.split('-')[0].toUpperCase();
+    const orderId = `KV-${cleanSegment}`;
+
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
+      const trackingSnapshot = basketSelection.map((node) => ({
+        sku: node.id,
+        count: node.quantity,
+      }));
+
       setBasketSelection([]);
 
-      navigate('/success');
+      navigate('/success', {
+        state: {
+          receiptId: orderId,
+          snapshot: trackingSnapshot,
+        },
+        replace: true,
+      });
     } catch (error) {
       console.error('Payment failure:', error);
     } finally {
