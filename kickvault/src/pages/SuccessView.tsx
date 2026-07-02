@@ -1,25 +1,34 @@
-import { useNavigate } from "react-router-dom";
-import { useTimeout } from "@/hooks/useTimeout";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import styles from './success-view.module.css';
+import { useAnalytics } from "@/hooks/useAnalytics";
+
+interface ReceiptSnapshot {
+  readonly orderId?: string;
+}
 
 export function SuccessView() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { trackPurchase } = useAnalytics();
 
-  const triggerRedirect = useTimeout(() =>  {
-    navigate('/');
-  }, 5000);
+  const receiptTracker = location.state as ReceiptSnapshot | null;
+  const orderId = receiptTracker?.orderId || 'KV-UNKNOWN';
 
   useEffect(() => {
-    triggerRedirect();
-  }, [triggerRedirect]);
+    if (orderId === 'KV-UNKNOWN') return;
 
+    trackPurchase(orderId);
+  }, [orderId, trackPurchase]);
 
   return (
-    <section>
-      <h1>Transaction Secured</h1>
-      <p>Your premium sneaker allocation is officially confirmed.</p>
+    <section className={styles.receiptSurface}>
+      <h1 className={styles.receiptTitle}>Transaction Secured</h1>
+      <p className={styles.receiptMessage}>
+        Your premium  allocation is officially confirmed.
+      </p>
 
-      <button onClick={() => navigate('/')}>
+      <button className={styles.receiptAction} onClick={() => navigate('/')}>
         Return Storefront
       </button>
     </section>
