@@ -12,3 +12,14 @@ export interface CartLineItem extends Omit<MerchandiseAsset, 'sizes'> {
   readonly selectedSize: string;
   readonly quantity: number;
 }
+
+
+export interface TelemetryNode {
+  readonly sku: string;
+  readonly count: number;
+}
+
+export interface ReceiptSnapshot {
+  readonly receiptId?: string;
+  readonly snapshot?: readonly TelemetryNode[];
+}
