@@ -1,18 +1,9 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useId, JSX } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { ReceiptSnapshot } from "@/types/basket-selections";
 import styles from './success-view.module.css';
 
-
-interface TelemetryNode {
-  readonly sku: string;
-  readonly count: number;
-}
-
-interface ReceiptSnapshot {
-  readonly receiptId?: string;
-  readonly snapshot?: readonly TelemetryNode[];
-}
 
 export function SuccessView(): JSX.Element {
   const navigate = useNavigate();
@@ -40,7 +31,7 @@ export function SuccessView(): JSX.Element {
         <h1 id={titleId} className={styles.receiptHero}>Transaction Secured</h1>
         <p className={styles.receiptMessage}>
           Your premium  allocation is officially confirmed.
-        </p>
+        </p> 
       </header>
 
       {orderId !== 'KV-UNKNOWN' && (
