@@ -1,36 +1,59 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import styles from './success-view.module.css';
+import { useEffect, useId, JSX } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import styles from './success-view.module.css';
 
-interface ReceiptSnapshot {
-  readonly orderId?: string;
+
+interface TelemetryNode {
+  readonly sku: string;
+  readonly count: number;
 }
 
-export function SuccessView() {
+interface ReceiptSnapshot {
+  readonly receiptId?: string;
+  readonly snapshot?: readonly TelemetryNode[];
+}
+
+export function SuccessView(): JSX.Element {
   const navigate = useNavigate();
+  const titleId = useId();
   const location = useLocation();
   const { trackPurchase } = useAnalytics();
 
   const receiptTracker = location.state as ReceiptSnapshot | null;
-  const orderId = receiptTracker?.orderId || 'KV-UNKNOWN';
+  const orderId = receiptTracker?.receiptId ?? 'KV-UNKNOWN';
+  const itemSnapshot = receiptTracker?.snapshot ?? [];
 
   useEffect(() => {
     if (orderId === 'KV-UNKNOWN') return;
 
-    trackPurchase(orderId);
-  }, [orderId, trackPurchase]);
+    trackPurchase(orderId, itemSnapshot);
+  }, [orderId, trackPurchase, itemSnapshot]);
+
+  const handleReturn = (): void => {
+    navigate('/', { replace: true });
+  };
 
   return (
-    <section className={styles.receiptSurface}>
-      <h1 className={styles.receiptTitle}>Transaction Secured</h1>
-      <p className={styles.receiptMessage}>
-        Your premium  allocation is officially confirmed.
-      </p>
+    <main className={styles.receiptSurface} aria-labelledby={titleId}>
+      <header className={styles.receiptBanner}>
+        <h1 id={titleId} className={styles.receiptHero}>Transaction Secured</h1>
+        <p className={styles.receiptMessage}>
+          Your premium  allocation is officially confirmed.
+        </p>
+      </header>
 
-      <button className={styles.receiptAction} onClick={() => navigate('/')}>
-        Return Storefront
-      </button>
-    </section>
+      {orderId !== 'KV-UNKNOWN' && (
+        <section className={styles.voucherTracker}>
+          <span className={styles.voucherAnchor}>Voucher Node:</span>
+          <span className={styles.voucherBadge}>{orderId}</span>
+        </section>
+      )}
+
+        <button type="button" className={styles.receiptAction} 
+        onClick={handleReturn}>
+          Return Storefront
+        </button>
+    </main>
   );
 }
