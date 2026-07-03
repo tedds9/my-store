@@ -1,0 +1,90 @@
+@layer components {
+  .receiptSurface {
+    --metadata-tracking: 0.05em;
+    --action-width: 28rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-block-size: 100vb;
+    padding-block: var(--space-xl);
+    padding-inline: var(--space-md);
+    text-align: center;
+  }
+
+  .receiptBanner {
+    margin-block-end: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-inline-size: 48rem;
+  }
+
+  .receiptHero {
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-display);
+    line-height: var(--lh-display);
+    letter-spacing: var(--ls-display);
+    text-transform: uppercase;
+    color: var(--color-text-main);
+  }
+
+  .receiptMessage {
+    font-size: var(--fs-md);
+    color: var(--color-text-muted);
+    line-height: var(--lh-compact);
+    letter-spacing: var(--ls-compact);
+  }
+
+  .voucherTracker {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-block-end: var(--space-2xl);
+    padding-block: var(--space-xs);
+    padding-inline: var(--space-sm);
+    background-color: var(--color-bg-surface);
+    border: 0.1rem solid var(--color-border);
+  }
+
+  .voucherAnchor {
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+    font-weight: var(--fw-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--metadata-tracking);
+  }
+
+  .voucherBadge {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semi);
+    font-family: monospace;
+    color: var(--color-accent);
+    letter-spacing: var(--metadata-tracking);
+  }
+
+  .receiptAction {
+    inline-size: 100%;
+    max-inline-size: var(--action-width);
+    padding-block: var(--space-sm);
+    padding-inline: var(--space-md);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semi);
+    letter-spacing: var(--metadata-tracking);
+    text-transform: uppercase;
+    color: var(--color-bg-base);
+    background-color: var(--color-text-main);
+    transition: opacity var(--transition-smooth);
+  }
+
+  .receiptAction:hover {
+    opacity: 0.9;
+  }
+
+  .receiptAction:focus-visible {
+    outline: 0.2rem solid var(--color-accent);
+    outline-offset: 0.2rem;
+  }
+
+}
