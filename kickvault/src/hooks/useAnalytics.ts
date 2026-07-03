@@ -1,11 +1,13 @@
 import { useCallback } from 'react';
 import { useShop } from '@/context/ShopContext';
+import { TelemetryNode } from '@/types/basket-selections';
 
 export function useAnalytics() {
 
   const { hydratedItems } = useShop();
 
-  const trackPurchase = useCallback((orderId: string) => {
+  const trackPurchase = useCallback((orderId: string, 
+    itemSnapshot: readonly TelemetryNode[]) => {
     if (hydratedItems.length === 0) return;
 
     const financialValue = hydratedItems.reduce(
