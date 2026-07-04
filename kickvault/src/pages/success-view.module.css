@@ -37,6 +37,49 @@
     letter-spacing: var(--ls-compact);
   }
 
+  .itemRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    inline-size: 100%;
+    max-inline-size: var(--action-width);
+    margin-block-end: var(--space-sm);
+    padding-block-end: var(--space-xs);
+    border-block-end: 0.1rem solid var(--color-border);
+    text-align: start;
+  }
+
+    .itemIdentity {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+
+  .itemHero {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-semi);
+    line-height: var(--lh-compact);
+    letter-spacing: var(--ls-compact);
+    color: var(--color-text-main);
+  }
+
+  .itemVoucher {
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+    letter-spacing: var(--metadata-tracking);
+    text-transform: uppercase;
+  }
+
+  .itemCounter {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semi);
+    font-family: monospace;
+    color: var(--color-text-main);
+    white-space: nowrap;
+  }
+
   .voucherTracker {
     display: flex;
     align-items: center;
