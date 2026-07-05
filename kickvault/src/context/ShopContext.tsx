@@ -18,6 +18,8 @@ interface ShopContextType {
   readonly addToBasket: (assetId: string, selectedSize: string) => void;
   readonly removeFromBasket: (assetId: string, selectedSize: string) => void;
   readonly toggleBasket: (forceState?: 'active' | 'idle') => void;
+  readonly favorite: readonly string[];
+  readonly toggleFavorite: (assetId: string) => void;
 
 }
 
@@ -29,7 +31,13 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     return localPocket ? JSON.parse(localPocket) : [];
   });
 
+  const [favorite, setFavorite] = useState<string[]>(() => {
+    const localPocket = localStorage.getItem('kv_favorites_cache');
+    return localPocket ? JSON.parse(localPocket) : [];
+  });
+
   useSync('kv_basket_cache', basketSelection, setBasketSelection);
+  useSync('kv_favorites_cache', favorite, setFavorite);
 
   const [basketState, setBasketState] = useState<'active' | 'idle'>('idle');
 
@@ -65,6 +73,12 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const toggleFavorite = useCallback((assetId: string) => {
+    setFavorite((prev) => 
+      prev.includes(assetId) ? prev.filter((id) => id !== assetId) : [...prev, assetId]
+    )
+  }, []);
+
   const hydratedItems = basketSelection.map((selection) => {
       const asset = mockStoreAssets.find((item) => item.id === selection.assetId);
       if (!asset) return null;
@@ -76,7 +90,6 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
         price: asset.price,
         image: asset.image,
         category: asset.category,
-        isFavorite: asset.isFavorite,
         selectedSize: selection.selectedSize,
         quantity: selection.quantity
       };
@@ -92,8 +105,10 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     basketState,
     addToBasket,
     removeFromBasket,
+    favorite,
+    toggleFavorite,
     toggleBasket
-  }), [basketSelection, basketState, addToBasket, removeFromBasket, toggleBasket]);
+  }), [basketSelection, basketState, addToBasket, removeFromBasket, favorite, toggleFavorite, toggleBasket]);
 
   return (
     <ShopContext value={contextValue}>
