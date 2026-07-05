@@ -14,6 +14,8 @@ const CartView = lazy(() =>
   import('@/pages/CartView').then(m => ({ default: m.CartView })));
 const SuccessView = lazy(() =>
   import('@/pages/SuccessView').then(m => ({ default: m.SuccessView })));
+const FavoritesView = lazy(() => 
+  import('@/pages/FavoritesView').then(m => ({ default: m.FavoritesView })));
 
 
 
@@ -46,6 +48,8 @@ function App() {
                 element={<CategoryController />} />
               <Route path="/cart"
                 element={<CartView />} />
+              <Route path={"/favorites"}
+                element={<FavoritesView />} />
               <Route path="/category/:type"
                 element={<CategoryController />} />
               <Route path="/products/:id"
