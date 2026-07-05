@@ -6,7 +6,6 @@ export const STORE_ASSETS = [
     price: 450.00,
     image: '/data-shoes/kickVault-Kinetic.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false,
     sizes: [8, 9, 10, 11, 12]
   },
   {
@@ -16,7 +15,6 @@ export const STORE_ASSETS = [
     price: 400.00,
     image: '/data-shoes/KickVault-Vista.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false,
     sizes: [8, 9, 10, 11, 12]
   },
   {
@@ -26,7 +24,6 @@ export const STORE_ASSETS = [
     price: 550.00,
     image: '/data-shoes/KickVault-Traverse.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false,
     sizes: [8, 9, 10, 11, 12]
   },
   {
@@ -36,7 +33,6 @@ export const STORE_ASSETS = [
     price: 500.00,
     image: '/data-shoes/KickVault-Pace.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false,
     sizes: [8, 9, 10, 11, 12]
   },
   {
@@ -46,7 +42,6 @@ export const STORE_ASSETS = [
     price: 480.00,
     image: '/data-shoes/KickVault-Converge.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false,
     sizes: [8, 9, 10, 11, 12]
   },
   {
@@ -56,7 +51,6 @@ export const STORE_ASSETS = [
     price: 480.00,
     image: '/data-shoes/KickVault-Cadence.jpg',
     category: 'luxury-sneakers',
-    isFavorite: false,
     sizes: [8, 9, 10, 11, 12]
   },
   {
@@ -66,7 +60,6 @@ export const STORE_ASSETS = [
     price: 480.00,
     image: '/data-shoes/KickVault-Apex.jpg',
     category: 'men',
-    isFavorite: false,
     sizes: [8, 9, 10, 11, 12]
   },
   {
@@ -76,7 +69,6 @@ export const STORE_ASSETS = [
     price: 480.00,
     image: '/data-shoes/KickVault-Origin.jpg',
     category: 'men',
-    isFavorite: false,
     sizes: [8, 9, 10, 11, 12]
   },
   {
@@ -86,7 +78,6 @@ export const STORE_ASSETS = [
     price: 480.00,
     image: '/data-shoes/KickVault-Pulse.jpg',
     category: 'women',
-    isFavorite: false,
     sizes: [8, 9, 10, 11, 12]
   },
   {
@@ -96,7 +87,6 @@ export const STORE_ASSETS = [
     price: 480.00,
     image: '/data-shoes/KickVault-Volt.jpg',
     category: 'women',
-    isFavorite: false,
     sizes: [8, 9, 10, 11, 12]
   }
 ];
