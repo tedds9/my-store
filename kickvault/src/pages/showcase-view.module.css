@@ -1,5 +1,7 @@
 @layer components {
   .showcaseContext {
+    --size-action: var(--space-xl);
+
     container-type: inline-size;
     container-name: showcase-grid;
     inline-size: 100%;
@@ -81,6 +83,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-xs);
+    inline-size: 100%;
+    margin-block-start: var(--space-md);
 
   }
 
@@ -113,7 +117,8 @@
 
   .actionCluster {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: var(--space-xs);
     inline-size: 100%;
     margin-block-start: var(--space-md);
   }
@@ -122,9 +127,9 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    flex: 1;
     inline-size: 100%;
-    min-block-size: 4.8rem;
-    padding-block: var(--space-sm);
+    min-block-size: var(--size-action);
     padding-inline: var(--space-md);
     font-size: var(--fs-sm);
     font-weight: var(--fw-semi);
@@ -151,11 +156,53 @@
     background-color: var(--color-text-main);
     color: var(--color-bg-base)
   } 
+
+  .itemVoucher {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--size-action);
+    block-size: var(--size-action);
+    min-inline-size: var(--size-action);
+    color: var(--color-text-muted);
+    background: none;
+    border: 0.1rem solid var(--color-border);
+    cursor: pointer;
+    will-change: transform;
+    transition: color var(--transition-smooth), border-color var(--transition-smooth);
+  }
+
+  .itemVoucher[data-state="idle"]:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text-main);
+  }
+
+  .itemVoucher[data-state="active"] {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background-color: var(--color-bg-muted);
+  }
+
+  .itemVoucher:active {
+    transform: scale(0.92);
+  }
+
+  .itemHero {
+    inline-size: var(--space-md);
+    block-size: var(--space-md);
+    will-change: transform;
+    transition: transform var(--transition-smooth);
+  }
+
+  .itemVoucher[data-state="active"] .itemHero {
+    transform: scale(1.15);
+  }
   
   @container showcase-grid (min-width: 43.75rem) {
     .showcaseShell {
-      grid-template-columns: minmax(auto, 32rem) 1fr;
+      grid-template-columns: minmax(auto, 40rem) 1fr;
       align-items: center;
+      gap: var(--space-xl);
       padding-inline: var(--space-xl);
       padding-block: var(--space-xl);
     }
