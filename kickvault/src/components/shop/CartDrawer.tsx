@@ -6,8 +6,8 @@ export function CartDrawer() {
 
   const { basketSelection, merchandisePool, addToBasket, removeFromBasket,
     basketState, toggleBasket } = useShop();
-    const { isProcessing: checkoutProcessing, 
-      executePayment: initiateCheckout } = useCheckout();
+    const { checkoutToggle: checkoutProcessing, 
+      checkoutAction: initiateCheckout } = useCheckout();
 
     const drawerSubtotal = basketSelection.reduce((total, node) => {
       const asset = merchandisePool.find(item => item.id === node.assetId);
