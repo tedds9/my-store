@@ -1,47 +1,45 @@
-import { useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useTransition } from 'react';
 import { useShop } from '@/context/ShopContext';
 
 export function useCheckout() {
-  const navigate = useNavigate();
-  const { basketSelection, setBasketSelection } = useShop();
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
+  const { setBasketSelection, hydratedItems } = useShop();
+  const [checkoutToggle, startTransition] = useTransition();
 
-  const executePayment = useCallback(async () => {
-    if (basketSelection.length === 0 || isProcessing) return;
+  const checkoutAction = useCallback(() => {
+    if (hydratedItems.length === 0 || checkoutToggle) return;
 
-    setIsProcessing(true);
+    startTransition(() => {
+      try {
+        const publicApiKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+        if (!publicApiKey) throw new Error('VITE_STRIPE_PUBLISHABLE_KEY is missing.');
 
-    const rawUuid = crypto.randomUUID();
-    const cleanSegment = rawUuid.split('-')[0].toUpperCase();
-    const orderId = `KV-${cleanSegment}`;
+        const checkoutParams = new URLSearchParams();
+        checkoutParams.append('public_key', publicApiKey);
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+        hydratedItems.forEach((item, index) => {
+          checkoutParams.append(`item_${index}_id`, item.assetId);
+          checkoutParams.append(`item_${index}_qty`, String(item.quantity));
+          checkoutParams.append(`item_${index}_sz`, item.selectedSize);
+        });
 
-      const trackingSnapshot = basketSelection.map((node) => ({
-        sku: node.id,
-        count: node.quantity,
-      }));
+        checkoutParams.append('cancel_url', 
+          window.location.origin + window.location.pathname);
+        checkoutParams.append('success_url', `${window.location.origin}/success`);
 
-      setBasketSelection([]);
+        const baseSandboxTerminal = 'https://stripe.com';
 
-      navigate('/success', {
-        state: {
-          receiptId: orderId,
-          snapshot: trackingSnapshot,
-        },
-        replace: true,
-      });
-    } catch (error) {
-      console.error('Payment failure:', error);
-    } finally {
-      setIsProcessing(false);
-    }
-  }, [isProcessing, navigate, setBasketSelection, basketSelection.length]);
+        setBasketSelection([]);
+
+        window.location.href = 
+        `${baseSandboxTerminal}?${checkoutParams.toString()}`;
+      } catch (error) {
+        console.error('Stripe Redirect Error:', error);
+      }
+    });
+  }, [hydratedItems, checkoutToggle, setBasketSelection]);
 
   return {
-    isProcessing,
-    executePayment
+    checkoutToggle,
+    checkoutAction
   };
 }
