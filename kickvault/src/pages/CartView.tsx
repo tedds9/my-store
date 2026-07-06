@@ -6,8 +6,8 @@ import styles from './cart-view.module.css';
 export function CartView() {
   const { hydratedItems, addToBasket, removeFromBasket } = useShop();
   
-  const { isProcessing: checkoutProcessing, 
-    executePayment: initiateCheckout } = useCheckout();
+  const { checkoutToggle: checkoutProcessing, 
+    checkoutAction: initiateCheckout } = useCheckout();
 
   if (hydratedItems.length === 0) {
     return (
