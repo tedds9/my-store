@@ -2,38 +2,26 @@ import { useCallback, useTransition } from 'react';
 import { useShop } from '@/context/ShopContext';
 
 export function useCheckout() {
-  const { setBasketSelection, hydratedItems } = useShop();
   const [checkoutToggle, startTransition] = useTransition();
+  const { setBasketSelection, hydratedItems } = useShop();
 
   const checkoutAction = useCallback(() => {
     if (hydratedItems.length === 0 || checkoutToggle) return;
 
-    startTransition(() => {
+    startTransition(async () => {
       try {
-        const publicApiKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
-        if (!publicApiKey) throw new Error('VITE_STRIPE_PUBLISHABLE_KEY is missing.');
-
-        const checkoutParams = new URLSearchParams();
-        checkoutParams.append('public_key', publicApiKey);
-
-        hydratedItems.forEach((item, index) => {
-          checkoutParams.append(`item_${index}_id`, item.assetId);
-          checkoutParams.append(`item_${index}_qty`, String(item.quantity));
-          checkoutParams.append(`item_${index}_sz`, item.selectedSize);
+        const response = await fetch('http://localhost:4000/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: hydratedItems })
         });
 
-        checkoutParams.append('cancel_url', 
-          window.location.origin + window.location.pathname);
-        checkoutParams.append('success_url', `${window.location.origin}/success`);
-
-        const baseSandboxTerminal = 'https://stripe.com';
-
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Failed to initialize session');
         setBasketSelection([]);
-
-        window.location.href = 
-        `${baseSandboxTerminal}?${checkoutParams.toString()}`;
+        window.location.href = data.checkoutUrl;
       } catch (error) {
-        console.error('Stripe Redirect Error:', error);
+        console.error('Stripe Server Connection Error:', error);
       }
     });
   }, [hydratedItems, checkoutToggle, setBasketSelection]);
