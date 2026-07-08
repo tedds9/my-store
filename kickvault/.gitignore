@@ -1,17 +1,15 @@
 
-# 1. Local Third-Party Package Dependencies
 node_modules/
 
-# 2. Local Custom Scratchpad Text Notes
 rules
 rules-media-screen-breakpoint
 rules-about-theme
 
-# 3. Production Compilation Output Boxes
 dist/
 build/
 
-# 4. Total IDE System Layout Block (Completely blocks all personal settings)
 .vscode/
 .DS_Store
 Thumbs.db
+
+.env.local
