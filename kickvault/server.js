@@ -8,8 +8,9 @@ dotenv.config({ path: '.env.local'});
 
 const app = express();
 const stripe = new Stripe(process.env.VITE_STRIPE_SECRET_KEY);
+const allowedOrigin = process.env.NODE_ENV === 'production' ? process.env.FRONTEND_URL : 'http://localhost:5173';
 
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }));
+app.use(cors({ origin: allowedOrigin }));
 app.use(express.json());
 app.post('/api/checkout', async (req, res) => {
   try {
