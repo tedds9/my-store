@@ -3,12 +3,13 @@ import Stripe from 'stripe';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+dotenv.config();
 dotenv.config({ path: '.env.local'});
 
 const app = express();
 const stripe = new Stripe(process.env.VITE_STRIPE_SECRET_KEY);
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }));
 app.use(express.json());
 app.post('/api/checkout', async (req, res) => {
   try {
@@ -41,5 +42,5 @@ app.post('/api/checkout', async (req, res) => {
   }
 })
 
-const PORT = 4000;
-app.listen(PORT, () => console.log(`Stripe Sandbox Backend Online: http://localhost:${PORT}`));
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`Stripe Sandbox Backend Online on port: ${PORT}`));
