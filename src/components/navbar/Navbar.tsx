@@ -19,7 +19,7 @@ export function Navbar() {
       <div className={`${styles.navigationViewport}`} >
         <NavLink className={styles.brandLink} to="/" onClick={closeMenu} >
           <span className={`${styles.brandTitle}`}
-          >kickvault</span>
+          >HEAVYWEIGHT</span>
         </NavLink>
 
         <div
