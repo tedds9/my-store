@@ -5,5 +5,5 @@ export interface MerchandiseAsset {
   readonly price: number;
   readonly image: string;
   readonly category: string;
-  readonly sizes: number[];
+  readonly sizes: string[];
 }
