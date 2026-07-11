@@ -9,7 +9,7 @@ export function ShowcaseView() {
   const { id } = useParams<{ id: string }>();
   const { merchandisePool, addToBasket, toggleBasket, favorite, toggleFavorite } = useShop();
   const showcaseNode = merchandisePool.find((node) => node.id === id);
-  const [chosenSize, setChosenSize] = useState<number | null>(null);
+  const [chosenSize, setChosenSize] = useState<string | null>(null);
 
   const isFavorite = showcaseNode ? favorite.includes(showcaseNode.id) : false;
 
