@@ -1,20 +1,20 @@
 @layer tokens {
   :root {
-    --neutral-950: #0a0a0a;
-    --neutral-900: #171717;
-    --neutral-800: #262626;
+    --neutral-950: #050505;
+    --neutral-900: #0a0a0a;
+    --neutral-800: #141414;
     --neutral-100: #f5f5f5;
     --neutral-400: #a3a3a3;
     --neutral-500: #737373;
     --orange-500: #f50;
     --olive-200:   #dce2aa;
-    --space-base-8: 0.8rem;
-    --space-base-16: 1.6rem;
-    --space-base-24: 2.4rem;
-    --space-base-32: 3.2rem;
-    --space-base-48: 4.8rem;
-    --space-base-64: 6.4rem;
-    --space-base-96: 9.6rem;
+    --space-base-8: 8px;
+    --space-base-16: 16px;
+    --space-base-24: 24px;
+    --space-base-32: 32px;
+    --space-base-48: 48px;
+    --space-base-64: 64px;
+    --space-base-96: 96px;
     --color-bg-base:       var(--neutral-950);
     --color-bg-surface:    var(--neutral-900);
     --color-bg-muted:      var(--neutral-800);
@@ -31,12 +31,12 @@
     --space-xl: var(--space-base-48);
     --space-2xl: var(--space-base-64);
     --space-3xl: var(--space-base-96);
-    --grid-max-width: 120rem;
-    --fs-sm:   clamp(1.2rem, 1.0rem + 0.5vw, 1.4rem);
-    --fs-md:   clamp(1.2rem, 1.2rem + 0.5vw, 1.6rem);
-    --fs-lg:   clamp(1.8rem, 1.5rem + 1.0vw, 2.4rem);
-    --fs-xl:   clamp(2rem, 2.0rem + 1.5vw, 3.2rem);
-    --fs-hero: clamp(2rem, 2.5rem + 3.0vw, 7rem);
+    --grid-max-width: 1200px;
+    --fs-sm:   12px;
+    --fs-md:   14px;
+    --fs-lg:   18px;
+    --fs-xl:   24px;
+    --fs-hero: 48px;
     --z-index-floor: 1;
     --z-index-header: 100;
     --z-index-backdrop: 500;
@@ -47,12 +47,12 @@
     --duration-normal: 200ms;
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: var(--duration-normal) var(--ease-in-out);
-    --blur-md: 0.4rem;
-    --lh-display: 1.1;
-    --ls-display: -0.03em;
+    --blur-md: 4px;
+    --lh-display: 1.0;
+    --ls-display: 0.12em;
     --fw-display: 800;
-    --lh-compact: 1;
-    --ls-compact: -0.01em;
-    --fw-semi: 600;
+    --lh-compact: 1.1;
+    --ls-compact: -0.02em;
+    --fw-semi: 700;
   }
 }
