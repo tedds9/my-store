@@ -2,6 +2,7 @@ import express from 'express';
 import Stripe from 'stripe';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { connectDatabase } from './config/db.js';
 
 dotenv.config();
 dotenv.config({ path: '.env.local'});
@@ -12,6 +13,7 @@ const allowedOrigin = process.env.NODE_ENV === 'production' ? process.env.FRONTE
 
 app.use(cors({ origin: allowedOrigin }));
 app.use(express.json());
+connectDatabase();
 app.post('/api/checkout', async (req, res) => {
   try {
     const { items } = req.body;
