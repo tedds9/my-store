@@ -3,8 +3,8 @@ import Stripe from 'stripe';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDatabase } from './config/db.js';
+import { Merchandise } from './models/Merchandise.js';
 
-dotenv.config();
 dotenv.config({ path: '.env.local'});
 
 const app = express();
@@ -18,17 +18,29 @@ app.post('/api/checkout', async (req, res) => {
   try {
     const { items } = req.body;
 
-    const lineItems = items.map((item) => ({
-      price_data: {
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: 'Malformed requestion payload: items array is required.'});
+    }
+
+    const lineItems = await Promise.all(items.map(async (clientItem) => {
+      const dbProduct = await Merchandise.findOne({ id: clientItem.id });
+      
+      if (!dbProduct) {
+        throw new Error(`Product mapping failed: ID ${clientItem.id} not found.`);
+      }
+
+      return {
+        price_data: {
         currency: 'usd',
         product_data: {
-          name: `${item.name} (Size: ${item.selectedSize})`,
-          images: item.image && (item.image.startsWith('http')) ? [item.image] : [],
+          name: `${dbProduct.name} (Size: ${clientItem.selectedSize})`,
+          images: dbProduct.image && (dbProduct.image.startsWith('http')) ? [dbProduct.image] : [],
         },
-        unit_amount: Math.round(item.price * 100),
+        unit_amount: Math.round(dbProduct.price * 100),
       },
-      quantity: item.quantity,
-    }));
+      quantity: clientItem.quantity,
+    };
+    }))
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
