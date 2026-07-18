@@ -55,7 +55,19 @@ app.post('/api/checkout', async (req, res) => {
     console.error('Stripe Server Error:', error);
     res.status(500).json({ error: error.message });
   }
+
+  
 })
+app.get('/api/products', async (req, res) => {
+  try {
+    const catalog = await Merchandise.find({});
+    
+    res.json(catalog);
+  } catch (error) {
+    console.error('Catalog Sync Error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Stripe Sandbox Backend Online on port: ${PORT}`));
