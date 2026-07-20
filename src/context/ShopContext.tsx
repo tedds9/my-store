@@ -39,6 +39,8 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
   useSync('kv_basket_cache', basketSelection, setBasketSelection);
   useSync('kv_favorites_cache', favorite, setFavorite);
 
+  
+
   const [basketState, setBasketState] = useState<'active' | 'idle'>('idle');
 
   const toggleBasket = useCallback((forceState?: 'active' | 'idle') => {
