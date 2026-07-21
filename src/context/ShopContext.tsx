@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useMemo, useCallback } from 'react';
-import { STORE_ASSETS as mockStoreAssets } from '@/data/inventory-assets';
+//import { STORE_ASSETS as mockStoreAssets } from '@/data/inventory-assets';
+import { useCollection } from '@/hooks/useCollection';
 import { NAV_CATEGORIES_LINKS as mockNavCategoryLinks, NAV_PRIMARY_LINKS as mockNavPrimaryLinks } from '@/data/navigation-links';
 import { BasketSelection, CartLineItem } from '@/types/basket-selections';
 import { MerchandiseAsset } from '@/types/merchandise-assets';
@@ -26,6 +27,8 @@ interface ShopContextType {
 const ShopContext = createContext<ShopContextType | null>(null);
 
 export function ShopProvider({ children }: { children: React.ReactNode }) {
+  const { merchandisePool } = useCollection();
+  
   const [basketSelection, setBasketSelection] = useState<BasketSelection[]>(() => {
     const localPocket = localStorage.getItem('kv_basket_cache');
     return localPocket ? JSON.parse(localPocket) : [];
@@ -81,9 +84,10 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     )
   }, []);
 
-  const hydratedItems = basketSelection.map((selection) => {
-      const asset = mockStoreAssets.find((item) => item.id === selection.assetId);
+  const hydratedItems = useMemo(() =>  basketSelection.map((selection) => {
+      const asset = merchandisePool.find((item) => item.id === selection.assetId);
       if (!asset) return null;
+      
       return {
         id: selection.id,
         assetId: asset.id,
@@ -95,10 +99,11 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
         selectedSize: selection.selectedSize,
         quantity: selection.quantity
       };
-    }).filter((item): item is CartLineItem => item !== null);
+    }).filter((item): item is CartLineItem => item !== null), 
+    [basketSelection, merchandisePool]);
 
   const contextValue = useMemo(() => ({
-    merchandisePool: mockStoreAssets,
+    merchandisePool,
     categoryLinks: mockNavCategoryLinks,
     primaryLinks: mockNavPrimaryLinks,
     basketSelection,
@@ -110,7 +115,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     favorite,
     toggleFavorite,
     toggleBasket
-  }), [basketSelection, basketState, addToBasket, removeFromBasket, favorite, toggleFavorite, toggleBasket]);
+  }), [merchandisePool, basketSelection, hydratedItems, basketState, addToBasket, removeFromBasket, favorite, toggleFavorite, toggleBasket]);
 
   return (
     <ShopContext value={contextValue}>
