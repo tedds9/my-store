@@ -27,10 +27,12 @@ app.post('/api/checkout', async (req, res) => {
     }
 
     const lineItems = await Promise.all(items.map(async (clientItem) => {
-      const dbProduct = await Merchandise.findOne({ id: clientItem.id });
+
+      const [cleanProductId] = clientItem.id.split('::');
+      const dbProduct = await Merchandise.findOne({ id: cleanProductId});
       
       if (!dbProduct) {
-        throw new Error(`Product mapping failed: ID ${clientItem.id} not found.`);
+        throw new Error(`Product mapping failed: ID ${cleanProductId} not found.`);
       }
 
       return {
