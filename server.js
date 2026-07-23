@@ -1,11 +1,15 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import Stripe from 'stripe';
 import cors from 'cors';
-import dotenv from 'dotenv';
+
 import { connectDatabase } from './config/db.js';
 import { Merchandise } from './models/Merchandise.js';
 
 dotenv.config({ path: '.env.local'});
+// ALERT FOR MY FUTURE SELF: If the app crashes instantly on boot with a 
+// "Missing MONGODB_URI" error, it means I forgot to log into ://render.com 
+// and paste the database connection string into the Environment Variables panel!
 
 const app = express();
 const stripe = new Stripe(process.env.VITE_STRIPE_SECRET_KEY);
