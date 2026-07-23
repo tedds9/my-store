@@ -2,7 +2,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node --env-file=.env.local server.js",
     "build": "npm run validate && vite build",
+    "start": "concurrently \"npm run dev\" \"npm run server\"",
     "review": "vite preview",
     "lint:css": "stylelint \"src/**/*.css\"",
     "lint:js": "eslint src",
@@ -14,6 +16,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",
     "autoprefixer": "^10.5.0",
+    "concurrently": "^9.1.2",
     "eslint": "^9.39.4",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
