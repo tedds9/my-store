@@ -15,10 +15,8 @@ interface ShopContextType {
   readonly basketSelection: readonly BasketSelection[];
   readonly setBasketSelection: Dispatch<SetStateAction<BasketSelection[]>>;
   readonly hydratedItems: readonly CartLineItem[];
-  readonly basketState: 'active' | 'idle';
   readonly addToBasket: (assetId: string, selectedSize: string) => void;
   readonly removeFromBasket: (assetId: string, selectedSize: string) => void;
-  readonly toggleBasket: (forceState?: 'active' | 'idle') => void;
   readonly favorite: readonly string[];
   readonly toggleFavorite: (assetId: string) => void;
 
@@ -41,14 +39,6 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
 
   useSync('kv_basket_cache', basketSelection, setBasketSelection);
   useSync('kv_favorites_cache', favorite, setFavorite);
-
-  
-
-  const [basketState, setBasketState] = useState<'active' | 'idle'>('idle');
-
-  const toggleBasket = useCallback((forceState?: 'active' | 'idle') => {
-    setBasketState((prev) => forceState ?? (prev === 'active' ? 'idle' : 'active'));
-  }, []);
 
   const removeFromBasket = useCallback((assetId: string, selectedSize: string) => {
     setBasketSelection((prev) => {
@@ -99,7 +89,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
         selectedSize: selection.selectedSize,
         quantity: selection.quantity
       };
-    }).filter((item): item is CartLineItem => item !== null), 
+    }).filter((item): item is CartLineItem => item !== null),
     [basketSelection, merchandisePool]);
 
   const contextValue = useMemo(() => ({
@@ -109,13 +99,11 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     basketSelection,
     setBasketSelection,
     hydratedItems,
-    basketState,
     addToBasket,
     removeFromBasket,
     favorite,
     toggleFavorite,
-    toggleBasket
-  }), [merchandisePool, basketSelection, hydratedItems, basketState, addToBasket, removeFromBasket, favorite, toggleFavorite, toggleBasket]);
+  }), [merchandisePool, basketSelection, hydratedItems, addToBasket, removeFromBasket, favorite, toggleFavorite]);
 
   return (
     <ShopContext value={contextValue}>
