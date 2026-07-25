@@ -1,26 +1,26 @@
 import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from 'react';
 
 interface ViewChannelsType {
-  readonly drawerState: 'active' | 'idle';
+  readonly basketState: 'active' | 'idle';
   readonly toggleBasket: (forceState?: 'active' | 'idle') => void;
 }
 
 const ViewChannels = createContext<ViewChannelsType | null>(null);
 
 export function ViewChannelsProvider({ children }: { readonly children: ReactNode }) {
-  const [drawerState, setDrawerState] = useState<'active' | 'idle'>('idle');
+  const [basketState, setBasketState] = useState<'active' | 'idle'>('idle');
   const toggleBasket = useCallback((forceState?: 'active' | 'idle') => {
     if (forceState) {
-      setDrawerState(forceState);
+      setBasketState(forceState);
     } else {
-      setDrawerState((prev) => (prev === 'active' ? 'idle' : 'active'));
+      setBasketState((prev) => (prev === 'active' ? 'idle' : 'active'));
     }
   }, []);
 
   const contextValue = useMemo(() => ({
-    drawerState,
+    basketState,
     toggleBasket
-  }), [drawerState, toggleBasket]);
+  }), [basketState, toggleBasket]);
 
   return (
     <ViewChannels value={contextValue}>
