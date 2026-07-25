@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { ShopProvider, useShop } from '@/context/ShopContext';
+import { ViewChannelsProvider } from './context/ViewChannels';
 import { Navbar } from '@/components/navbar/Navbar'
 import { Hero } from '@/components/shop/Hero';
 import { CollectionShowcase } from '@/components/shop/CollectionShowcase';
@@ -14,7 +15,7 @@ const CartView = lazy(() =>
   import('@/pages/CartView').then(m => ({ default: m.CartView })));
 const SuccessView = lazy(() =>
   import('@/pages/SuccessView').then(m => ({ default: m.SuccessView })));
-const FavoritesView = lazy(() => 
+const FavoritesView = lazy(() =>
   import('@/pages/FavoritesView').then(m => ({ default: m.FavoritesView })));
 
 
@@ -37,33 +38,35 @@ function App() {
 
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ShopProvider >
-        <main>
-          <RouteSnap />
-          <Navbar />
-          <Suspense fallback={<></>}>
-            <Routes>
-              <Route path="/"
-                element={<MainStoreFrontView />} />
-              <Route path="/products"
-                element={<CategoryController />} />
-              <Route path="/cart"
-                element={<CartView />} />
-              <Route path={"/favorites"}
-                element={<FavoritesView />} />
-              <Route path="/category/:type"
-                element={<CategoryController />} />
-              <Route path="/products/:id"
-                element={<ShowcaseView />} />
-              <Route path="/success"
-                element={<SuccessView />} />
+        <ViewChannelsProvider>
+          <main>
+            <RouteSnap />
+            <Navbar />
+            <Suspense fallback={<></>}>
+              <Routes>
+                <Route path="/"
+                  element={<MainStoreFrontView />} />
+                <Route path="/products"
+                  element={<CategoryController />} />
+                <Route path="/cart"
+                  element={<CartView />} />
+                <Route path={"/favorites"}
+                  element={<FavoritesView />} />
+                <Route path="/category/:type"
+                  element={<CategoryController />} />
+                <Route path="/products/:id"
+                  element={<ShowcaseView />} />
+                <Route path="/success"
+                  element={<SuccessView />} />
 
 
-            </Routes>
-          </Suspense>
+              </Routes>
+            </Suspense>
 
-          <CartDrawer />
+            <CartDrawer />
 
-        </main>
+          </main>
+        </ViewChannelsProvider>
       </ShopProvider>
     </BrowserRouter>
 
