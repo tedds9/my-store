@@ -1,13 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { useCallback, useState } from 'react';
 import { useShop } from '@/context/ShopContext';
+import { useViewChannels } from '@/context/ViewChannels';
 import { useTimeout } from '@/hooks/useTimeout';
 import styles from './showcase-view.module.css';
 
 
 export function ShowcaseView() {
   const { id } = useParams<{ id: string }>();
-  const { merchandisePool, addToBasket, toggleBasket, favorite, toggleFavorite } = useShop();
+  const { merchandisePool, addToBasket, favorite, toggleFavorite } = useShop();
+  const { toggleBasket } = useViewChannels();
   const showcaseNode = merchandisePool.find((node) => node.id === id);
   const [chosenSize, setChosenSize] = useState<string | null>(null);
 

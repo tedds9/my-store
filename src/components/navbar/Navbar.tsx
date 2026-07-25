@@ -2,12 +2,14 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useShop } from '@/context/ShopContext';
+import { useViewChannels } from '@/context/ViewChannels';
 import styles from './navbar.module.css';
 
 
 export function Navbar() {
 
-  const { categoryLinks, primaryLinks, toggleBasket, basketSelection } = useShop();
+  const { categoryLinks, primaryLinks, basketSelection } = useShop();
+  const { toggleBasket } = useViewChannels();
   const [isOpen, setIsOpen] = useState(false);
   const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => setIsOpen((prev) => !prev);

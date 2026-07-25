@@ -1,11 +1,12 @@
 import { useShop } from '@/context/ShopContext';
 import styles from './cart-drawer.module.css';
 import { useCheckout } from '@/hooks/useCheckout';
+import { useViewChannels } from '@/context/ViewChannels';
 
 export function CartDrawer() {
 
-  const { basketSelection, merchandisePool, addToBasket, removeFromBasket,
-    basketState, toggleBasket } = useShop();
+  const { basketSelection, merchandisePool, addToBasket, removeFromBasket } = useShop();
+  const { basketState, toggleBasket } = useViewChannels()
     const { checkoutToggle: checkoutProcessing, 
       checkoutAction: initiateCheckout } = useCheckout();
 
