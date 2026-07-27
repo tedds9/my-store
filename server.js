@@ -75,5 +75,9 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
+app.get('/api/healthcheck', (req, res) => {
+  res.status(200).send('OPERATIONAL');
+})
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Stripe Sandbox Backend Online on port: ${PORT}`));
