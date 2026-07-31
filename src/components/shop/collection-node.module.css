@@ -8,7 +8,7 @@
     .nodeAnchor {
     position: relative;
     inline-size: 100%;
-    background-color: var(--color-bg-surface);
+    background-color: var(--color-bg-base);
     block-size: clamp(32rem, 100cqw, 48rem);
     overflow: hidden;
     border-radius: 0.8rem;
@@ -19,6 +19,7 @@
   .nodeAnchor:hover {
     transform: translateY(-0.4rem);
     box-shadow: 0 1.2rem 3rem rgb(0 0 0 / 50%);
+    border-color: var(--color-text-disabled);
   }
 
   .nodeStage {
@@ -26,7 +27,7 @@
     block-size: 100%;
     min-block-size: 0;
     overflow: hidden;
-    background-color: var(--color-bg-muted);
+    background-color: #262626;
   }
 
   .nodeTrigger {
@@ -41,7 +42,7 @@
   .nodeAsset {
     inline-size: 100%;
     block-size: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     transition: transform var(--transition-smooth);
   }
