@@ -11,7 +11,7 @@
   display: grid;
   position: relative;
   overflow: hidden;
-  align-items: center;
+  align-items: flex-end;
   inline-size: 100%;
   block-size: clamp(50rem, 60dvh, 65rem);
 }
@@ -56,8 +56,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   padding-inline: var(--space-md);
+  padding-block-end: var(--space-xl);
   max-inline-size: var(--l-grid-max-width);
   margin-inline: auto;
   text-align: center;
@@ -111,19 +112,19 @@
 }
 
 .primaryAction {
-  color: var(--color-accent);
-  border: solid 0.1rem var(--color-accent);
-  background-color: transparent;
+  color: #050505;
+  background-color: #fff;
+  border: none;
 }
 
 .primaryAction:hover {
   background-color: var(--color-accent);
-  color: var(--color-bg-base)
+  color: #fff ;
 }
 
 .secondaryAction {
-  color: var(--color-accent-muted);
-  border: solid 0.1rem var(--color-bg-surface);
+  color: #fff;
+   border: solid 0.1rem rgb(255 255 255 / 40%);
   background-color: transparent;
 }
 
