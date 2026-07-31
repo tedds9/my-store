@@ -1,8 +1,8 @@
 @layer components {
   .basketContext {
-    --panel-width-min: 42rem;
-    --panel-width-max: 48rem;
-    --panel-fluid-ratio: 35vw;
+    --panel-width-min: 100vw;
+    --panel-width-max: 40rem;
+    --panel-fluid-ratio: 100vw;
     --action-footprint: var(--space-xl);
     --local-header-space: var(--space-md);
     --local-header-stroke: 0.1rem solid var(--color-border);
@@ -35,12 +35,13 @@
   .basketPanel {
     background-color: var(--color-bg-surface);
     block-size: 100dvh;
-    inline-size: clamp(var(--panel-width-min), var(--panel-fluid-ratio), 
+    inline-size: clamp(0rem, var(--panel-width-min), var(--panel-fluid-ratio), 
     var(--panel-width-max));
     display: flex;
     flex-direction: column;
     pointer-events: auto;
     position: relative;
+    box-sizing: border-box;
   }
 
   .panelHeader {
