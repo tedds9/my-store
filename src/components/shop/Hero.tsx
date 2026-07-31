@@ -1,5 +1,5 @@
 import styles from './hero.module.css';
-import heroImage from '@/images/shoes-image/heroPicture.jpg';
+import heroImage from '@/images/hero-image/heroPicture.jpg';
 
 export function Hero() {
   return (
@@ -16,12 +16,12 @@ export function Hero() {
           </picture>
         </div>
         <div className={styles.editorialBillboard}>
-          <h1 className={styles.mainHeading} >EVERY STEP ELEVATED</h1>
-          <p className={styles.subHeading} >"Premium sneakers for those who move with intention."</p>
+          <h1 className={styles.mainHeading} >HEAVYWEIGHT</h1>
+          <p className={styles.subHeading} ></p>
           <div className={styles.actionCluster}>
             <button
               className={styles.primaryAction} >
-              Shop Now
+              Browse Outfits
             </button>
             <button
               className={styles.secondaryAction} >
