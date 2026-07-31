@@ -67,7 +67,7 @@
 .mainHeading {
   text-transform: uppercase;
   font-weight: var(--fw-display);
-  font-size: var(--fs-hero);
+  font-size: clamp(3.2rem, 10vw, var(--fs-hero));
   line-height: var(--lh-display);
   color: var(--color-text-main);
   letter-spacing: var(--ls-display);
