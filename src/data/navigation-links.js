@@ -1,16 +1,16 @@
 
 export const NAV_CATEGORIES_LINKS = [{
-  id: 'cat-men',
-  name: 'Men',
-  path: '/category/men'
+  id: 'cat-hoodies',
+  name: 'Hoodies',
+  path: '/category/hoodies'
 },{
-  id: 'cat-women',
-  name: 'Women',
-  path: '/category/women'
+  id: 'cat-bottoms',
+  name: 'Bottoms',
+  path: '/category/bottoms'
 },{
-  id: 'cat-luxury',
-  name: 'Luxury Sneakers',
-  path: '/category/luxury-sneakers'
+  id: 'cat-tees',
+  name: 'Tees',
+  path: '/category/tees'
 },];
 
 export const NAV_PRIMARY_LINKS = [{
