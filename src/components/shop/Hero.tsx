@@ -1,7 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './hero.module.css';
 import heroImage from '@/images/hero-image/heroPicture.jpg';
 
 export function Hero() {
+
+  const navigate = useNavigate();
+
   return (
     <div className={styles.navigationAnchor} >
       
@@ -20,12 +24,9 @@ export function Hero() {
           <p className={styles.subHeading} ></p>
           <div className={styles.actionCluster}>
             <button
-              className={styles.primaryAction} >
+              type="button" className={styles.primaryAction} onClick={() => navigate('/products')} 
+              aria-label="product-showcase-grid" >
               Browse Outfits
-            </button>
-            <button
-              className={styles.secondaryAction} >
-              Explore
             </button>
           </div>
         </div>
