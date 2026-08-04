@@ -16,7 +16,7 @@ interface ShopContextType {
   readonly setBasketSelection: Dispatch<SetStateAction<BasketSelection[]>>;
   readonly hydratedItems: readonly CartLineItem[];
   readonly addToBasket: (assetId: string, selectedSize: string) => void;
-  readonly removeFromBasket: (assetId: string, selectedSize: string) => void;
+  readonly removeFromBasket: (assetId: string, selectedSize: string, purge?: boolean) => void;
   readonly favorite: readonly string[];
   readonly toggleFavorite: (assetId: string) => void;
 
@@ -40,17 +40,18 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
   useSync('kv_basket_cache', basketSelection, setBasketSelection);
   useSync('kv_favorites_cache', favorite, setFavorite);
 
-  const removeFromBasket = useCallback((assetId: string, selectedSize: string) => {
+  const removeFromBasket = useCallback((assetId: string, selectedSize: string, purge = false) => {
     setBasketSelection((prev) => {
       const targetId = `${assetId}::${selectedSize}`;
       const activeNode = prev.find((node) => node.id === targetId);
       if (!activeNode) return prev;
-      if (activeNode.quantity > 1) {
-        return prev.map((node) =>
+      if (purge || activeNode.quantity <= 1) {
+        return prev.filter((node) => node.id !== targetId);      
+      }   
+
+      return prev.map((node) =>
           node.id === targetId ? { ...node, quantity: node.quantity - 1 } : node
         );
-      }
-      return prev.filter((node) => node.id !== targetId);
     });
   }, []);
 

@@ -5,7 +5,7 @@ interface CartItemProps {
   readonly item: CartLineItem;
   readonly onIncrement: (assetId: string, selectedSize: string) => void;
   readonly onDecrement: (assetId: string, selectedSize: string) => void;
-  readonly onRemove: (assetId: string, selectedSize: string) => void;
+  readonly onRemove: (assetId: string, selectedSize: string, purge: boolean) => void;
 }
 
 export function CartItem({ item, onIncrement, onDecrement, onRemove}: CartItemProps) {
@@ -33,7 +33,7 @@ export function CartItem({ item, onIncrement, onDecrement, onRemove}: CartItemPr
           aria-label="Increase quantity">+</button>
         </div>
         <button 
-        onClick={() => onRemove(item.id, item.selectedSize)} 
+        onClick={() => onRemove(item.assetId, item.selectedSize, true)} 
         className={styles.removeTrigger}>Remove</button>
       </div>
       <span className={styles.priceLabel}>${(item.price * item.quantity).toFixed(2)}</span>
