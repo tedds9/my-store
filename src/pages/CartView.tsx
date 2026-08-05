@@ -5,6 +5,10 @@ import styles from './cart-view.module.css';
 
 export function CartView() {
   const { hydratedItems, addToBasket, removeFromBasket } = useShop();
+
+  const totalCartCost = hydratedItems.reduce((accumulator, item) => {
+    return accumulator + (item.price * item.quantity);
+  }, 0);
   
   const { checkoutToggle: checkoutProcessing, 
     checkoutAction: initiateCheckout } = useCheckout();
@@ -36,6 +40,11 @@ export function CartView() {
         </section>
         <aside className={styles.summaryPanel}>
           <h2 className={styles.summaryHeading}>Order Summary</h2>
+
+          <div className={styles.priceRow}>
+            <span className={styles.priceLabel}>Subtotal</span>
+            <span className={styles.priceValue}>${totalCartCost.toFixed(2)}</span>
+          </div>
           <button 
           type="button"
           onClick={initiateCheckout}
