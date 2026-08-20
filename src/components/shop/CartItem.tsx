@@ -11,7 +11,8 @@ interface CartItemProps {
 export function CartItem({ item, onIncrement, onDecrement, onRemove}: CartItemProps) {
   return (
     <article className={styles.rowLayout}>
-      <img src={item.image} alt={item.name} className={styles.productGraphic} loading="lazy" />
+      <img src={item.image} alt={item.name} className={styles.productGraphic} loading="lazy" 
+      style={{width: 'var(--space-2xl)', height: 'var(--space-2xl)' }} />
 
       <div className={styles.productText}>
         <h3 className={styles.productHeading}>{item.name}</h3>
