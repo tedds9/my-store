@@ -14,7 +14,7 @@ const capsuleItems = [
     name: 'Boxy Pullover Hoodie',
     brand: 'HEAVYWEIGHT',
     price: 85.00,
-    image: '/products/boxy-pullover.png',
+    image: '/products/boxy-pullover.webp',
     category: 'hoodies',
     sizes: ['S', 'M', 'L', 'XL']
   },
@@ -23,7 +23,7 @@ const capsuleItems = [
     name: 'Oversized Full-Zip Hoodie',
     brand: 'HEAVYWEIGHT',
     price: 90.00,
-    image: '/products/oversized-zipup.png',
+    image: '/products/oversized-zipup.webp',
     category: 'hoodies',
     sizes: ['S', 'M', 'L', 'XL']
   },
@@ -32,7 +32,7 @@ const capsuleItems = [
     name: 'Heavyweight Trackpants',
     brand: 'HEAVYWEIGHT',
     price: 75.00,
-    image: '/products/heavyweight-trackpants.png',
+    image: '/products/heavyweight-trackpants.webp',
     category: 'bottoms',
     sizes: ['S', 'M', 'L', 'XL']
   },
@@ -41,7 +41,7 @@ const capsuleItems = [
     name: 'Oversized Graphic Tee',
     brand: 'HEAVYWEIGHT',
     price: 40.00,
-    image: '/products/oversized-tee.png',
+    image: '/products/oversized-tee.webp',
     category: 'tees',
     sizes: ['S', 'M', 'L', 'XL']
   }

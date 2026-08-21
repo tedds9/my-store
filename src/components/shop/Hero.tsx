@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './hero.module.css';
-import heroImage from '@/images/hero-image/heroPicture.jpg';
+import heroImage from '@/images/hero-image/heroPicture.webp';
 
 export function Hero() {
 
