@@ -64,7 +64,7 @@ app.post('/api/checkout', async (req, res) => {
 
   
 })
-app.get('/api/products', async (res) => {
+app.get('/api/products', async (req, res) => {
   try {
     const catalog = await Merchandise.find({});
     
@@ -75,7 +75,7 @@ app.get('/api/products', async (res) => {
   }
 });
 
-app.get('/api/healthcheck', (res) => {
+app.get('/api/healthcheck', (req, res) => {
   res.status(200).send('OPERATIONAL');
 })
 
